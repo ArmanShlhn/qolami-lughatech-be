@@ -1,0 +1,48 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class SoalGambar extends Model
+{
+    use HasFactory;
+
+    protected $table = 'soal_gambar';
+
+    protected $fillable = [
+        'latihan_id', 
+        'kategori_id', 
+        'soal', 
+        'jawaban', 
+        'gambar_url',
+        'opsi_a', 
+        'opsi_b', 
+        'opsi_c', 
+        'opsi_d',
+    ];
+
+    protected $hidden = ['created_at', 'updated_at'];
+
+    public function latihan()
+    {
+        return $this->belongsTo(Latihan::class);
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
+
+    #Method bantu untuk mengakses seluruh opsi jawaban
+    public function opsiJawaban()
+    {
+        return collect([
+            $this->opsi_a,
+            $this->opsi_b,
+            $this->opsi_c,
+            $this->opsi_d,
+        ]);
+    }
+}

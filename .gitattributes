@@ -1,0 +1,41 @@
+# Set default to LF for all text files
+* text=auto eol=lf
+
+# Explicitly set line endings for common file types
+*.php     text eol=lf
+*.js      text eol=lf
+*.css     text eol=lf
+*.scss    text eol=lf
+*.html    text eol=lf
+*.json    text eol=lf
+*.xml     text eol=lf
+*.md      text eol=lf
+*.yml     text eol=lf
+*.yaml    text eol=lf
+*.env     text eol=lf
+*.sh      text eol=lf
+
+# Binary files: mark as binary so Git doesn't change them
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.ico     binary
+*.mp4     binary
+*.mp3     binary
+*.wav     binary
+*.ogg     binary
+*.webm    binary
+*.zip     binary
+*.ttf     binary
+*.woff    binary
+*.woff2   binary
+*.eot     binary
+*.pdf     binary
+
+# Prevent export-ignore for dev files (optional)
+.gitignore       export-ignore
+.gitattributes   export-ignore
+.env.example     export-ignore
+phpunit.xml      export-ignore
+tests/           export-ignore
