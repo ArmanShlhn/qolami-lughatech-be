@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Latihan;
-use App\Models\SoalGambar;
 use App\Models\SoalVideo;
 use App\Models\SoalAudio;
 use Illuminate\Http\Request;
@@ -11,7 +10,6 @@ use Illuminate\Http\Request;
 class LatihanController extends Controller
 {
     protected $models = [
-        'gambar' => SoalGambar::class,
         'video' => SoalVideo::class,
         'audio' => SoalAudio::class,
     ];
@@ -19,7 +17,7 @@ class LatihanController extends Controller
     public function getSoalLatihan($latihanId, $jenis, Request $request)
     {
         try {
-            $page = $request->input('page', 1); // default halaman 1
+            $page = $request->input('page', 1);
             $perPage = 1;
 
             $latihan = Latihan::with('kategori')->find($latihanId);
@@ -28,11 +26,12 @@ class LatihanController extends Controller
                 return response()->json(['message' => 'Latihan tidak ditemukan'], 404);
             }
 
-            // Mendefinisikan array model berdasarkan jenis soal
+            #array model jenis soal
             $models = [
-                'gambar' => SoalGambar::class,
+
                 'audio' => SoalAudio::class,
                 'video' => SoalVideo::class,
+
             ];
 
             if (!isset($models[$jenis])) {
@@ -41,7 +40,7 @@ class LatihanController extends Controller
 
             $model = $models[$jenis];
 
-            // Mengambil soal berdasarkan model dan jenis
+            #soal berdasarkan model dan jenis
             $soal = $model::where('latihan_id', $latihanId)
                 ->orderBy('id')
                 ->skip(($page - 1) * $perPage)
@@ -63,7 +62,6 @@ class LatihanController extends Controller
                     'id' => $soal->id,
                     'latihan_id' => $soal->latihan_id,
                     'soal' => $soal->soal,
-                    // Menangani media_url sesuai jenis soal
                     'media_url' => $soal->gambar_url ?? $soal->video_url ?? $soal->audio_url,
                     'opsi_a' => $soal->opsi_a,
                     'opsi_b' => $soal->opsi_b,
@@ -72,7 +70,6 @@ class LatihanController extends Controller
                     'jawaban' => $soal->jawaban,
                 ],
             ]);
-
         } catch (\Exception $e) {
             return response()->json(['message' => 'Terjadi kesalahan', 'error' => $e->getMessage()], 500);
         }
@@ -83,7 +80,7 @@ class LatihanController extends Controller
         try {
             $request->validate([
                 'latihan_id' => 'required|exists:latihan,id',
-                'jenis' => 'required|in:gambar,video,audio',
+                'jenis' => 'required|in:video,audio',
                 'soal_id' => 'required|integer',
                 'jawaban_user' => 'required|string',
             ]);
@@ -106,7 +103,6 @@ class LatihanController extends Controller
                 'jawaban_benar' => $soal->jawaban,
                 'hasil' => $benar ? 'Benar' : 'Salah',
             ]);
-
         } catch (\Exception $e) {
             return response()->json(['message' => 'Terjadi kesalahan', 'error' => $e->getMessage()], 500);
         }

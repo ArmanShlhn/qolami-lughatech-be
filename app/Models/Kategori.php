@@ -23,11 +23,6 @@ class Kategori extends Model
         return $this->hasMany(Kuis::class);
     }
     
-    public function soalGambar()
-    {
-        return $this->hasMany(SoalGambar::class);
-    }
-
     public function soalVideo()
     {
         return $this->hasMany(SoalVideo::class);

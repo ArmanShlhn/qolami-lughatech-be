@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             LatihanSeeder::class,
             SoalLatihanSeeder::class,
             KuisSeeder::class,
-            ScoresSeeder::class,
         ]);
     }
 }

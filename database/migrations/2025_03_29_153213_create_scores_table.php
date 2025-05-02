@@ -14,10 +14,10 @@ class CreateScoresTable extends Migration
             $table->unsignedBigInteger('kuis_id');
             $table->integer('jumlah_benar');
             $table->integer('jumlah_soal');
-            $table->tinyInteger('bintang'); // 0-3
+            $table->tinyInteger('bintang');
             $table->timestamps();
 
-            #Relasi ke tabel users dan kuis
+            #relasi ke tabel users dan kuis
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('kuis_id')->references('id')->on('kuis')->onDelete('cascade');
         });

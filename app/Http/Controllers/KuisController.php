@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Kuis;
 use App\Models\Kategori;
-use App\Models\SoalGambar;
 use App\Models\SoalAudio;
 use App\Models\SoalVideo;
 use App\Models\Score;
@@ -14,7 +13,6 @@ class KuisController extends Controller
 {
     #variabel untuk model untuk soal gambar, audio, dan video
     protected $soalModels = [
-        'gambar' => SoalGambar::class,
         'audio' => SoalAudio::class,
         'video' => SoalVideo::class,
     ];
@@ -24,14 +22,14 @@ class KuisController extends Controller
     public function getSoalKuis($kategoriNama, $kuisId)
     {
         try {
-            #Cari kategori berdasarkan nama (dengan pencocokan case-insensitive)
+            #cari kategori berdasarkan nama (dengan pencocokan case-insensitive)
             $kategori = Kategori::whereRaw('LOWER(nama) = ?', [strtolower($kategoriNama)])->first();
 
             if (!$kategori) {
                 return response()->json(['message' => 'Kategori tidak ditemukan'], 404);
             }
 
-            #Cari kuis berdasarkan kategori dan id
+            #cari kuis berdasarkan kategori dan id
             $kuis = Kuis::where('id', $kuisId)
                         ->where('kategori_id', $kategori->id)
                         ->first();
@@ -40,21 +38,18 @@ class KuisController extends Controller
                 return response()->json(['message' => 'Kuis tidak ditemukan'], 404);
             }
 
-            #soal-soal dari semua jenis (gambar, audio, video)
-            $soalGambar = SoalGambar::whereHas('latihan', function($query) use ($kategori) {
-                $query->where('kategori_id', $kategori->id);
-            })->inRandomOrder()->take(7)->get();
+            #soal-soal dari semua jenis (audio dan video)
 
             $soalAudio = SoalAudio::whereHas('latihan', function($query) use ($kategori) {
                 $query->where('kategori_id', $kategori->id);
-            })->inRandomOrder()->take(7)->get();
+            })->inRandomOrder()->take(10)->get();
 
             $soalVideo = SoalVideo::whereHas('latihan', function($query) use ($kategori) {
                 $query->where('kategori_id', $kategori->id);
-            })->inRandomOrder()->take(6)->get();
+            })->inRandomOrder()->take(10)->get();
 
-            #Gabungan semua soal secara acak
-            $soalGabungan = $soalGambar->concat($soalAudio)->concat($soalVideo)->shuffle()->take(20)->values();
+            #gabungan semua soal secara acak
+            $soalGabungan = $soalAudio->concat($soalVideo)->shuffle()->take(20)->values();
 
             #informasi jenis soal di setiap soal (agar mudah di cek di postman)
             $soalFinal = $soalGabungan->map(function($soal) {
@@ -80,16 +75,26 @@ class KuisController extends Controller
         }
     }
 
-    #Submit jawaban kuis dan penyimpanan score
+    #submit jawaban, kuis, dan penyimpanan score
     public function submitJawabanKuis(Request $request)
     {
         try {
-            #Validasi input jawaban
+            #validasi input jawaban
             $request->validate([
                 'user_id' => 'required|integer',
                 'kuis_id' => 'required|integer',
                 'jawaban' => 'required|array',
             ]);
+
+            #pengecekan untuk menyimpan skor jika soal sudah dijawab semua
+            $totalSoal = count($request->jawaban);
+
+                if ($totalSoal < 20) {
+                    return response()->json([
+                        'message' => 'Semua soal harus dijawab sebelum menyimpan hasil kuis.',
+                        'total_dijawab' => $totalSoal,
+                    ], 400);
+                }
 
             $jawabanBenar = 0;
             $totalSoal = count($request->jawaban);
@@ -115,17 +120,17 @@ class KuisController extends Controller
                 }
             }
 
-            #perhitungan bintang
+            #perhitungan score bintang
             $bintang = 0;
             if ($jawabanBenar == 20) {
                 $bintang = 3;
             } elseif ($jawabanBenar >= 10) {
                 $bintang = 2;
-            } elseif ($jawabanBenar >= 1) {
+            } elseif ($jawabanBenar >= 5) {
                 $bintang = 1;
             }
 
-            #Simpen score ke database
+            #simpen score ke database
             Score::create([
                 'user_id' => $request->user_id,
                 'kuis_id' => $request->kuis_id,
@@ -145,12 +150,10 @@ class KuisController extends Controller
         }
     }
 
-    #Menentukan jenis soal berdasarkan instance model soal.
+    #nentuin jenis soal berdasarkan instance model soal.
     private function getJenisSoal($soal)
     {
-        if ($soal instanceof SoalGambar) {
-            return 'gambar';
-        } elseif ($soal instanceof SoalAudio) {
+        if ($soal instanceof SoalAudio) {
             return 'audio';
         } elseif ($soal instanceof SoalVideo) {
             return 'video';

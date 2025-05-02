@@ -13,7 +13,6 @@ class KategoriSeeder extends Seeder
         DB::table('kategori')->insert([
             ['nama' => 'Huruf'],
             ['nama' => 'Kata'],
-            ['nama' => 'Rangkaian'],
         ]);
     }
 }

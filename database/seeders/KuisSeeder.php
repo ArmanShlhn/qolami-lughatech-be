@@ -73,23 +73,6 @@ class KuisSeeder extends Seeder
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
-            [
-                'kategori_id' => 3, 
-                'nama_kuis' => 'Kuis Rangkaian Fathah',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
-            [
-                'kategori_id' => 3,
-                'nama_kuis' => 'Kuis Rangkaian Kasrah',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],[
-                'kategori_id' => 3,
-                'nama_kuis' => 'Kuis Rangkaian Dhammah',
-                'created_at' => $now,
-                'updated_at' => $now,
-            ],
         ]);
     }
 }

@@ -18,12 +18,7 @@ class Latihan extends Model
     {
         return $this->belongsTo(Kategori::class, 'kategori_id');
     }
-
-    public function soalGambar()
-    {
-        return $this->hasMany(SoalGambar::class, 'latihan_id');
-    }
-
+    
     public function soalVideo()
     {
         return $this->hasMany(SoalVideo::class, 'latihan_id');

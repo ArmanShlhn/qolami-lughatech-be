@@ -19,7 +19,7 @@ class ScoreController extends Controller
 
             $user = Auth::user();
 
-            #Simpan atau update skor kuis user
+            #menyimpan / mengupdate skor kuis user
             $score = Score::updateOrCreate(
                 ['user_id' => $user->id, 'kuis_id' => $request->kuis_id],
                 ['score' => $request->score]
@@ -34,7 +34,7 @@ class ScoreController extends Controller
         }
     }
 
-    #Ambil Skor Kuis User
+    #menerima skor kuis user
     public function getUserScores()
     {
         try {
