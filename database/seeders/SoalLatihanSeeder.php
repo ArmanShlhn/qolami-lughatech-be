@@ -16,13 +16,9 @@ class SoalLatihanSeeder extends Seeder
         SoalVideo::truncate();
         SoalAudio::truncate();
 
-        $hurufHijaiyah = [
-            'Alif', 'Ba', 'Ta', 'Tsa', 'Jim', 'Ha', 'Kho', 'Dal', 'Dzal',
-            'Ra', 'Zai', 'Sin', 'Syin', 'Shad', 'Dhad', 'Tha', 'Zha', 'Ain',
-            'Ghain', 'Fa', 'Qaf', 'Kaf', 'Lam', 'Mim', 'Nun', 'Wau', 'Ha', 'Ya'
-        ];
+        $hurufHijaiyah = ['Alif', 'Ba', 'Ta', 'Tsa', 'Jim', 'Ha', 'Kho', 'Dal', 'Dzal', 'Ra', 'Zay', 'Sin', 'Syin', 'Shod', 'Dhod', 'To', 'Dzo', 'Ain', 'Ghain', 'Fa', 'Qaf', 'Kaf', 'Lam', 'Mim', 'Nun', 'Waw', 'Ha','LamAlif', 'Hamzah','Ya'];
 
-        $kataOptions = ['Buku', 'Kita', 'Nur', 'Huda', 'Quran', 'Salam', 'Waktu', 'Iman'];
+        $kataOptions = ['Akhoza', 'Bahasya', 'Syabata', 'JaAla', 'HaSaDa', 'Khotoba', 'Dabaro', 'RoHaqo', 'SaKana', 'Syakaro', 'Shodaqo', 'Salato', 'Akasa', 'Dzoharo', 'Habato', 'Amina', 'Bariqa', 'Hamida', 'JadziA', 'TaIba', 'Habito', 'Khorisa', 'Rohima', 'safiha', 'syaniba', 'nadija', 'dzolima', 'laiba','roghiba' ,'sahiro' ,'uqila' ,'butila' ,'turiku' ,'jabuna' ,'hasuna' ,'khosyuna' ,'sahula' ,'yakilu' ,'sholuha' ,'dhoufa' ,'turiha' ,'dufina' ,'taqou' ,'adzuma' ,'suriqo'];
 
         #array data seeder nama latihan Huruf (sesuai dengan LatihanSeeder)
         $latihanHurufNames = [
@@ -39,7 +35,7 @@ class SoalLatihanSeeder extends Seeder
             $latihan = Latihan::where('nama', $latihanNama)->first();
             if (!$latihan) continue;
 
-            for ($i = 1; $i <= 10; $i++) {
+            for ($i = 1; $i <= 35; $i++) {
                 $opsi = collect($hurufHijaiyah)->shuffle()->take(4)->map(fn($item) => "$item.png")->values();
                 $jawaban = $opsi->random();
 
@@ -63,7 +59,7 @@ class SoalLatihanSeeder extends Seeder
 
         #array data seeder nama latihan Kata (sesuai LatihanSeeder)
         $latihanKataNames = [
-            'Latihan 1 Kata - Berakhiran Fatha', 
+            'Latihan 1 - Kata Berakhiran Fathah', 
             'Latihan 2 - Kata Berakhiran Kasrah', 
             'Latihan 3 - Kata Berakhiran Dhammah'
         ];
@@ -72,7 +68,7 @@ class SoalLatihanSeeder extends Seeder
             $latihan = Latihan::where('nama', $latihanNama)->first();
             if (!$latihan) continue;
 
-            for ($i = 1; $i <= 10; $i++) {
+            for ($i = 1; $i <= 35; $i++) {
                 $opsi = collect($kataOptions)->shuffle()->take(4)->map(fn($item) => "$item.png")->values();
                 $jawaban = $opsi->random();
 

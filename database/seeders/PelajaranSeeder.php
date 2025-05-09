@@ -9,19 +9,14 @@ class PelajaranSeeder extends Seeder
 {
     public function run()
     {
-        #mengambil ID kategori Huruf & Kata
         $kategoriHuruf = DB::table('kategori')->where('nama', 'Huruf')->value('id');
         $kategoriKata = DB::table('kategori')->where('nama', 'Kata')->value('id');
 
-        #array data seeder pelajaran untuk kategori Huruf
+        #Pelajaran Huruf Gabungan
         $pelajaranHuruf = [
-            'Mengenal Huruf Hijaiyah',
-            'Huruf Berharakat Fathah',
-            'Huruf Berharakat Kasrah',
-            'Huruf Berharakat Dhammah',
-            'Huruf Berharakat Fathahtain',
-            'Huruf Berharakat Kasrahtain',
-            'Huruf Berharakat Dhammahtain',
+            'Pelajaran Huruf 1',
+            'Pelajaran Huruf 2',
+            'Pelajaran Huruf 3',
         ];
 
         foreach ($pelajaranHuruf as $nama) {
@@ -31,11 +26,9 @@ class PelajaranSeeder extends Seeder
             ]);
         }
 
-        #array data seeder pelajaran untuk kategori Kata
+        #Pelajaran Kata Gabungan
         $pelajaranKata = [
-            'Kata Berakhiran Fathah',
-            'Kata Berakhiran Kasrah',
-            'Kata Berakhiran Dammah',
+            'Pelajaran Kata 1',
         ];
 
         foreach ($pelajaranKata as $nama) {
