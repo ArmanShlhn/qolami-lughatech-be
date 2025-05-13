@@ -7,21 +7,22 @@ use Illuminate\Support\Facades\DB;
 
 class LatihanSeeder extends Seeder
 {
-    public function run()
-    {
+    public function run(){
         DB::table('latihan')->delete();
 
         $kategoriHuruf = DB::table('kategori')->where('nama', 'Huruf')->value('id');
         $kategoriKata = DB::table('kategori')->where('nama', 'Kata')->value('id');
 
         $latihanHuruf = [
-            'Latihan 1 - Huruf Hijaiyah',
-            'Latihan 2 - Huruf Berharakat Fathah', 
-            'Latihan 3 - Huruf Berharakat Kasrah', 
-            'Latihan 4 - Huruf Berharakat Dhammah', 
-            'Latihan 5 - Huruf Berharakat Fathahtain',
-            'Latihan 6 - Huruf Berharakat Kasrahtain', 
-            'Latihan 7 - Huruf Berharakat Dhammahtain'
+            'Latihan Huruf 1',
+            'Latihan Huruf 2',
+            'Latihan Huruf 3',
+            'Latihan Huruf 4',
+            'Latihan Huruf 5',
+            'Latihan Huruf 6',
+            'Latihan Huruf 7',
+            'Latihan Huruf 8',
+            'Latihan Huruf 9',
         ];
 
         foreach ($latihanHuruf as $nama) {
@@ -32,9 +33,9 @@ class LatihanSeeder extends Seeder
         }
 
         $latihanKata = [
-            'Latihan 1 Kata - Berakhiran Fatha', 
-            'Latihan 2 - Kata Berakhiran Kasrah', 
-            'Latihan 3 - Kata Berakhiran Dhammah'
+            'Latihan Kata 1',
+            'Latihan Kata 2',
+            'Latihan Kata 3',
         ];
 
         foreach ($latihanKata as $nama) {

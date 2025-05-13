@@ -5,33 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Latihan;
 use App\Models\SoalVideo;
 use App\Models\SoalAudio;
+use App\Models\SoalGambar;
 use Illuminate\Http\Request;
 
 class LatihanController extends Controller
 {
     protected $models = [
+        'gambar' => SoalGambar::class,
         'video' => SoalVideo::class,
         'audio' => SoalAudio::class,
     ];
 
-    public function getSoalLatihan($latihanId, $jenis, Request $request)
-    {
+    public function getSoalLatihan($latihanId, $jenis, Request $request){
         try {
-            $page = $request->input('page', 1);
-            $perPage = 1;
-
             $latihan = Latihan::with('kategori')->find($latihanId);
 
             if (!$latihan) {
                 return response()->json(['message' => 'Latihan tidak ditemukan'], 404);
             }
 
-            #array model jenis soal
             $models = [
-
+                'gambar' => SoalGambar::class,
                 'audio' => SoalAudio::class,
                 'video' => SoalVideo::class,
-
             ];
 
             if (!isset($models[$jenis])) {
@@ -40,25 +36,19 @@ class LatihanController extends Controller
 
             $model = $models[$jenis];
 
-            #soal berdasarkan model dan jenis
-            $soal = $model::where('latihan_id', $latihanId)
+            #ambil 10 soal sesuai latihan dan jenis
+            $soalList = $model::where('latihan_id', $latihanId)
                 ->orderBy('id')
-                ->skip(($page - 1) * $perPage)
-                ->take($perPage)
-                ->first();
+                ->limit(10)
+                ->get();
 
-            if (!$soal) {
+            if ($soalList->isEmpty()) {
                 return response()->json(['message' => 'Soal tidak ditemukan'], 404);
             }
 
-            return response()->json([
-                'latihan' => [
-                    'id' => $latihan->id,
-                    'nama' => $latihan->nama,
-                    'kategori_id' => $latihan->kategori_id,
-                    'kategori_nama' => $latihan->kategori->nama ?? 'N/A',
-                ],
-                'soal' => [
+            #Format soal untuk dikirim ke response
+            $soalFormatted = $soalList->map(function ($soal) {
+                return [
                     'id' => $soal->id,
                     'latihan_id' => $soal->latihan_id,
                     'soal' => $soal->soal,
@@ -68,12 +58,23 @@ class LatihanController extends Controller
                     'opsi_c' => $soal->opsi_c,
                     'opsi_d' => $soal->opsi_d,
                     'jawaban' => $soal->jawaban,
+                ];
+            });
+
+            return response()->json([
+                'latihan' => [
+                    'id' => $latihan->id,
+                    'nama' => $latihan->nama,
+                    'kategori_id' => $latihan->kategori_id,
+                    'kategori_nama' => $latihan->kategori->nama ?? 'N/A',
                 ],
+                'soal' => $soalFormatted,
             ]);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Terjadi kesalahan', 'error' => $e->getMessage()], 500);
         }
     }
+
 
     public function submitJawaban(Request $request)
     {
