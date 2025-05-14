@@ -14,7 +14,6 @@ class SoalGambar extends Model
     protected $fillable = [
         'latihan_id', 
         'kategori_id', 
-        'soal', 
         'jawaban', 
         'gambar_url',
         'opsi_a', 

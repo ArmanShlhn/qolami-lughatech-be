@@ -5,16 +5,40 @@ namespace App\Http\Controllers;
 use App\Models\Latihan;
 use App\Models\SoalVideo;
 use App\Models\SoalAudio;
-use App\Models\SoalGambar;
 use Illuminate\Http\Request;
 
 class LatihanController extends Controller
 {
     protected $models = [
-        'gambar' => SoalGambar::class,
         'video' => SoalVideo::class,
         'audio' => SoalAudio::class,
     ];
+    public function listLatihan()
+    {
+        try {
+            $latihanList = Latihan::with('kategori')->get();
+
+            $formatted = $latihanList->map(function ($latihan) {
+                return [
+                    'id' => $latihan->id,
+                    'nama' => $latihan->nama,
+                    'kategori_id' => $latihan->kategori_id,
+                    'kategori_nama' => $latihan->kategori->nama ?? null,
+                ];
+            });
+
+            return response()->json([
+                'status' => 'success',
+                'latihan' => $formatted,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
 
     public function getSoalLatihan($latihanId, $jenis, Request $request){
         try {
@@ -25,7 +49,6 @@ class LatihanController extends Controller
             }
 
             $models = [
-                'gambar' => SoalGambar::class,
                 'audio' => SoalAudio::class,
                 'video' => SoalVideo::class,
             ];
@@ -51,7 +74,6 @@ class LatihanController extends Controller
                 return [
                     'id' => $soal->id,
                     'latihan_id' => $soal->latihan_id,
-                    'soal' => $soal->soal,
                     'media_url' => $soal->gambar_url ?? $soal->video_url ?? $soal->audio_url,
                     'opsi_a' => $soal->opsi_a,
                     'opsi_b' => $soal->opsi_b,

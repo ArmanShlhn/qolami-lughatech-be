@@ -16,25 +16,10 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        #Tabel Soal Video
-        Schema::create('soal_gambar', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('latihan_id')->constrained('latihan')->onDelete('cascade');
-            $table->string('soal');
-            $table->string('opsi_a');
-            $table->string('opsi_b');
-            $table->string('opsi_c');
-            $table->string('opsi_d');
-            $table->string('jawaban');
-            $table->string('gambar_url');
-            $table->timestamps();
-        });
-
         #Tabel Soal Audio
         Schema::create('soal_audio', function (Blueprint $table) {
             $table->id();
             $table->foreignId('latihan_id')->constrained('latihan')->onDelete('cascade');
-            $table->string('soal');
             $table->string('opsi_a');
             $table->string('opsi_b');
             $table->string('opsi_c');
@@ -48,7 +33,6 @@ return new class extends Migration {
         Schema::create('soal_video', function (Blueprint $table) {
             $table->id();
             $table->foreignId('latihan_id')->constrained('latihan')->onDelete('cascade');
-            $table->string('soal');
             $table->string('opsi_a');
             $table->string('opsi_b');
             $table->string('opsi_c');
@@ -61,7 +45,6 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::dropIfExists('soal_gambar');
         Schema::dropIfExists('soal_video');
         Schema::dropIfExists('soal_audio');
         Schema::dropIfExists('latihan');

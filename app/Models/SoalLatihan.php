@@ -10,7 +10,7 @@ class SoalLatihan extends Model
     use HasFactory;
 
     protected $table = 'soal_latihan';
-    protected $fillable = ['latihan_id', 'jenis', 'soal', 'jawaban', 'media_url'];
+    protected $fillable = ['latihan_id', 'jenis', 'jawaban', 'media_url'];
 
     public function latihan()
     {

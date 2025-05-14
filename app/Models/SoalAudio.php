@@ -14,7 +14,6 @@ class SoalAudio extends Model
     protected $fillable = [
         'latihan_id', 
         'kategori_id', 
-        'soal', 
         'jawaban', 
         'audio_url',
         'opsi_a', 

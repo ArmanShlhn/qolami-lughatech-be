@@ -6,8 +6,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PelajaranController;
 use App\Http\Controllers\LatihanController;
 use App\Http\Controllers\KuisController;
-use App\Http\Controllers\ScoreController;
-use App\Http\Controllers\TodolistController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -29,10 +27,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     
     #latihan
+    Route::get('/latihan', [LatihanController::class, 'listLatihan']);
     Route::get('/latihan/{latihanId}/{jenis}', [LatihanController::class, 'getSoalLatihan']);
     Route::post('/latihan/jawaban', [LatihanController::class, 'submitJawaban']);
 
     #kuis
+    Route::get('/kuis', [kuisController::class, 'listkuis']);
     Route::get('/kuis/{kategoriNama}/{kuisId}/{soalKe}', [KuisController::class, 'getSoalKuis']);
     Route::post('/kuis/submit', [KuisController::class, 'submitJawabanKuis']);
 });

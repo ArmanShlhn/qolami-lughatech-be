@@ -6,7 +6,6 @@ use Illuminate\Database\Seeder;
 use App\Models\Latihan;
 use App\Models\SoalVideo;
 use App\Models\SoalAudio;
-use App\Models\SoalGambar;
 
 class SoalLatihanSeeder extends Seeder
 {
@@ -40,30 +39,15 @@ class SoalLatihanSeeder extends Seeder
             $opsi = collect($hurufHijaiyah)->shuffle()->take(4)->map(fn($item) => "$item.png")->values();
             $jawaban = $opsi->random();
     
-            if ($latihanNama !== 'Latihan Huruf 1') {
-                $textSoal = "Huruf $harakat mana yang sesuai dengan Gambar di atas";
-                SoalGambar::create([
-                    'latihan_id' => $latihan->id,
-                    'soal' => $textSoal,
-                    'gambar_url' => "http://example.com/gambar/{$latihan->id}_gambar_soal{$i}.mp4",
-                    'opsi_a' => $opsi[0], 'opsi_b' => $opsi[1], 'opsi_c' => $opsi[2], 'opsi_d' => $opsi[3],
-                    'jawaban' => $jawaban,
-                ]);
-            }
-    
-            $textSoal = "Huruf$harakat mana yang sesuai dengan Video di atas";
             SoalVideo::create([
                 'latihan_id' => $latihan->id,
-                'soal' => $textSoal,
                 'video_url' => "http://example.com/video/{$latihan->id}_video_soal{$i}.mp4",
                 'opsi_a' => $opsi[0], 'opsi_b' => $opsi[1], 'opsi_c' => $opsi[2], 'opsi_d' => $opsi[3],
                 'jawaban' => $jawaban,
             ]);
     
-            $textSoal = "Huruf$harakat mana yang sesuai dengan audio di atas";
             SoalAudio::create([
                 'latihan_id' => $latihan->id,
-                'soal' => $textSoal,
                 'audio_url' => "http://example.com/audio/{$latihan->id}_audio_soal{$i}.mp3",
                 'opsi_a' => $opsi[0], 'opsi_b' => $opsi[1], 'opsi_c' => $opsi[2], 'opsi_d' => $opsi[3],
                 'jawaban' => $jawaban,
@@ -86,21 +70,15 @@ class SoalLatihanSeeder extends Seeder
                 $opsi = collect($opsikata)->shuffle()->take(4)->map(fn($item) => "$item.png")->values();
                 $jawaban = $opsi->random();
 
-                $textSoal = "Kata berharakat $harakat mana yang sesuai dengan video di atas";
-
                 SoalVideo::create([
                     'latihan_id' => $latihan->id,
-                    'soal' => $textSoal,
                     'video_url' => "http://example.com/video/{$latihan->id}_video_soal{$i}.mp4",
                     'opsi_a' => $opsi[0], 'opsi_b' => $opsi[1], 'opsi_c' => $opsi[2], 'opsi_d' => $opsi[3],
                     'jawaban' => $jawaban,
                 ]);
 
-                $textSoal = "Kata berharakat $harakat mana yang sesuai dengan audio di atas";
-
                 SoalAudio::create([
                     'latihan_id' => $latihan->id,
-                    'soal' => $textSoal,
                     'audio_url' => "http://example.com/audio/{$latihan->id}_audio_soal{$i}.mp3",
                     'opsi_a' => $opsi[0], 'opsi_b' => $opsi[1], 'opsi_c' => $opsi[2], 'opsi_d' => $opsi[3],
                     'jawaban' => $jawaban,

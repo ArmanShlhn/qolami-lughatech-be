@@ -16,7 +16,32 @@ class KuisController extends Controller
         'audio' => SoalAudio::class,
         'video' => SoalVideo::class,
     ];
+    public function listKuis()
+    {
+        try {
+            $kuisList = Kuis::with('kategori')->get();
 
+            $formatted = $kuisList->map(function ($kuis) {
+                return [
+                    'id' => $kuis->id,
+                    'nama' => $kuis->nama_kuis,
+                    'kategori_id' => $kuis->kategori_id,
+                    'kategori_nama' => $kuis->kategori->nama_kuis ?? null,
+                ];
+            });
+
+            return response()->json([
+                'status' => 'success',
+                'kuis' => $formatted,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
     #soal kuis berdasarkan kategori dan ID kuis
 
     public function getSoalKuis($kategoriNama, $kuisId)
@@ -55,7 +80,6 @@ class KuisController extends Controller
             $soalFinal = $soalGabungan->map(function($soal) {
                 return [
                     'id' => $soal->id,
-                    'pertanyaan' => $soal->soal ?? '',
                     'file' => $soal->gambar_url ?? $soal->audio_url ?? $soal->video_url, 
                     'opsi_a' => $soal->opsi_a,
                     'opsi_b' => $soal->opsi_b,

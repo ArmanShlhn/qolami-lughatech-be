@@ -14,7 +14,6 @@ class SoalVideo extends Model
     protected $fillable = [
         'latihan_id', 
         'kategori_id', 
-        'soal', 
         'jawaban', 
         'video_url',
         'opsi_a', 
