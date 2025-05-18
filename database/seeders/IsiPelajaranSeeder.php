@@ -26,21 +26,8 @@ class IsiPelajaranSeeder extends Seeder
 
         $url = fn($kategori, $harakat, $tipe, $file) =>
             "pelajaran/{$kategori}/{$harakat}/{$tipe}/{$file}";
-
-        #Pelajaran Huruf 1
-        $id1 = DB::table('pelajaran')->where('nama','Pelajaran Huruf 1')->value('id');
-        $i = 1;
-        foreach ($hurufHijaiyah as $huruf) {
-            DB::table('isi_pelajaran')->insert([
-                'pelajaran_id'         => $id1,
-                'huruf_kata_rangkaian' => $huruf,
-                'keterangan'           => "Gambar tersebut merupakan huruf hijaiyah {$huruf}.",
-                'video'                => $url('huruf', 'tanpa_harakat', 'video', "{$i}_{$huruf}.mp4"),
-                'gambar'               => $url('huruf', 'tanpa_harakat', 'foto', "{$i}_{$huruf}.png"),
-            ]);
-            $i++;
-        }
-
+        
+        #PELAJARAN 1 ASSET LANGSUNG DI APLIKASI
         #Pelajaran Huruf 2 (fathah, kasrah, dhammah)
         $id2 = DB::table('pelajaran')->where('nama','Pelajaran Huruf 2')->value('id');
         $i = 1;

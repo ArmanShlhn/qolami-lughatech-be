@@ -8,17 +8,22 @@ use App\Models\IsiPelajaran;
 
 class PelajaranController extends Controller
 {
-    #List pelajaran
+    # List pelajaran (tanpa Pelajaran Huruf 1)
     public function index()
     {
         $pelajaran = Pelajaran::with('kategori')
-            ->whereIn('nama', ['Pelajaran Huruf 1', 'Pelajaran Huruf 2', 'Pelajaran Huruf 3', 'Pelajaran Kata 1'])
+            ->whereIn('nama', [
+                'Pelajaran Huruf 1',
+                'Pelajaran Huruf 2',
+                'Pelajaran Huruf 3',
+                'Pelajaran Kata 1'
+            ])
             ->get();
 
         return response()->json($pelajaran);
     }
 
-    #Menampilkan isi pelajaran berdasarkan id pelajaran, dengan URL asset lengkap
+    # Menampilkan isi pelajaran berdasarkan ID pelajaran
     public function isiPelajaran($id)
     {
         $pelajaran = Pelajaran::find($id);
@@ -29,10 +34,7 @@ class PelajaranController extends Controller
         $nama = $pelajaran->nama;
         $isi = collect();
 
-        if ($nama === 'Pelajaran Huruf 1') {
-            $isi = IsiPelajaran::where('pelajaran_id', $id)->get();
-        } 
-        elseif ($nama === 'Pelajaran Huruf 2') {
+        if ($nama === 'Pelajaran Huruf 2') {
             $isi = collect([
                 IsiPelajaran::where('pelajaran_id', $id)->where('keterangan', 'like', '%fathah%')->inRandomOrder()->first(),
                 IsiPelajaran::where('pelajaran_id', $id)->where('keterangan', 'like', '%kasrah%')->inRandomOrder()->first(),
@@ -56,7 +58,7 @@ class PelajaranController extends Controller
             return response()->json(['message' => 'Jenis pelajaran tidak dikenali'], 400);
         }
 
-        #Refactor: merubah path relatif asset menjadi URL lengkap menggunakan asset('storage/...')
+        # Ubah path video dan gambar menjadi URL lengkap
         $isi = $isi->map(function ($item) {
             $item->video = asset('storage/' . $item->video);
             $item->gambar = asset('storage/' . $item->gambar);
