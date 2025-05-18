@@ -8,7 +8,7 @@ use App\Models\IsiPelajaran;
 
 class PelajaranController extends Controller
 {
-    #list pelajaran
+    #List pelajaran
     public function index()
     {
         $pelajaran = Pelajaran::with('kategori')
@@ -18,11 +18,10 @@ class PelajaranController extends Controller
         return response()->json($pelajaran);
     }
 
-    #isi pelajaran
+    #Menampilkan isi pelajaran berdasarkan id pelajaran, dengan URL asset lengkap
     public function isiPelajaran($id)
     {
         $pelajaran = Pelajaran::find($id);
-
         if (!$pelajaran) {
             return response()->json(['message' => 'Pelajaran tidak ditemukan'], 404);
         }
@@ -56,6 +55,13 @@ class PelajaranController extends Controller
         else {
             return response()->json(['message' => 'Jenis pelajaran tidak dikenali'], 400);
         }
+
+        #Refactor: merubah path relatif asset menjadi URL lengkap menggunakan asset('storage/...')
+        $isi = $isi->map(function ($item) {
+            $item->video = asset('storage/' . $item->video);
+            $item->gambar = asset('storage/' . $item->gambar);
+            return $item;
+        });
 
         return response()->json($isi->values());
     }

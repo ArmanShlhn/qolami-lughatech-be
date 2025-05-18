@@ -11,9 +11,8 @@ class IsiPelajaranSeeder extends Seeder
     {
         $hurufHijaiyah = [
             'Alif','Ba','Ta','Tsa','Jim','Ha','Kho','Dal','Dzal',
-            'Ra','Zay','Sin','Syin','Shod','Dhod','To','Dzo','Ain',
-            'Ghain','Fa','Qaf','Kaf','Lam','Mim','Nun','Waw','Ha',
-            'LamAlif','Hamzah','Ya'
+            'Ro','Zay','Sin','Syin','Shod','Dhod','Tho','Dzho','Ain',
+            'Ghoin','Fa','Qaf','Kaf','Lam','Mim','Nun','Wawu','Hamzah','Ya'
         ];
 
         $warnaHarakat = [
@@ -25,57 +24,63 @@ class IsiPelajaranSeeder extends Seeder
             'dhammahtain' => 'coklat',
         ];
 
-        #Seeder Pelajaran Huruf 1: tanpa harakat
-        $id1 = DB::table('pelajaran')
-            ->where('nama','Pelajaran Huruf 1')->value('id');
+        $url = fn($kategori, $harakat, $tipe, $file) =>
+            "pelajaran/{$kategori}/{$harakat}/{$tipe}/{$file}";
+
+        // Pelajaran Huruf 1
+        $id1 = DB::table('pelajaran')->where('nama','Pelajaran Huruf 1')->value('id');
+        $i = 1;
         foreach ($hurufHijaiyah as $huruf) {
             DB::table('isi_pelajaran')->insert([
                 'pelajaran_id'         => $id1,
                 'huruf_kata_rangkaian' => $huruf,
                 'keterangan'           => "Gambar tersebut merupakan huruf hijaiyah {$huruf}.",
-                'video'                => "video_{$huruf}.mp4",
-                'gambar'               => "gambar_{$huruf}.png",
+                'video'                => $url('huruf', 'tanpa_harakat', 'video', "{$i}_{$huruf}.mp4"),
+                'gambar'               => $url('huruf', 'tanpa_harakat', 'foto', "{$i}_{$huruf}.png"),
             ]);
+            $i++;
         }
 
-        #Seeder Pelajaran Huruf 2: fathah, kasrah, dhammah
-        $id2 = DB::table('pelajaran')
-            ->where('nama','Pelajaran Huruf 2')->value('id');
+        // Pelajaran Huruf 2 (fathah, kasrah, dhammah)
+        $id2 = DB::table('pelajaran')->where('nama','Pelajaran Huruf 2')->value('id');
+        $i = 1;
         foreach ($hurufHijaiyah as $huruf) {
             foreach (['fathah','kasrah','dhammah'] as $h) {
                 DB::table('isi_pelajaran')->insert([
                     'pelajaran_id'         => $id2,
                     'huruf_kata_rangkaian' => $huruf,
                     'keterangan'           => "Warna hitam huruf {$huruf}, warna {$warnaHarakat[$h]} adalah harakat {$h}.",
-                    'video'                => "video_{$huruf}_{$h}.mp4",
-                    'gambar'               => "gambar_{$huruf}_{$h}.png",
+                    'video'                => $url('huruf', $h, 'video', "{$i}.{$h}_{$huruf}.mp4"),
+                    'gambar'               => $url('huruf', $h, 'foto', "{$i}.{$h}_{$huruf}.png"),
                 ]);
+                $i++;
             }
         }
 
-        #Seeder Pelajaran Huruf 3: fathahtain, kasrahtain, dhammahtain
-        $id3 = DB::table('pelajaran')
-            ->where('nama','Pelajaran Huruf 3')->value('id');
+        // Pelajaran Huruf 3 (fathahtain, kasrahtain, dhammahtain)
+        $id3 = DB::table('pelajaran')->where('nama','Pelajaran Huruf 3')->value('id');
+        $i = 1;
         foreach ($hurufHijaiyah as $huruf) {
             foreach (['fathahtain','kasrahtain','dhammahtain'] as $h) {
                 DB::table('isi_pelajaran')->insert([
                     'pelajaran_id'         => $id3,
                     'huruf_kata_rangkaian' => $huruf,
                     'keterangan'           => "Warna hitam huruf {$huruf}, warna {$warnaHarakat[$h]} adalah harakat {$h}.",
-                    'video'                => "video_{$huruf}_{$h}.mp4",
-                    'gambar'               => "gambar_{$huruf}_{$h}.png",
+                    'video'                => $url('huruf', $h, 'video', "{$i}.{$h}_{$huruf}.mp4"),
+                    'gambar'               => $url('huruf', $h, 'foto', "{$i}.{$h}_{$huruf}.png"),
                 ]);
+                $i++;
             }
         }
 
-        #Seeder Pelajaran Kata 1: per kata dengan harakat spesifik
+        // Pelajaran Kata 1
         $kata = [
             ['kata'=>'Fataha','harakat'=>'fathah'],
             ['kata'=>'Khoriqo','harakat'=>'kasrah'],
             ['kata'=>'Kasyuro','harakat'=>'dhammah'],
         ];
-        $idKata1 = DB::table('pelajaran')
-            ->where('nama','Pelajaran Kata 1')->value('id');
+        $idKata1 = DB::table('pelajaran')->where('nama','Pelajaran Kata 1')->value('id');
+        $i = 1;
         foreach ($kata as $item) {
             $k = $item['kata'];
             $h = $item['harakat'];
@@ -83,9 +88,10 @@ class IsiPelajaranSeeder extends Seeder
                 'pelajaran_id'         => $idKata1,
                 'huruf_kata_rangkaian' => $k,
                 'keterangan'           => "Berikut ini adalah kata {$k} yang berharakat {$h}. Warna {$warnaHarakat[$h]}.",
-                'video'                => "video_{$k}.mp4",
-                'gambar'               => "gambar_{$k}.png",
+                'video'                => $url('kata', 'fathah_kasrah_dhammah', 'video', "{$i}.{$h}_{$k}.mp4"),
+                'gambar'               => $url('kata', 'fathah_kasrah_dhammah', 'foto', "{$i}.{$h}_{$k}.png"),
             ]);
+            $i++;
         }
     }
 }
