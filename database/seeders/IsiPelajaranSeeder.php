@@ -27,7 +27,7 @@ class IsiPelajaranSeeder extends Seeder
         $url = fn($kategori, $harakat, $tipe, $file) =>
             "pelajaran/{$kategori}/{$harakat}/{$tipe}/{$file}";
 
-        // Pelajaran Huruf 1
+        #Pelajaran Huruf 1
         $id1 = DB::table('pelajaran')->where('nama','Pelajaran Huruf 1')->value('id');
         $i = 1;
         foreach ($hurufHijaiyah as $huruf) {
@@ -41,7 +41,7 @@ class IsiPelajaranSeeder extends Seeder
             $i++;
         }
 
-        // Pelajaran Huruf 2 (fathah, kasrah, dhammah)
+        #Pelajaran Huruf 2 (fathah, kasrah, dhammah)
         $id2 = DB::table('pelajaran')->where('nama','Pelajaran Huruf 2')->value('id');
         $i = 1;
         foreach ($hurufHijaiyah as $huruf) {
@@ -57,7 +57,7 @@ class IsiPelajaranSeeder extends Seeder
             }
         }
 
-        // Pelajaran Huruf 3 (fathahtain, kasrahtain, dhammahtain)
+        #Pelajaran Huruf 3 (fathahtain, kasrahtain, dhammahtain)
         $id3 = DB::table('pelajaran')->where('nama','Pelajaran Huruf 3')->value('id');
         $i = 1;
         foreach ($hurufHijaiyah as $huruf) {
