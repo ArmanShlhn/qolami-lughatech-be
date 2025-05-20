@@ -17,7 +17,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 #pelajaran
 Route::get('/pelajaran', [PelajaranController::class, 'index']);
-Route::get('/pelajaran/{id}/isi', [PelajaranController::class, 'isiPelajaran']);
+Route::get('/pelajaran/{pelajaran_id}/{id}', [PelajaranController::class, 'isiPelajaran']);
 
 #reset password
 Route::post('/reset-password', [AuthController::class, 'sendResetLinkEmail']);

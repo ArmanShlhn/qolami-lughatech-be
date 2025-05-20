@@ -9,53 +9,80 @@ use App\Models\SoalAudio;
 
 class SoalLatihanSeeder extends Seeder
 {
-    public function run(){
+    public function run()
+    {
+        SoalVideo::truncate();
+        SoalAudio::truncate();
 
-    SoalVideo::truncate();
-    SoalAudio::truncate();
+        $hurufHijaiyah = [
+            'Alif', 'Ba', 'Ta', 'Tsa', 'Jim', 'Ha', 'Kho', 'Dal', 'Dzal', 'Ra', 'Zay', 'Sin', 'Syin',
+            'Shod', 'Dhod', 'To', 'Dzo', 'Ain', 'Ghain', 'Fa', 'Qaf', 'Kaf', 'Lam', 'Mim', 'Nun',
+            'Waw', 'Ha', 'LamAlif', 'Hamzah', 'Ya'
+        ];
 
-    $hurufHijaiyah = ['Alif', 'Ba', 'Ta', 'Tsa', 'Jim', 'Ha', 'Kho', 'Dal', 'Dzal', 'Ra', 'Zay', 'Sin', 'Syin', 'Shod', 'Dhod', 'To', 'Dzo', 'Ain', 'Ghain', 'Fa', 'Qaf', 'Kaf', 'Lam', 'Mim', 'Nun', 'Waw', 'Ha', 'LamAlif', 'Hamzah', 'Ya'];
+        // Helper untuk membentuk path
+        $url = function ($kategori, $harakat, $tipe, $filename) {
+            $harakatFolder = $harakat ? strtolower($harakat) : 'default';
+            return "pelajaran/{$kategori}/{$harakatFolder}/{$tipe}/{$filename}";
+        };
 
-    $opsikata = ['Akhoza', 'Bahasya', 'Syabata', 'JaAla', 'HaSaDa', 'Khotoba', 'Dabaro', 'RoHaqo', 'SaKana', 'Syakaro', 'Shodaqo', 'Salato', 'Akasa', 'Dzoharo', 'Habato', 'Amina', 'Bariqa', 'Hamida', 'JadziA', 'TaIba', 'Habito', 'Khorisa', 'Rohima', 'safiha', 'syaniba', 'nadija', 'dzolima', 'laiba','roghiba' ,'sahiro' ,'uqila' ,'butila' ,'turiku' ,'jabuna' ,'hasuna' ,'khosyuna' ,'sahula' ,'yakilu' ,'sholuha' ,'dhoufa' ,'turiha' ,'dufina' ,'taqou' ,'adzuma' ,'suriqo'];
+        $harakatHuruf = [
+            'Latihan Huruf 1' => null,
+            'Latihan Huruf 2' => 'fathah',
+            'Latihan Huruf 3' => 'kasrah',
+            'Latihan Huruf 4' => 'dhammah',
+            'Latihan Huruf 5' => 'fathahtain',
+            'Latihan Huruf 6' => 'kasrahtain',
+            'Latihan Huruf 7' => 'dhammahtain',
+        ];
 
-    #harakat untuk Latihan Huruf
-    $harakatHuruf = [
-        'Latihan Huruf 1' => null,
-        'Latihan Huruf 2' => ' berkharakat fathah',
-        'Latihan Huruf 3' => ' berkharakat kasrah',
-        'Latihan Huruf 4' => ' berkharakat dhammah',
-        'Latihan Huruf 5' => ' berkharakat fathahtain',
-        'Latihan Huruf 6' => ' berkharakat kasrahtain',
-        'Latihan Huruf 7' => ' berkharakat dhammahtain',
-        'Latihan Huruf 8' => ' berkharakat sukun',
-        'Latihan Huruf 9' => ' berkharakat tanwin',
-    ];
+        foreach ($harakatHuruf as $latihanNama => $harakat) {
+            $latihan = Latihan::where('nama', $latihanNama)->first();
+            if (!$latihan) continue;
 
-    foreach ($harakatHuruf as $latihanNama => $harakat) {
-        $latihan = Latihan::where('nama', $latihanNama)->first();
-        if (!$latihan) continue;
-    
-        for ($i = 1; $i <= 28; $i++) {
-            $opsi = collect($hurufHijaiyah)->shuffle()->take(4)->map(fn($item) => "$item.png")->values();
-            $jawaban = $opsi->random();
-    
-            SoalVideo::create([
-                'latihan_id' => $latihan->id,
-                'video_url' => "http://example.com/video/{$latihan->id}_video_soal{$i}.mp4",
-                'opsi_a' => $opsi[0], 'opsi_b' => $opsi[1], 'opsi_c' => $opsi[2], 'opsi_d' => $opsi[3],
-                'jawaban' => $jawaban,
-            ]);
-    
-            SoalAudio::create([
-                'latihan_id' => $latihan->id,
-                'audio_url' => "http://example.com/audio/{$latihan->id}_audio_soal{$i}.mp3",
-                'opsi_a' => $opsi[0], 'opsi_b' => $opsi[1], 'opsi_c' => $opsi[2], 'opsi_d' => $opsi[3],
-                'jawaban' => $jawaban,
-            ]);
+            for ($i = 1; $i <= 28; $i++) {
+                $huruf = $hurufHijaiyah[$i - 1];
+                $filenameBase = "{$i}.{$harakat}_{$huruf}";
+
+                $videoUrl = $url('huruf', $harakat, 'video', "{$filenameBase}.mp4");
+                $audioUrl = $url('huruf', $harakat, 'audio', "{$filenameBase}.mp3");
+
+                $opsi = collect($hurufHijaiyah)->shuffle()->take(4)->values();
+                $opsiPath = $opsi->map(fn($h) => $url('huruf', $harakat, 'gambar', "{$h}.png"));
+                $jawaban = $opsiPath->random();
+
+                SoalVideo::create([
+                    'latihan_id' => $latihan->id,
+                    'video_url' => $videoUrl,
+                    'opsi_a' => $opsiPath[0],
+                    'opsi_b' => $opsiPath[1],
+                    'opsi_c' => $opsiPath[2],
+                    'opsi_d' => $opsiPath[3],
+                    'jawaban' => $jawaban,
+                ]);
+
+                SoalAudio::create([
+                    'latihan_id' => $latihan->id,
+                    'audio_url' => $audioUrl,
+                    'opsi_a' => $opsiPath[0],
+                    'opsi_b' => $opsiPath[1],
+                    'opsi_c' => $opsiPath[2],
+                    'opsi_d' => $opsiPath[3],
+                    'jawaban' => $jawaban,
+                ]);
+            }
         }
-    }
 
-    #Latihan Kata
+        // Latihan Kata
+        $opsikata = [
+            'Akhoza', 'Bahasya', 'Syabata', 'JaAla', 'HaSaDa', 'Khotoba', 'Dabaro', 'RoHaqo',
+            'SaKana', 'Syakaro', 'Shodaqo', 'Salato', 'Akasa', 'Dzoharo', 'Habato', 'Amina',
+            'Bariqa', 'Hamida', 'JadziA', 'TaIba', 'Habito', 'Khorisa', 'Rohima', 'safiha',
+            'syaniba', 'nadija', 'dzolima', 'laiba', 'roghiba', 'sahiro', 'uqila', 'butila',
+            'turiku', 'jabuna', 'hasuna', 'khosyuna', 'sahula', 'yakilu', 'sholuha', 'dhoufa',
+            'turiha', 'dufina', 'taqou', 'adzuma', 'suriqo'
+        ];
+
         $harakatKata = [
             'Latihan Kata 1' => 'fathah',
             'Latihan Kata 2' => 'kasrah',
@@ -67,20 +94,32 @@ class SoalLatihanSeeder extends Seeder
             if (!$latihan) continue;
 
             for ($i = 1; $i <= 35; $i++) {
-                $opsi = collect($opsikata)->shuffle()->take(4)->map(fn($item) => "$item.png")->values();
-                $jawaban = $opsi->random();
+                $filenameBase = "{$i}.{$harakat}";
+
+                $videoUrl = $url('kata', $harakat, 'video', "{$filenameBase}.mp4");
+                $audioUrl = $url('kata', $harakat, 'audio', "{$filenameBase}.mp3");
+
+                $opsi = collect($opsikata)->shuffle()->take(4)->values();
+                $opsiPath = $opsi->map(fn($k) => $url('kata', $harakat, 'gambar', "{$k}.png"));
+                $jawaban = $opsiPath->random();
 
                 SoalVideo::create([
                     'latihan_id' => $latihan->id,
-                    'video_url' => "http://example.com/video/{$latihan->id}_video_soal{$i}.mp4",
-                    'opsi_a' => $opsi[0], 'opsi_b' => $opsi[1], 'opsi_c' => $opsi[2], 'opsi_d' => $opsi[3],
+                    'video_url' => $videoUrl,
+                    'opsi_a' => $opsiPath[0],
+                    'opsi_b' => $opsiPath[1],
+                    'opsi_c' => $opsiPath[2],
+                    'opsi_d' => $opsiPath[3],
                     'jawaban' => $jawaban,
                 ]);
 
                 SoalAudio::create([
                     'latihan_id' => $latihan->id,
-                    'audio_url' => "http://example.com/audio/{$latihan->id}_audio_soal{$i}.mp3",
-                    'opsi_a' => $opsi[0], 'opsi_b' => $opsi[1], 'opsi_c' => $opsi[2], 'opsi_d' => $opsi[3],
+                    'audio_url' => $audioUrl,
+                    'opsi_a' => $opsiPath[0],
+                    'opsi_b' => $opsiPath[1],
+                    'opsi_c' => $opsiPath[2],
+                    'opsi_d' => $opsiPath[3],
                     'jawaban' => $jawaban,
                 ]);
             }

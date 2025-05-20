@@ -14,9 +14,12 @@ class PelajaranSeeder extends Seeder
 
         #Pelajaran Huruf Gabungan
         $pelajaranHuruf = [
-            'Pelajaran Huruf 1',
             'Pelajaran Huruf 2',
             'Pelajaran Huruf 3',
+            'Pelajaran Huruf 4',
+            'Pelajaran Huruf 5',
+            'Pelajaran Huruf 6',
+            'Pelajaran Huruf 7',
         ];
 
         foreach ($pelajaranHuruf as $nama) {

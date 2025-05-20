@@ -8,63 +8,46 @@ use App\Models\IsiPelajaran;
 
 class PelajaranController extends Controller
 {
-    # List pelajaran (tanpa Pelajaran Huruf 1)
+    // Menampilkan semua pelajaran yang dipilih
     public function index()
     {
         $pelajaran = Pelajaran::with('kategori')
             ->whereIn('nama', [
-                'Pelajaran Huruf 1',
                 'Pelajaran Huruf 2',
                 'Pelajaran Huruf 3',
-                'Pelajaran Kata 1'
+                'Pelajaran Huruf 4',
+                'Pelajaran Huruf 5',
+                'Pelajaran Huruf 6',
+                'Pelajaran Huruf 7',
+                'Pelajaran Kata 1',
             ])
             ->get();
 
         return response()->json($pelajaran);
     }
 
-    # Menampilkan isi pelajaran berdasarkan ID pelajaran
-    public function isiPelajaran($id)
+    // Menampilkan isi pelajaran berdasarkan pelajaran_id dan id isi_pelajaran
+    public function isiPelajaran($pelajaran_id, $id)
     {
-        $pelajaran = Pelajaran::find($id);
+        // Pastikan pelajaran ada
+        $pelajaran = Pelajaran::find($pelajaran_id);
         if (!$pelajaran) {
             return response()->json(['message' => 'Pelajaran tidak ditemukan'], 404);
         }
 
-        $nama = $pelajaran->nama;
-        $isi = collect();
+        // Cari isi pelajaran berdasarkan pelajaran_id dan id isi_pelajaran
+        $isi = IsiPelajaran::where('pelajaran_id', $pelajaran_id)
+            ->where('id', $id)
+            ->first();
 
-        if ($nama === 'Pelajaran Huruf 2') {
-            $isi = collect([
-                IsiPelajaran::where('pelajaran_id', $id)->where('keterangan', 'like', '%fathah%')->inRandomOrder()->first(),
-                IsiPelajaran::where('pelajaran_id', $id)->where('keterangan', 'like', '%kasrah%')->inRandomOrder()->first(),
-                IsiPelajaran::where('pelajaran_id', $id)->where('keterangan', 'like', '%dhammah%')->inRandomOrder()->first(),
-            ])->filter();
-        } 
-        elseif ($nama === 'Pelajaran Huruf 3') {
-            $isi = collect([
-                IsiPelajaran::where('pelajaran_id', $id)->where('keterangan', 'like', '%fathahtain%')->inRandomOrder()->first(),
-                IsiPelajaran::where('pelajaran_id', $id)->where('keterangan', 'like', '%kasrahtain%')->inRandomOrder()->first(),
-                IsiPelajaran::where('pelajaran_id', $id)->where('keterangan', 'like', '%dhammahtain%')->inRandomOrder()->first(),
-            ])->filter();
-        } 
-        elseif ($nama === 'Pelajaran Kata 1') {
-            $isi = collect()
-                ->merge(IsiPelajaran::where('pelajaran_id', $id)->where('keterangan', 'like', '%fathah%')->get())
-                ->merge(IsiPelajaran::where('pelajaran_id', $id)->where('keterangan', 'like', '%kasrah%')->get())
-                ->merge(IsiPelajaran::where('pelajaran_id', $id)->where('keterangan', 'like', '%dhammah%')->get());
-        } 
-        else {
-            return response()->json(['message' => 'Jenis pelajaran tidak dikenali'], 400);
+        if (!$isi) {
+            return response()->json(['message' => 'Isi pelajaran tidak ditemukan'], 404);
         }
 
-        # Ubah path video dan gambar menjadi URL lengkap
-        $isi = $isi->map(function ($item) {
-            $item->video = asset('storage/' . $item->video);
-            $item->gambar = asset('storage/' . $item->gambar);
-            return $item;
-        });
+        // Ubah path video & gambar menjadi URL lengkap (misal storage)
+        $isi->video = $isi->video ? asset('storage/' . $isi->video) : null;
+        $isi->gambar = $isi->gambar ? asset('storage/' . $isi->gambar) : null;
 
-        return response()->json($isi->values());
+        return response()->json($isi);
     }
 }
