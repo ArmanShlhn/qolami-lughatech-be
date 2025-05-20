@@ -11,140 +11,159 @@ use Illuminate\Http\Request;
 
 class KuisController extends Controller
 {
-    #variabel untuk model untuk soal gambar, audio, dan video
     protected $soalModels = [
         'audio' => SoalAudio::class,
         'video' => SoalVideo::class,
     ];
+
+    /**
+     * List semua kuis dengan kategori (resource style)
+     */
     public function listKuis()
     {
         try {
             $kuisList = Kuis::with('kategori')->get();
 
-            $formatted = $kuisList->map(function ($kuis) {
-                return [
-                    'id' => $kuis->id,
-                    'nama' => $kuis->nama_kuis,
-                    'kategori_id' => $kuis->kategori_id,
-                    'kategori_nama' => $kuis->kategori->nama_kuis ?? null,
-                ];
-            });
-
+            #Menggunakan resource-style response
             return response()->json([
                 'status' => 'success',
-                'kuis' => $formatted,
+                'data' => $kuisList->map(function ($kuis) {
+                    return [
+                        'id' => $kuis->id,
+                        'nama' => $kuis->nama_kuis,
+                        'kategori' => [
+                            'id' => $kuis->kategori->id ?? null,
+                            'nama' => $kuis->kategori->nama_kuis ?? null,
+                        ],
+                    ];
+                }),
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Terjadi kesalahan',
-                'error' => $e->getMessage(),
+                'errors' => $e->getMessage(),
             ], 500);
         }
     }
-    #soal kuis berdasarkan kategori dan ID kuis
 
+    /**
+     * Mendapatkan soal kuis berdasarkan kategori dan id kuis
+     */
     public function getSoalKuis($kategoriNama, $kuisId)
     {
         try {
-            #cari kategori berdasarkan nama (dengan pencocokan case-insensitive)
             $kategori = Kategori::whereRaw('LOWER(nama) = ?', [strtolower($kategoriNama)])->first();
 
             if (!$kategori) {
-                return response()->json(['message' => 'Kategori tidak ditemukan'], 404);
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Kategori tidak ditemukan'
+                ], 404);
             }
 
-            #cari kuis berdasarkan kategori dan id
             $kuis = Kuis::where('id', $kuisId)
                         ->where('kategori_id', $kategori->id)
                         ->first();
 
             if (!$kuis) {
-                return response()->json(['message' => 'Kuis tidak ditemukan'], 404);
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Kuis tidak ditemukan'
+                ], 404);
             }
 
-            #soal-soal dari semua jenis (audio dan video)
-
-            $soalAudio = SoalAudio::whereHas('latihan', function($query) use ($kategori) {
+            $soalAudio = SoalAudio::whereHas('latihan', function ($query) use ($kategori) {
                 $query->where('kategori_id', $kategori->id);
             })->inRandomOrder()->take(10)->get();
 
-            $soalVideo = SoalVideo::whereHas('latihan', function($query) use ($kategori) {
+            $soalVideo = SoalVideo::whereHas('latihan', function ($query) use ($kategori) {
                 $query->where('kategori_id', $kategori->id);
             })->inRandomOrder()->take(10)->get();
 
-            #gabungan semua soal secara acak
             $soalGabungan = $soalAudio->concat($soalVideo)->shuffle()->take(20)->values();
 
-            #informasi jenis soal di setiap soal (agar mudah di cek di postman)
-            $soalFinal = $soalGabungan->map(function($soal) {
+            $soalFinal = $soalGabungan->map(function ($soal) {
                 return [
                     'id' => $soal->id,
-                    'file' => $soal->gambar_url ?? $soal->audio_url ?? $soal->video_url, 
-                    'opsi_a' => $soal->opsi_a,
-                    'opsi_b' => $soal->opsi_b,
-                    'opsi_c' => $soal->opsi_c,
-                    'opsi_d' => $soal->opsi_d,
+                    'file_url' => $soal->gambar_url ?? $soal->audio_url ?? $soal->video_url,
+                    'opsi' => [
+                        'a' => $soal->opsi_a,
+                        'b' => $soal->opsi_b,
+                        'c' => $soal->opsi_c,
+                        'd' => $soal->opsi_d,
+                    ],
                     'jenis' => $this->getJenisSoal($soal),
                 ];
             });
 
             return response()->json([
-                'kuis' => $kuis,
-                'soal' => $soalFinal,
+                'status' => 'success',
+                'data' => [
+                    'kuis' => [
+                        'id' => $kuis->id,
+                        'nama' => $kuis->nama_kuis,
+                        'kategori' => [
+                            'id' => $kategori->id,
+                            'nama' => $kategori->nama,
+                        ],
+                    ],
+                    'soal' => $soalFinal,
+                ],
             ]);
-
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Terjadi kesalahan', 'error' => $e->getMessage()], 500);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan',
+                'errors' => $e->getMessage(),
+            ], 500);
         }
     }
 
-    #submit jawaban, kuis, dan penyimpanan score
+    /**
+     * Submit jawaban kuis dan simpan skor
+     */
     public function submitJawabanKuis(Request $request)
     {
         try {
-            #validasi input jawaban
-            $request->validate([
-                'user_id' => 'required|integer',
-                'kuis_id' => 'required|integer',
-                'jawaban' => 'required|array',
+            $validated = $request->validate([
+                'user_id' => 'required|integer|exists:users,id',
+                'kuis_id' => 'required|integer|exists:kuis,id',
+                'jawaban' => 'required|array|min:20',
+                'jawaban.*.soal_id' => 'required|integer',
+                'jawaban.*.jenis' => 'required|string|in:audio,video',
+                'jawaban.*.jawaban_user' => 'required|string',
             ]);
 
-            #pengecekan untuk menyimpan skor jika soal sudah dijawab semua
-            $totalSoal = count($request->jawaban);
-
-                if ($totalSoal < 20) {
-                    return response()->json([
-                        'message' => 'Semua soal harus dijawab sebelum menyimpan hasil kuis.',
-                        'total_dijawab' => $totalSoal,
-                    ], 400);
-                }
-
             $jawabanBenar = 0;
-            $totalSoal = count($request->jawaban);
 
-            foreach ($request->jawaban as $dataJawaban) {
-                $jenis = $dataJawaban['jenis'] ?? null;
-                $soalId = $dataJawaban['soal_id'] ?? null;
-                $jawabanUser = $dataJawaban['jawaban_user'] ?? null;
+            foreach ($validated['jawaban'] as $item) {
+                $jenis = $item['jenis'];
+                $soalId = $item['soal_id'];
+                $jawabanUser = trim($item['jawaban_user']);
 
-                if (!$jenis || !$soalId || !$jawabanUser) {
-                    continue;
+                if (!isset($this->soalModels[$jenis])) {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => "Jenis soal tidak valid: $jenis"
+                    ], 422);
                 }
 
-                $model = $this->soalModels[$jenis] ?? null;
-                if (!$model) {
-                    continue;
-                }
-
-                #soal berdasarkan jenis dan id
+                $model = $this->soalModels[$jenis];
                 $soal = $model::find($soalId);
-                if ($soal && strtolower($soal->jawaban) === strtolower($jawabanUser)) {
+
+                if (!$soal) {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => "Soal dengan ID $soalId tidak ditemukan pada jenis $jenis"
+                    ], 404);
+                }
+
+                if (strtolower($soal->jawaban) === strtolower($jawabanUser)) {
                     $jawabanBenar++;
                 }
             }
 
-            #perhitungan score bintang
             $bintang = 0;
             if ($jawabanBenar == 20) {
                 $bintang = 3;
@@ -154,27 +173,39 @@ class KuisController extends Controller
                 $bintang = 1;
             }
 
-            #simpen score ke database
-            Score::create([
-                'user_id' => $request->user_id,
-                'kuis_id' => $request->kuis_id,
-                'jumlah_benar' => $jawabanBenar,
-                'jumlah_soal' => $totalSoal,
-                'bintang' => $bintang,
-            ]);
+            $score = Score::updateOrCreate(
+                ['user_id' => $validated['user_id'], 'kuis_id' => $validated['kuis_id']],
+                [
+                    'jumlah_benar' => $jawabanBenar,
+                    'jumlah_soal' => count($validated['jawaban']),
+                    'bintang' => $bintang,
+                ]
+            );
 
             return response()->json([
-                'jawaban_benar' => $jawabanBenar,
-                'total_soal' => $totalSoal,
-                'bintang' => $bintang,
+                'status' => 'success',
+                'message' => 'Jawaban berhasil diproses',
+                'data' => [
+                    'jumlah_benar' => $jawabanBenar,
+                    'jumlah_soal' => count($validated['jawaban']),
+                    'bintang' => $bintang,
+                ],
             ]);
-
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Validasi gagal',
+                'errors' => $e->errors(),
+            ], 422);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Terjadi kesalahan', 'error' => $e->getMessage()], 500);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan',
+                'errors' => $e->getMessage(),
+            ], 500);
         }
     }
 
-    #nentuin jenis soal berdasarkan instance model soal.
     private function getJenisSoal($soal)
     {
         if ($soal instanceof SoalAudio) {

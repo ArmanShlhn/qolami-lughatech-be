@@ -8,6 +8,7 @@ use App\Models\Score;
 
 class ScoreController extends Controller
 {
+    #Submit atau update skor kuis user
     public function submitKuisScore(Request $request)
     {
         try {
@@ -18,22 +19,26 @@ class ScoreController extends Controller
 
             $user = Auth::user();
 
-            #menyimpan / mengupdate skor kuis user
             $score = Score::updateOrCreate(
                 ['user_id' => $user->id, 'kuis_id' => $request->kuis_id],
                 ['score' => $request->score]
             );
 
             return response()->json([
+                'status' => 'success',
                 'message' => 'Skor kuis berhasil disimpan',
-                'score' => $score,
+                'data' => $score,
             ]);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Terjadi kesalahan', 'error' => $e->getMessage()], 500);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan saat menyimpan skor',
+                'error' => $e->getMessage(),
+            ], 500);
         }
     }
 
-    #menerima skor kuis user
+    #Mengambil semua skor kuis milik user
     public function getUserScores()
     {
         try {
@@ -41,10 +46,15 @@ class ScoreController extends Controller
             $scores = Score::where('user_id', $user->id)->get();
 
             return response()->json([
-                'scores' => $scores
+                'status' => 'success',
+                'data' => $scores,
             ]);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Terjadi kesalahan', 'error' => $e->getMessage()], 500);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan saat mengambil data skor',
+                'error' => $e->getMessage(),
+            ], 500);
         }
     }
 }

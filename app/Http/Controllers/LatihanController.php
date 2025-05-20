@@ -9,10 +9,13 @@ use Illuminate\Http\Request;
 
 class LatihanController extends Controller
 {
+    #Model soal berdasarkan jenis media
     protected $models = [
-        'video' => SoalVideo::class,
         'audio' => SoalAudio::class,
+        'video' => SoalVideo::class,
     ];
+
+    #List semua latihan dengan kategori
     public function listLatihan()
     {
         try {
@@ -40,7 +43,9 @@ class LatihanController extends Controller
         }
     }
 
-    public function getSoalLatihan($latihanId, $jenis, Request $request){
+    #Ambil soal latihan berdasarkan latihan id dan jenis (audio/video)
+    public function getSoalLatihan($latihanId, $jenis, Request $request)
+    {
         try {
             $latihan = Latihan::with('kategori')->find($latihanId);
 
@@ -48,18 +53,13 @@ class LatihanController extends Controller
                 return response()->json(['message' => 'Latihan tidak ditemukan'], 404);
             }
 
-            $models = [
-                'audio' => SoalAudio::class,
-                'video' => SoalVideo::class,
-            ];
-
-            if (!isset($models[$jenis])) {
+            if (!isset($this->models[$jenis])) {
                 return response()->json(['message' => 'Jenis latihan tidak valid'], 400);
             }
 
-            $model = $models[$jenis];
+            $model = $this->models[$jenis];
 
-            #ambil 10 soal sesuai latihan dan jenis
+            #Ambil 10 soal latihan sesuai jenis dan latihan_id
             $soalList = $model::where('latihan_id', $latihanId)
                 ->orderBy('id')
                 ->limit(10)
@@ -69,7 +69,7 @@ class LatihanController extends Controller
                 return response()->json(['message' => 'Soal tidak ditemukan'], 404);
             }
 
-            #Format soal untuk dikirim ke response
+            #Format soal untuk response
             $soalFormatted = $soalList->map(function ($soal) {
                 return [
                     'id' => $soal->id,
@@ -97,7 +97,7 @@ class LatihanController extends Controller
         }
     }
 
-
+    #Submit jawaban soal latihan dan cek hasil
     public function submitJawaban(Request $request)
     {
         try {
@@ -117,15 +117,17 @@ class LatihanController extends Controller
 
             $jawabanBenar = strtolower($soal->jawaban);
             $jawabanUser = strtolower($request->jawaban_user);
-            $benar = $jawabanBenar === $jawabanUser;
+            $hasil = ($jawabanBenar === $jawabanUser) ? 'Benar' : 'Salah';
 
             return response()->json([
                 'latihan_id' => $soal->latihan_id,
                 'soal_id' => $soal->id,
                 'jawaban_user' => $request->jawaban_user,
                 'jawaban_benar' => $soal->jawaban,
-                'hasil' => $benar ? 'Benar' : 'Salah',
+                'hasil' => $hasil,
             ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['message' => 'Validasi gagal', 'errors' => $e->errors()], 422);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Terjadi kesalahan', 'error' => $e->getMessage()], 500);
         }
