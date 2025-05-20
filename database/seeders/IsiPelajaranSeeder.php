@@ -36,7 +36,7 @@ public function run()
         'Pelajaran Huruf 7' => 'dhammahtain',
     ];
 
-    // Insert isi pelajaran huruf per jenis harakat (Pelajaran Huruf 2-7)
+    #Insert isi pelajaran huruf per jenis harakat (Pelajaran Huruf 2-7)
     foreach ($harakatMap as $pelajaranNama => $harakat) {
         $pelajaranId = DB::table('pelajaran')->where('nama', $pelajaranNama)->value('id');
         $i = 1;
@@ -52,7 +52,7 @@ public function run()
         }
     }
 
-    // Pelajaran Kata 1 (fathah, kasrah, dhammah)
+    #Pelajaran Kata 1 (fathah, kasrah, dhammah)
     $kata = [
         ['kata'=>'Fataha','harakat'=>'fathah'],
         ['kata'=>'Khoriqo','harakat'=>'kasrah'],

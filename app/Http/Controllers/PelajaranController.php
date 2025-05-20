@@ -8,7 +8,7 @@ use App\Models\IsiPelajaran;
 
 class PelajaranController extends Controller
 {
-    // Menampilkan semua pelajaran yang dipilih
+    #Menampilkan semua pelajaran yang dipilih
     public function index()
     {
         $pelajaran = Pelajaran::with('kategori')
@@ -26,16 +26,15 @@ class PelajaranController extends Controller
         return response()->json($pelajaran);
     }
 
-    // Menampilkan isi pelajaran berdasarkan pelajaran_id dan id isi_pelajaran
+    #Menampilkan isi pelajaran berdasarkan pelajaran_id dan id isi_pelajaran
     public function isiPelajaran($pelajaran_id, $id)
     {
-        // Pastikan pelajaran ada
         $pelajaran = Pelajaran::find($pelajaran_id);
         if (!$pelajaran) {
             return response()->json(['message' => 'Pelajaran tidak ditemukan'], 404);
         }
 
-        // Cari isi pelajaran berdasarkan pelajaran_id dan id isi_pelajaran
+        #mencari isi pelajaran berdasarkan pelajaran_id dan id isi_pelajaran
         $isi = IsiPelajaran::where('pelajaran_id', $pelajaran_id)
             ->where('id', $id)
             ->first();
@@ -44,7 +43,7 @@ class PelajaranController extends Controller
             return response()->json(['message' => 'Isi pelajaran tidak ditemukan'], 404);
         }
 
-        // Ubah path video & gambar menjadi URL lengkap (misal storage)
+        #Ubah path video & gambar menjadi URL lengkap
         $isi->video = $isi->video ? asset('storage/' . $isi->video) : null;
         $isi->gambar = $isi->gambar ? asset('storage/' . $isi->gambar) : null;
 

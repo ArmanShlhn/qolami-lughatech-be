@@ -20,7 +20,7 @@ class SoalLatihanSeeder extends Seeder
             'Waw', 'Ha', 'LamAlif', 'Hamzah', 'Ya'
         ];
 
-        // Helper untuk membentuk path
+        #Helper untuk membentuk path
         $url = function ($kategori, $harakat, $tipe, $filename) {
             $harakatFolder = $harakat ? strtolower($harakat) : 'default';
             return "pelajaran/{$kategori}/{$harakatFolder}/{$tipe}/{$filename}";
@@ -73,7 +73,7 @@ class SoalLatihanSeeder extends Seeder
             }
         }
 
-        // Latihan Kata
+        #Latihan Kata
         $opsikata = [
             'Akhoza', 'Bahasya', 'Syabata', 'JaAla', 'HaSaDa', 'Khotoba', 'Dabaro', 'RoHaqo',
             'SaKana', 'Syakaro', 'Shodaqo', 'Salato', 'Akasa', 'Dzoharo', 'Habato', 'Amina',
