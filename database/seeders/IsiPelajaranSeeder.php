@@ -12,7 +12,7 @@ public function run()
     $hurufHijaiyah = [
         'Alif','Ba','Ta','Tsa','Jim','Ha','Kho','Dal','Dzal',
         'Ro','Zay','Sin','Syin','Shod','Dhod','Tho','Dzho','Ain',
-        'Ghoin','Fa','Qaf','Kaf','Lam','Mim','Nun','Wawu', 'LamAlif','Hamzah','Ya'
+        'Ghoin','Fa','Qaf','Kaf','Lam','Mim','Nun','Wawu','Ya'
     ];
 
     $warnaHarakat = [

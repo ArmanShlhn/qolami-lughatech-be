@@ -57,12 +57,11 @@ class PelajaranController extends Controller
             }
 
             $isiPelajaran = IsiPelajaran::where('pelajaran_id', $pelajaran_id)
-                ->select('id', 'judul', 'video', 'gambar')
+                ->select('id', 'video', 'gambar')
                 ->get()
                 ->map(function ($isi) {
                     return [
                         'id' => $isi->id,
-                        'judul' => $isi->judul,
                         'video_url' => $isi->video ? asset('storage/' . $isi->video) : null,
                         'gambar_url' => $isi->gambar ? asset('storage/' . $isi->gambar) : null,
                     ];
@@ -108,10 +107,9 @@ class PelajaranController extends Controller
                 'status' => 'success',
                 'data' => [
                     'id' => $isi->id,
-                    'judul' => $isi->judul,
+                    'keterangan' => $isi->keterangan ?? null,
                     'video_url' => $isi->video ? asset('storage/' . $isi->video) : null,
                     'gambar_url' => $isi->gambar ? asset('storage/' . $isi->gambar) : null,
-                    'keterangan' => $isi->keterangan ?? null, #jika ada kolom keterangan
                 ],
             ]);
         } catch (\Exception $e) {

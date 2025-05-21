@@ -11,11 +11,8 @@ class PelajaranResource extends JsonResource
     {
         return [
             'id'          => $this->id,
-            'judul'       => $this->judul,
-            'tipe'        => $this->tipe, 
-            'sub_pelajaran'=> $this->sub_pelajaran, 
-            'huruf'       => $this->huruf,
             'keterangan'  => $this->keterangan,
+            'huruf'       => $this->huruf,
             'gambar_url'  => $this->gambar_url,
             'video_url'   => $this->video_url,
         ];
