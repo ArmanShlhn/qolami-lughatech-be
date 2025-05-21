@@ -12,16 +12,16 @@ public function run()
     $hurufHijaiyah = [
         'Alif','Ba','Ta','Tsa','Jim','Ha','Kho','Dal','Dzal',
         'Ro','Zay','Sin','Syin','Shod','Dhod','Tho','Dzho','Ain',
-        'Ghoin','Fa','Qaf','Kaf','Lam','Mim','Nun','Wawu','Ha besar','Ya'
+        'Ghain','Fa','Qof','Kaf','Lam','Mim','Nun','Wawu','Ha_besar','Ya'
     ];
 
     $warnaHarakat = [
         'fathah'      => 'biru terang',
-        'kasrah'      => 'hijau terang',
-        'dhammah'     => 'orange',
+        'kasroh'      => 'hijau terang',
+        'dhommah'     => 'orange',
         'fathahtain'  => 'biru gelap',
-        'kasrahtain'  => 'hijau gelap',
-        'dhammahtain' => 'coklat',
+        'kasrotain'  => 'hijau gelap',
+        'dhommahtain' => 'coklat',
     ];
 
     $url = fn($kategori, $harakat, $tipe, $file) =>
@@ -29,11 +29,11 @@ public function run()
 
     $harakatMap = [
         'Pelajaran Huruf 2' => 'fathah',
-        'Pelajaran Huruf 3' => 'kasrah',
-        'Pelajaran Huruf 4' => 'dhammah',
+        'Pelajaran Huruf 3' => 'kasroh',
+        'Pelajaran Huruf 4' => 'dhommah',
         'Pelajaran Huruf 5' => 'fathahtain',
-        'Pelajaran Huruf 6' => 'kasrahtain',
-        'Pelajaran Huruf 7' => 'dhammahtain',
+        'Pelajaran Huruf 6' => 'kasrotain',
+        'Pelajaran Huruf 7' => 'dhommahtain',
     ];
 
     #Insert isi pelajaran huruf per jenis harakat (Pelajaran Huruf 2-7)
@@ -55,8 +55,8 @@ public function run()
     #Pelajaran Kata 1 (fathah, kasrah, dhammah)
     $kata = [
         ['kata'=>'Fataha','harakat'=>'fathah'],
-        ['kata'=>'Khoriqo','harakat'=>'kasrah'],
-        ['kata'=>'Kasyuro','harakat'=>'dhammah'],
+        ['kata'=>'Khoriqo','harakat'=>'kasroh'],
+        ['kata'=>'Kasyuro','harakat'=>'dhommah'],
     ];
     $idKata1 = DB::table('pelajaran')->where('nama','Pelajaran Kata 1')->value('id');
     $i = 1;
