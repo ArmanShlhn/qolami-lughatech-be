@@ -16,24 +16,25 @@ public function run()
     ];
 
     $warnaHarakat = [
-        'fathah'      => 'biru terang',
-        'kasroh'      => 'hijau terang',
-        'dhommah'     => 'orange',
-        'fathahtain'  => 'biru gelap',
-        'kasrotain'  => 'hijau gelap',
-        'dhommahtain' => 'coklat',
+        'Fathah'      => 'biru terang',
+        'Kasroh'      => 'hijau terang',
+        'Dhommah'     => 'orange',
+        'Fathahtain'  => 'biru gelap',
+        'Kasrotain'  => 'hijau gelap',
+        'Dhommahtain' => 'coklat',
     ];
 
     $url = fn($kategori, $harakat, $tipe, $file) =>
-        "app/public/pelajaran/{$kategori}/{$harakat}/{$tipe}/{$file}";
+        "Pelajaran/{$kategori}/{$harakat}/{$tipe}/{$file}";
+
 
     $harakatMap = [
-        'Pelajaran Huruf 2' => 'fathah',
-        'Pelajaran Huruf 3' => 'kasroh',
-        'Pelajaran Huruf 4' => 'dhommah',
-        'Pelajaran Huruf 5' => 'fathahtain',
-        'Pelajaran Huruf 6' => 'kasrotain',
-        'Pelajaran Huruf 7' => 'dhommahtain',
+        'Pelajaran Huruf 2' => 'Fathah',
+        'Pelajaran Huruf 3' => 'Kasroh',
+        'Pelajaran Huruf 4' => 'Dhommah',
+        'Pelajaran Huruf 5' => 'Fathahtain',
+        'Pelajaran Huruf 6' => 'Kasrotain',
+        'Pelajaran Huruf 7' => 'Dhommahtain',
     ];
 
     #Insert isi pelajaran huruf per jenis harakat (Pelajaran Huruf 2-7)
@@ -45,8 +46,8 @@ public function run()
                 'pelajaran_id'         => $pelajaranId,
                 'huruf_kata_rangkaian' => $huruf,
                 'keterangan'           => "Warna hitam huruf {$huruf}, warna {$warnaHarakat[$harakat]} adalah harakat {$harakat}.",
-                'video'                => $url('huruf', $harakat, 'video', "{$i}.{$harakat}_{$huruf}.mp4"),
-                'gambar'               => $url('huruf', $harakat, 'foto', "{$i}.{$harakat}_{$huruf}.png"),
+                'video'                => $url('Huruf', $harakat, 'video', "{$i}.{$harakat}_{$huruf}.mp4"),
+                'gambar'               => $url('Huruf', $harakat, 'foto', "{$i}.{$harakat}_{$huruf}.png"),
             ]);
             $i++;
         }
@@ -54,9 +55,9 @@ public function run()
 
     #Pelajaran Kata 1 (fathah, kasrah, dhammah)
     $kata = [
-        ['kata'=>'Fataha','harakat'=>'fathah'],
-        ['kata'=>'Khoriqo','harakat'=>'kasroh'],
-        ['kata'=>'Kasyuro','harakat'=>'dhommah'],
+        ['kata'=>'Fataha','harakat'=>'Fathah'],
+        ['kata'=>'Khoriqo','harakat'=>'Kasroh'],
+        ['kata'=>'Kasyuro','harakat'=>'Dhommah'],
     ];
     $idKata1 = DB::table('pelajaran')->where('nama','Pelajaran Kata 1')->value('id');
     $i = 1;
@@ -67,8 +68,8 @@ public function run()
             'pelajaran_id'         => $idKata1,
             'huruf_kata_rangkaian' => $k,
             'keterangan'           => "Berikut ini adalah kata {$k} yang berharakat {$h}. Warna {$warnaHarakat[$h]}.",
-            'video'                => $url('kata', 'fathah_kasrah_dhammah', 'video', "{$i}.{$h}_{$k}.mp4"),
-            'gambar'               => $url('kata', 'fathah_kasrah_dhammah', 'foto', "{$i}.{$h}_{$k}.png"),
+            'video'                => $url('Kata', 'fathah_kasrah_dhammah', 'video', "{$i}.{$h}_{$k}.mp4"),
+            'gambar'               => $url('Kata', 'fathah_kasrah_dhammah', 'foto', "{$i}.{$h}_{$k}.png"),
         ]);
         $i++;
     }
