@@ -25,7 +25,7 @@ public function run()
     ];
 
     $url = fn($kategori, $harakat, $tipe, $file) =>
-        "pelajaran/{$kategori}/{$harakat}/{$tipe}/{$file}";
+        "storage/app/public/pelajaran/{$kategori}/{$harakat}/{$tipe}/{$file}";
 
     $harakatMap = [
         'Pelajaran Huruf 2' => 'fathah',

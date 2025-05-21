@@ -62,8 +62,8 @@ class PelajaranController extends Controller
                 ->map(function ($isi) {
                     return [
                         'id' => $isi->id,
-                        'video_url' => $isi->video ? asset('storage/' . $isi->video) : null,
-                        'gambar_url' => $isi->gambar ? asset('storage/' . $isi->gambar) : null,
+                        'video_url' => $isi->video ? asset('storage/app/public/pelajaran/' . $isi->video) : null,
+                        'gambar_url' => $isi->gambar ? asset('storage/app/public/pelajaran/' . $isi->gambar) : null,
                     ];
                 });
 
@@ -108,8 +108,8 @@ class PelajaranController extends Controller
                 'data' => [
                     'id' => $isi->id,
                     'keterangan' => $isi->keterangan ?? null,
-                    'video_url' => $isi->video ? asset('storage/' . $isi->video) : null,
-                    'gambar_url' => $isi->gambar ? asset('storage/' . $isi->gambar) : null,
+                    'video_url' => $isi->video ? asset('storage/app/public/pelajaran/' . $isi->video) : null,
+                    'gambar_url' => $isi->gambar ? asset('storage/app/public/pelajaran/' . $isi->gambar) : null,
                 ],
             ]);
         } catch (\Exception $e) {

@@ -23,7 +23,7 @@ class SoalLatihanSeeder extends Seeder
         #Helper untuk membentuk path
         $url = function ($kategori, $harakat, $tipe, $filename) {
             $harakatFolder = $harakat ? strtolower($harakat) : 'default';
-            return url("storage/pelajaran/{$kategori}/{$harakatFolder}/{$tipe}/{$filename}");
+            return url("storage/app/public/pelajaran/{$kategori}/{$harakatFolder}/{$tipe}/{$filename}");
         };
 
         $harakatHuruf = [
