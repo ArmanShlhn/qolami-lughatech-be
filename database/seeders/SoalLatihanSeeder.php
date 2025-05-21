@@ -84,8 +84,8 @@ class SoalLatihanSeeder extends Seeder
 
         $harakatKata = [
             'Latihan Kata 1' => 'fathah',
-            'Latihan Kata 2' => 'kasrah',
-            'Latihan Kata 3' => 'dhammah',
+            'Latihan Kata 2' => 'kasroh',
+            'Latihan Kata 3' => 'dhommah',
         ];
 
         foreach ($harakatKata as $latihanNama => $harakat) {

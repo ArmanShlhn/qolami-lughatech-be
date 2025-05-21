@@ -74,7 +74,7 @@ class LatihanController extends Controller
                 return [
                     'id' => $soal->id,
                     'latihan_id' => $soal->latihan_id,
-                    'media_url' => $soal->gambar_url ?? $soal->video_url ?? $soal->audio_url,
+                    'media_url' => $soal->video_url ?? $soal->audio_url,
                     'opsi_a' => $soal->opsi_a,
                     'opsi_b' => $soal->opsi_b,
                     'opsi_c' => $soal->opsi_c,
