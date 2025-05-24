@@ -28,6 +28,7 @@ class PelajaranController extends Controller
                         'nama' => $item->nama,
                         'kategori_id' => $item->kategori_id,
                         'kategori_nama' => $item->kategori->nama ?? null,
+                        'gambar_url' => $item->gambar ? asset($item->gambar) : null,
                     ];
                 });
 
