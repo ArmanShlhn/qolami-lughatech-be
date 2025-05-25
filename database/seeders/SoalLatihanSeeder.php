@@ -89,112 +89,127 @@ class SoalLatihanSeeder extends Seeder
             if (!$latihan) continue;
 
             for ($i = 1; $i <= 28; $i++) {
-                $huruf = $hurufHijaiyah[$i - 1];
-
-                #Ambil kode YouTube dari array berdasarkan harakat dan indeks
+                $hurufBenar = $hurufHijaiyah[$i - 1];
                 $videoCode = $kodeYoutube[$harakat][$i - 1] ?? null;
                 if (!$videoCode) continue;
 
                 $videoUrl = "https://www.youtube.com/watch?v={$videoCode}";
-                $audioUrl = "{$githubRawAudio}/huruf-{$harakat}/" . ($i) . ".{$harakat}_{$huruf}.mp3";
+                $audioUrl = "{$githubRawAudio}/huruf-{$harakat}/{$i}.{$harakat}_{$hurufBenar}.mp3";
 
-                #Membuat opsi jawaban dari huruf yang diacak
-                $opsiHuruf = collect($hurufHijaiyah)->shuffle()->take(4)->values();
+                // Ambil 3 huruf lain secara acak, berbeda dengan huruf benar
+                $opsiHuruf = collect($hurufHijaiyah)
+                    ->filter(fn($h) => $h !== $hurufBenar)
+                    ->shuffle()
+                    ->take(3)
+                    ->values();
 
-                #Mapping opsi ke URL gambar raw GitHub (huruf hijaiyah)
-                $opsiPath = $opsiHuruf->map(fn($h) => "{$githubRawBase}/huruf-{$harakat}/" . ($i) . ".{$harakat}_{$huruf}.png");
+                // Tambahkan huruf benar ke opsi, lalu acak posisi opsi
+                $opsiHuruf->push($hurufBenar);
+                $opsiHuruf = $opsiHuruf->shuffle()->values();
 
-                #Tentukan jawaban benar (dari opsi yang ada, pakai huruf yang sesuai)
-                if (!$opsiHuruf->contains($huruf)) {
-                    $opsiPath[0] = "{$githubRawBase}/huruf-{$harakat}/" . ($i) . ".{$harakat}_{$huruf}.png";
-                    $jawaban = $opsiPath[0];
-                } else {
-                    $jawabanIndex = $opsiHuruf->search($huruf);
-                    $jawaban = $opsiPath[$jawabanIndex];
-                }
+                // Buat array URL gambar sesuai huruf di opsi (indeks dari 1 sampai 28 sesuai huruf benar soal)
+                // Kita cari index huruf opsi di hurufHijaiyah agar bisa pasang nomor gambar benar
+                $opsiGambar = $opsiHuruf->map(function($hurufOpsi) use ($harakat, $hurufHijaiyah, $githubRawBase) {
+                    $indexHuruf = array_search($hurufOpsi, $hurufHijaiyah) + 1; // +1 karena indeks gambar mulai 1
+                    return "{$githubRawBase}/huruf-{$harakat}/{$indexHuruf}.{$harakat}_{$hurufOpsi}.png";
+                });
+
+                // Cari posisi jawaban benar (hurufBenar)
+                $jawabanIndex = $opsiHuruf->search($hurufBenar);
 
                 SoalVideo::create([
                     'latihan_id' => $latihan->id,
                     'video_url' => $videoUrl,
-                    'opsi_a' => $opsiPath[0],
-                    'opsi_b' => $opsiPath[1],
-                    'opsi_c' => $opsiPath[2],
-                    'opsi_d' => $opsiPath[3],
-                    'jawaban' => $jawaban,
+                    'opsi_a' => $opsiGambar[0],
+                    'opsi_b' => $opsiGambar[1],
+                    'opsi_c' => $opsiGambar[2],
+                    'opsi_d' => $opsiGambar[3],
+                    'jawaban' => $opsiGambar[$jawabanIndex],
                 ]);
 
                 SoalAudio::create([
                     'latihan_id' => $latihan->id,
                     'audio_url' => $audioUrl,
-                    'opsi_a' => $opsiPath[0],
-                    'opsi_b' => $opsiPath[1],
-                    'opsi_c' => $opsiPath[2],
-                    'opsi_d' => $opsiPath[3],
-                    'jawaban' => $jawaban,
+                    'opsi_a' => $opsiGambar[0],
+                    'opsi_b' => $opsiGambar[1],
+                    'opsi_c' => $opsiGambar[2],
+                    'opsi_d' => $opsiGambar[3],
+                    'jawaban' => $opsiGambar[$jawabanIndex],
                 ]);
             }
         }
 
+# Latihan Kata
+$kataList = [
+    'Akhoza', 'Bahasya', 'Syabata', 'JaAla', 'HaSaDa', 'Khotoba', 'Dabaro', 'RoHaqo',
+    'SaKana', 'Syakaro', 'Shodaqo', 'Salato', 'Akasa', 'Dzoharo', 'Habato', 'Amina',
+    'Bariqa', 'Hamida', 'JadziA', 'TaIba', 'Habito', 'Khorisa', 'Rohima', 'safiha',
+    'syaniba', 'nadija', 'dzolima', 'laiba', 'roghiba', 'sahiro', 'uqila', 'butila',
+    'turiku', 'jabuna', 'hasuna', 'khosyuna', 'sahula', 'yakilu', 'sholuha', 'dhoufa',
+    'turiha', 'dufina', 'taqou', 'adzuma', 'suriqo'
+];
 
-        # Latihan Kata
-        $kataList = [
-            'Akhoza', 'Bahasya', 'Syabata', 'JaAla', 'HaSaDa', 'Khotoba', 'Dabaro', 'RoHaqo',
-            'SaKana', 'Syakaro', 'Shodaqo', 'Salato', 'Akasa', 'Dzoharo', 'Habato', 'Amina',
-            'Bariqa', 'Hamida', 'JadziA', 'TaIba', 'Habito', 'Khorisa', 'Rohima', 'safiha',
-            'syaniba', 'nadija', 'dzolima', 'laiba', 'roghiba', 'sahiro', 'uqila', 'butila',
-            'turiku', 'jabuna', 'hasuna', 'khosyuna', 'sahula', 'yakilu', 'sholuha', 'dhoufa',
-            'turiha', 'dufina', 'taqou', 'adzuma', 'suriqo'
-        ];
+$harakatKata = [
+    'Latihan Kata 1' => 'Fathah',
+];
 
-        $harakatKata = [
-            'Latihan Kata 1' => 'Fathah',
-        ];
+foreach ($harakatKata as $latihanNama => $harakat) {
+    $latihan = Latihan::where('nama', $latihanNama)->first();
+    if (!$latihan) continue;
 
-        foreach ($harakatKata as $latihanNama => $harakat) {
-            $latihan = Latihan::where('nama', $latihanNama)->first();
-            if (!$latihan) continue;
+    for ($i = 0; $i < count($kataList); $i++) {
+        $kata = $kataList[$i];
 
-            for ($i = 1; $i <= count($kataList); $i++) {
-                $kata = $kataList[$i - 1];
+        $videoCode = $kodeYoutube[$harakat][$i] ?? null;
+        if (!$videoCode) continue;
 
-                $videoCode = $kodeYoutube[$harakat][$i - 1] ?? null;
-                if (!$videoCode) continue;
+        $videoUrl = "https://www.youtube.com/watch?v={$videoCode}";
+        $audioUrl = "{$githubRawAudio}/kata-{$harakat}/" . ($i + 1) . ".{$harakat}_{$kata}.mp3";
 
-                $videoUrl = "https://www.youtube.com/watch?v={$videoCode}"; 
-                $audioUrl = "{$githubRawAudio}/kata-{$harakat}/" . ($i) . ".{$harakat}_{$kata}.mp3"; 
+        // Acak opsi dan pastikan jawaban termasuk di antara mereka
+        $opsiKata = collect($kataList)
+            ->reject(fn($k) => $k === $kata)
+            ->shuffle()
+            ->take(3)
+            ->push($kata)
+            ->shuffle()
+            ->values();
 
-                #Acak opsi kata
-                $opsiKata = collect($kataList)->shuffle()->take(4)->values();
-                $opsiPath = $opsiKata->map(fn($k) => "{$githubRawBase}/kata-{$harakat}/" . ($i) . ".{$harakat}_{$kata}.png");
+        // Bangun opsi gambar berdasarkan urutan opsi
+        $opsiPath = $opsiKata->map(function ($k) use ($kataList, $harakat, $githubRawBase) {
+            $index = array_search($k, $kataList);
+            $nomor = $index + 1;
+            return "{$githubRawBase}/kata-{$harakat}/{$nomor}.{$harakat}_{$k}.png";
+        });
 
-                if (!$opsiKata->contains($kata)) {
-                    $opsiPath[0] = "{$githubRawBase}/kata-{$harakat}/" . ($i) . ".{$harakat}_{$kata}.png";
-                    $jawaban = $opsiPath[0];
-                } else {
-                    $jawabanIndex = $opsiKata->search($kata);
-                    $jawaban = $opsiPath[$jawabanIndex];
-                }
 
-                SoalVideo::create([
-                    'latihan_id' => $latihan->id,
-                    'video_url' => $videoUrl,
-                    'opsi_a' => $opsiPath[0],
-                    'opsi_b' => $opsiPath[1],
-                    'opsi_c' => $opsiPath[2],
-                    'opsi_d' => $opsiPath[3],
-                    'jawaban' => $jawaban,
-                ]);
+        // Tentukan jawaban dari kata asli
+        $jawabanIndex = $opsiKata->search($kata);
+        $jawaban = $opsiPath[$jawabanIndex];
 
-                SoalAudio::create([
-                    'latihan_id' => $latihan->id,
-                    'audio_url' => $audioUrl,
-                    'opsi_a' => $opsiPath[0],
-                    'opsi_b' => $opsiPath[1],
-                    'opsi_c' => $opsiPath[2],
-                    'opsi_d' => $opsiPath[3],
-                    'jawaban' => $jawaban,
-                ]);
-            }
-        }
+        // Simpan ke soal video
+        SoalVideo::create([
+            'latihan_id' => $latihan->id,
+            'video_url' => $videoUrl,
+            'opsi_a' => $opsiPath[0],
+            'opsi_b' => $opsiPath[1],
+            'opsi_c' => $opsiPath[2],
+            'opsi_d' => $opsiPath[3],
+            'jawaban' => $jawaban,
+        ]);
+
+        // Simpan ke soal audio
+        SoalAudio::create([
+            'latihan_id' => $latihan->id,
+            'audio_url' => $audioUrl,
+            'opsi_a' => $opsiPath[0],
+            'opsi_b' => $opsiPath[1],
+            'opsi_c' => $opsiPath[2],
+            'opsi_d' => $opsiPath[3],
+            'jawaban' => $jawaban,
+        ]);
+    }
+}
+
     }
 }
