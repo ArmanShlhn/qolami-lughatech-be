@@ -13,6 +13,7 @@ class PelajaranController extends Controller
         try {
             $pelajaran = Pelajaran::with('kategori')
                 ->whereIn('nama', [
+                    'Pelajaran Huruf 1',
                     'Pelajaran Huruf 2',
                     'Pelajaran Huruf 3',
                     'Pelajaran Huruf 4',
@@ -45,7 +46,7 @@ class PelajaranController extends Controller
         }
     }
 
-    #Menampilkan daftar isi pelajaran berdasarkan pelajaran_id
+    #Menampilkan semua isi pelajaran berdasarkan pelajaran_id
     public function listIsiPelajaran($pelajaran_id)
     {
         try {
@@ -58,13 +59,14 @@ class PelajaranController extends Controller
             }
 
             $isiPelajaran = IsiPelajaran::where('pelajaran_id', $pelajaran_id)
-                ->select('id', 'video', 'gambar')
+                ->select('id', 'keterangan', 'video', 'gambar')
                 ->get()
                 ->map(function ($isi) {
                     return [
                         'id' => $isi->id,
-                        'video_url' => $isi->video ? asset('storage/' . $isi->video) : null,
-                        'gambar_url' => $isi->gambar ? asset('storage/' . $isi->gambar) : null,
+                        'keterangan' => $isi->keterangan,
+                        'video_url' => $isi->video ?? null,  
+                        'gambar_url' => $isi->gambar ?? null, 
                     ];
                 });
 
@@ -109,8 +111,8 @@ class PelajaranController extends Controller
                 'data' => [
                     'id' => $isi->id,
                     'keterangan' => $isi->keterangan ?? null,
-                    'video_url' => $isi->video ? asset('storage/' . $isi->video) : null,
-                    'gambar_url' => $isi->gambar ? asset('storage/' . $isi->gambar) : null,
+                    'video_url' => $isi->video ?? null,
+                    'gambar_url' => $isi->gambar ?? null,
                 ],
             ]);
         } catch (\Exception $e) {

@@ -15,7 +15,7 @@ class LatihanController extends Controller
         'video' => SoalVideo::class,
     ];
 
-    #List semua latihan dengan kategori
+    #List semua latihan beserta kategori dan gambar
     public function listLatihan()
     {
         try {
@@ -27,6 +27,7 @@ class LatihanController extends Controller
                     'nama' => $latihan->nama,
                     'kategori_id' => $latihan->kategori_id,
                     'kategori_nama' => $latihan->kategori->nama ?? null,
+                    'gambar_url' => $latihan->gambar_url,
                 ];
             });
 
@@ -43,7 +44,7 @@ class LatihanController extends Controller
         }
     }
 
-    #Ambil soal latihan berdasarkan latihan id dan jenis (audio/video)
+    #Ambil soal berdasarkan latihan dan jenis media
     public function getSoalLatihan($latihanId, $jenis, Request $request)
     {
         try {
@@ -59,9 +60,9 @@ class LatihanController extends Controller
 
             $model = $this->models[$jenis];
 
-            #Ambil 10 soal latihan sesuai jenis dan latihan_id
+            #Ambil 10 soal acak dari soal latihan berdasarkan jenis (audio/video)
             $soalList = $model::where('latihan_id', $latihanId)
-                ->orderBy('id')
+                ->inRandomOrder()
                 ->limit(10)
                 ->get();
 
@@ -69,12 +70,11 @@ class LatihanController extends Controller
                 return response()->json(['message' => 'Soal tidak ditemukan'], 404);
             }
 
-            #Format soal untuk response
-            $soalFormatted = $soalList->map(function ($soal) {
+            $soalFormatted = $soalList->map(function ($soal) use ($jenis) {
                 return [
                     'id' => $soal->id,
                     'latihan_id' => $soal->latihan_id,
-                    'media_url' => $soal->video_url ?? $soal->audio_url,
+                    'media_url' => $jenis === 'video' ? $soal->video_url : $soal->audio_url,
                     'opsi_a' => $soal->opsi_a,
                     'opsi_b' => $soal->opsi_b,
                     'opsi_c' => $soal->opsi_c,
@@ -89,6 +89,7 @@ class LatihanController extends Controller
                     'nama' => $latihan->nama,
                     'kategori_id' => $latihan->kategori_id,
                     'kategori_nama' => $latihan->kategori->nama ?? 'N/A',
+                    'gambar_url' => $latihan->gambar_url,
                 ],
                 'soal' => $soalFormatted,
             ]);
@@ -97,7 +98,8 @@ class LatihanController extends Controller
         }
     }
 
-    #Submit jawaban soal latihan dan cek hasil
+
+    #Submit jawaban user dan cek benar/salah
     public function submitJawaban(Request $request)
     {
         try {

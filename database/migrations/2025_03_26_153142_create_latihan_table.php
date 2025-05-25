@@ -10,8 +10,9 @@ return new class extends Migration {
         #Tabel Latihan
         Schema::create('latihan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
             $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
+            $table->string('nama');
+            $table->string('gambar_url');
             $table->unique(['nama', 'kategori_id']);
             $table->timestamps();
         });
@@ -20,12 +21,12 @@ return new class extends Migration {
         Schema::create('soal_audio', function (Blueprint $table) {
             $table->id();
             $table->foreignId('latihan_id')->constrained('latihan')->onDelete('cascade');
+            $table->string('audio_url');
             $table->string('opsi_a');
             $table->string('opsi_b');
             $table->string('opsi_c');
             $table->string('opsi_d');
             $table->string('jawaban');
-            $table->string('audio_url');
             $table->timestamps();
         });
 
@@ -33,12 +34,12 @@ return new class extends Migration {
         Schema::create('soal_video', function (Blueprint $table) {
             $table->id();
             $table->foreignId('latihan_id')->constrained('latihan')->onDelete('cascade');
+            $table->string('video_url');
             $table->string('opsi_a');
             $table->string('opsi_b');
             $table->string('opsi_c');
             $table->string('opsi_d');
             $table->string('jawaban');
-            $table->string('video_url');
             $table->timestamps();
         });
     }

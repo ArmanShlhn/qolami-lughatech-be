@@ -13,6 +13,7 @@ class LatihanResource extends JsonResource
             'id'          => $this->id,
             'nama'        => $this->nama,
             'kategori_id' => $this->kategori_id,
+            'gambar_url'  => $this->gambar_url,
             'kategori'    => new KategoriResource($this->whenLoaded('kategori')),
         ];
     }
