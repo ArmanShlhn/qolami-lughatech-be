@@ -37,7 +37,7 @@ class PelajaranSeeder extends Seeder
 
         // Pelajaran Kata
         $pelajaranKata = [
-            'Pelajaran Kata 1' => 'pelajarankata1.png',
+            'Pelajaran Kata 1' => 'pelajaranhuruf7.png',
         ];
 
         foreach ($pelajaranKata as $nama => $fileGambar) {
