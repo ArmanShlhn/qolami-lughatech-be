@@ -1,0 +1,173 @@
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 141,
+            "keterangan": "Warna hitam huruf Alif, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=W_Zcwu1Tcso",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/1.Dhommahtain_Alif.png"
+        },
+        {
+            "id": 142,
+            "keterangan": "Warna hitam huruf Ba, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=9lSHVApfHqI",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/2.Dhommahtain_Ba.png"
+        },
+        {
+            "id": 143,
+            "keterangan": "Warna hitam huruf Ta, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=Unavx5nUP-A",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/3.Dhommahtain_Ta.png"
+        },
+        {
+            "id": 144,
+            "keterangan": "Warna hitam huruf Tsa, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=LFHOw4uUfcs",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/4.Dhommahtain_Tsa.png"
+        },
+        {
+            "id": 145,
+            "keterangan": "Warna hitam huruf Jim, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=mHV2EK50h-E",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/5.Dhommahtain_Jim.png"
+        },
+        {
+            "id": 146,
+            "keterangan": "Warna hitam huruf Ha, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=XWksThX6loc",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/6.Dhommahtain_Ha.png"
+        },
+        {
+            "id": 147,
+            "keterangan": "Warna hitam huruf Kho, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=bHAL36gbKr4",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/7.Dhommahtain_Kho.png"
+        },
+        {
+            "id": 148,
+            "keterangan": "Warna hitam huruf Dal, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=ZTM622uwrFE",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/8.Dhommahtain_Dal.png"
+        },
+        {
+            "id": 149,
+            "keterangan": "Warna hitam huruf Dzal, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=X0TWE7MUzSo",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/9.Dhommahtain_Dzal.png"
+        },
+        {
+            "id": 150,
+            "keterangan": "Warna hitam huruf Ro, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=cJs41prvdpo",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/10.Dhommahtain_Ro.png"
+        },
+        {
+            "id": 151,
+            "keterangan": "Warna hitam huruf Zay, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=hffTX8ugO2s",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/11.Dhommahtain_Zay.png"
+        },
+        {
+            "id": 152,
+            "keterangan": "Warna hitam huruf Sin, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=4Wf3dqf70sg",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/12.Dhommahtain_Sin.png"
+        },
+        {
+            "id": 153,
+            "keterangan": "Warna hitam huruf Syin, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=9xOTf1ZsncQ",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/13.Dhommahtain_Syin.png"
+        },
+        {
+            "id": 154,
+            "keterangan": "Warna hitam huruf Shod, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=jvV5CBMde7w",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/14.Dhommahtain_Shod.png"
+        },
+        {
+            "id": 155,
+            "keterangan": "Warna hitam huruf Dhod, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=171-yRZgDNc",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/15.Dhommahtain_Dhod.png"
+        },
+        {
+            "id": 156,
+            "keterangan": "Warna hitam huruf Tho, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=fgbYWym97YM",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/16.Dhommahtain_Tho.png"
+        },
+        {
+            "id": 157,
+            "keterangan": "Warna hitam huruf Dzho, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=-DfTk1aoWWc",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/17.Dhommahtain_Dzho.png"
+        },
+        {
+            "id": 158,
+            "keterangan": "Warna hitam huruf Ain, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=rYjbUSddsyI",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/18.Dhommahtain_Ain.png"
+        },
+        {
+            "id": 159,
+            "keterangan": "Warna hitam huruf Ghain, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=CmV8AUnuZsY",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/19.Dhommahtain_Ghain.png"
+        },
+        {
+            "id": 160,
+            "keterangan": "Warna hitam huruf Fa, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=1NckOm86jCI",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/20.Dhommahtain_Fa.png"
+        },
+        {
+            "id": 161,
+            "keterangan": "Warna hitam huruf Qof, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=LtyX7fUFpig",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/21.Dhommahtain_Qof.png"
+        },
+        {
+            "id": 162,
+            "keterangan": "Warna hitam huruf Kaf, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=37jblIJ82vU",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/22.Dhommahtain_Kaf.png"
+        },
+        {
+            "id": 163,
+            "keterangan": "Warna hitam huruf Lam, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=rzHpMgVoxZ0",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/23.Dhommahtain_Lam.png"
+        },
+        {
+            "id": 164,
+            "keterangan": "Warna hitam huruf Mim, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=GJi_O0Hg7xI",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/24.Dhommahtain_Mim.png"
+        },
+        {
+            "id": 165,
+            "keterangan": "Warna hitam huruf Nun, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=FHoNYrAIUDg",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/25.Dhommahtain_Nun.png"
+        },
+        {
+            "id": 166,
+            "keterangan": "Warna hitam huruf Wawu, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=gVLQ1BoG2_Y",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/26.Dhommahtain_Wawu.png"
+        },
+        {
+            "id": 167,
+            "keterangan": "Warna hitam huruf Ha besar, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=g98wnOcCiS4",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/27.Dhommahtain_Ha besar.png"
+        },
+        {
+            "id": 168,
+            "keterangan": "Warna hitam huruf Ya, warna coklat adalah harakat Dhommahtain.",
+            "video_url": "https://www.youtube.com/watch?v=Ohvd0loE764",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Dhommahtain/28.Dhommahtain_Ya.png"
+        }
+    ]
+}

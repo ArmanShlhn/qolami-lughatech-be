@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     #latihan
     Route::get('/latihan', [LatihanController::class, 'listLatihan']);
+    Route::get('/latihan/soal-semua/{jenis}', [LatihanController::class, 'getAllSoalByJenis']);
     Route::get('/latihan/{latihanId}/{jenis}', [LatihanController::class, 'getSoalLatihan']);
     Route::post('/latihan/jawaban', [LatihanController::class, 'submitJawaban']);
 

@@ -1,0 +1,54 @@
+{
+    "status": "success",
+    "latihan": [
+        {
+            "id": 1,
+            "nama": "Latihan Huruf 1",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf2.png"
+        },
+        {
+            "id": 2,
+            "nama": "Latihan Huruf 2",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf3.png"
+        },
+        {
+            "id": 3,
+            "nama": "Latihan Huruf 3",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf4.png"
+        },
+        {
+            "id": 4,
+            "nama": "Latihan Huruf 4",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf5.png"
+        },
+        {
+            "id": 5,
+            "nama": "Latihan Huruf 5",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf6.png"
+        },
+        {
+            "id": 6,
+            "nama": "Latihan Huruf 6",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf7.png"
+        },
+        {
+            "id": 7,
+            "nama": "Latihan Kata 1",
+            "kategori_id": 2,
+            "kategori_nama": "Kata",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajarankata1.png"
+        }
+    ]
+}

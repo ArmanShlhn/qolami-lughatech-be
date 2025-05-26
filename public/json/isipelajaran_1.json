@@ -1,0 +1,173 @@
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 1,
+            "keterangan": "Warna hitam huruf Alif, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=ZWVKzD0Jqak",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/1.Fathah_Alif.png"
+        },
+        {
+            "id": 2,
+            "keterangan": "Warna hitam huruf Ba, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=gj_Gq8-FVK8",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/2.Fathah_Ba.png"
+        },
+        {
+            "id": 3,
+            "keterangan": "Warna hitam huruf Ta, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=fq7N2dYyyR0",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/3.Fathah_Ta.png"
+        },
+        {
+            "id": 4,
+            "keterangan": "Warna hitam huruf Tsa, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=leDOqAntr50",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/4.Fathah_Tsa.png"
+        },
+        {
+            "id": 5,
+            "keterangan": "Warna hitam huruf Jim, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=9NKNevVpDoc",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/5.Fathah_Jim.png"
+        },
+        {
+            "id": 6,
+            "keterangan": "Warna hitam huruf Ha, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=9pUcEaAZYsQ",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/6.Fathah_Ha.png"
+        },
+        {
+            "id": 7,
+            "keterangan": "Warna hitam huruf Kho, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=cj7sRM3eu-w",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/7.Fathah_Kho.png"
+        },
+        {
+            "id": 8,
+            "keterangan": "Warna hitam huruf Dal, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=vaDFivGpbEg",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/8.Fathah_Dal.png"
+        },
+        {
+            "id": 9,
+            "keterangan": "Warna hitam huruf Dzal, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=z5LsF9yKJ68",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/9.Fathah_Dzal.png"
+        },
+        {
+            "id": 10,
+            "keterangan": "Warna hitam huruf Ro, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=j96jfnm40Mg",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/10.Fathah_Ro.png"
+        },
+        {
+            "id": 11,
+            "keterangan": "Warna hitam huruf Zay, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=va9YaTSB36o",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/11.Fathah_Zay.png"
+        },
+        {
+            "id": 12,
+            "keterangan": "Warna hitam huruf Sin, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=1_OUylBiZ7A",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/12.Fathah_Sin.png"
+        },
+        {
+            "id": 13,
+            "keterangan": "Warna hitam huruf Syin, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=szd9W5iYBgA",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/13.Fathah_Syin.png"
+        },
+        {
+            "id": 14,
+            "keterangan": "Warna hitam huruf Shod, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=oSwJ7oxJmlY",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/14.Fathah_Shod.png"
+        },
+        {
+            "id": 15,
+            "keterangan": "Warna hitam huruf Dhod, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=IiNLsVub7wk",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/15.Fathah_Dhod.png"
+        },
+        {
+            "id": 16,
+            "keterangan": "Warna hitam huruf Tho, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=9ph2NRlqQzw",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/16.Fathah_Tho.png"
+        },
+        {
+            "id": 17,
+            "keterangan": "Warna hitam huruf Dzho, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=OOfBE7MXFGw",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/17.Fathah_Dzho.png"
+        },
+        {
+            "id": 18,
+            "keterangan": "Warna hitam huruf Ain, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=YXcXcuPQ6mA",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/18.Fathah_Ain.png"
+        },
+        {
+            "id": 19,
+            "keterangan": "Warna hitam huruf Ghain, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=fKkIhqHdz8k",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/19.Fathah_Ghain.png"
+        },
+        {
+            "id": 20,
+            "keterangan": "Warna hitam huruf Fa, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=HByY4ofzAEI",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/20.Fathah_Fa.png"
+        },
+        {
+            "id": 21,
+            "keterangan": "Warna hitam huruf Qof, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=B_GumZPWXHo",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/21.Fathah_Qof.png"
+        },
+        {
+            "id": 22,
+            "keterangan": "Warna hitam huruf Kaf, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=rJ4E17ZWHho",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/22.Fathah_Kaf.png"
+        },
+        {
+            "id": 23,
+            "keterangan": "Warna hitam huruf Lam, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=hB2kAS3DDG4",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/23.Fathah_Lam.png"
+        },
+        {
+            "id": 24,
+            "keterangan": "Warna hitam huruf Mim, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=MOF5ly2_9Vw",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/24.Fathah_Mim.png"
+        },
+        {
+            "id": 25,
+            "keterangan": "Warna hitam huruf Nun, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=byEs2u-Fhs0",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/25.Fathah_Nun.png"
+        },
+        {
+            "id": 26,
+            "keterangan": "Warna hitam huruf Wawu, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=6OkfRbmyvwk",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/26.Fathah_Wawu.png"
+        },
+        {
+            "id": 27,
+            "keterangan": "Warna hitam huruf Ha besar, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=C4JOtEeFxcE",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/27.Fathah_Ha besar.png"
+        },
+        {
+            "id": 28,
+            "keterangan": "Warna hitam huruf Ya, warna biru terang adalah harakat Fathah.",
+            "video_url": "https://www.youtube.com/watch?v=a6gT5aHGTUw",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/huruf-Fathah/28.Fathah_Ya.png"
+        }
+    ]
+}
