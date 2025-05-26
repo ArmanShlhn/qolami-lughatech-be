@@ -12,11 +12,11 @@ class PelajaranSeeder extends Seeder
         $kategoriHuruf = DB::table('kategori')->where('nama', 'Huruf')->value('id');
         $kategoriKata  = DB::table('kategori')->where('nama', 'Kata')->value('id');
 
-        // Base URL raw GitHub
+        #Base URL raw GitHub
         $rawGitBaseUrl = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran';
         $url = fn($filename) => "{$rawGitBaseUrl}/{$filename}";
 
-        // Pelajaran Huruf
+        #Pelajaran Huruf
         $pelajaranHuruf = [
             'Pelajaran Huruf 1' => 'pelajaranhuruf1.png',
             'Pelajaran Huruf 2' => 'pelajaranhuruf2.png',
@@ -35,7 +35,7 @@ class PelajaranSeeder extends Seeder
             ]);
         }
 
-        // Pelajaran Kata
+        #Pelajaran Kata
         $pelajaranKata = [
             'Pelajaran Kata 1' => 'pelajaranhuruf7.png',
         ];

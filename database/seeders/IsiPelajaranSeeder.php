@@ -83,8 +83,10 @@ class IsiPelajaranSeeder extends Seeder
             'Pelajaran Huruf 6' => 'Kasrotain',
             'Pelajaran Huruf 7' => 'Dhommahtain',
         ];
-$githubRawBase = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images';
-        #Menggunakan link rawgithub untuk asset
+
+        #Rawgithub
+        $githubRawBase = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images';
+
         foreach ($harakatMap as $pelajaranNama => $harakat) {
             $pelajaranId = DB::table('pelajaran')->where('nama', $pelajaranNama)->value('id');
             foreach ($hurufHijaiyah as $i => $huruf) {

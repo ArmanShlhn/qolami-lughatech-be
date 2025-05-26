@@ -45,48 +45,48 @@ class LatihanController extends Controller
     }
     
 # Ambil semua soal latihan berdasarkan jenis media (audio atau video)
-public function getAllSoalByJenis($jenis)
-{
-    try {
-        if (!isset($this->models[$jenis])) {
-            return response()->json(['message' => 'Jenis media tidak valid'], 400);
+    public function getAllSoalByJenis($jenis)
+    {
+        try {
+            if (!isset($this->models[$jenis])) {
+                return response()->json(['message' => 'Jenis media tidak valid'], 400);
+            }
+
+            $model = $this->models[$jenis];
+            $soalList = $model::with('latihan.kategori')->get();
+
+            if ($soalList->isEmpty()) {
+                return response()->json(['message' => 'Tidak ada soal ditemukan'], 404);
+            }
+
+            $formatted = $soalList->map(function ($soal) use ($jenis) {
+                return [
+                    'id' => $soal->id,
+                    'latihan_id' => $soal->latihan_id,
+                    'latihan_nama' => $soal->latihan->nama ?? null,
+                    'kategori_nama' => $soal->latihan->kategori->nama ?? null,
+                    'media_url' => $jenis === 'video' ? $soal->video_url : $soal->audio_url,
+                    'opsi_a' => $soal->opsi_a,
+                    'opsi_b' => $soal->opsi_b,
+                    'opsi_c' => $soal->opsi_c,
+                    'opsi_d' => $soal->opsi_d,
+                    'jawaban' => $soal->jawaban,
+                ];
+            });
+
+            return response()->json([
+                'status' => 'success',
+                'jumlah_soal' => $formatted->count(),
+                'soal' => $formatted,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan saat mengambil soal',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-
-        $model = $this->models[$jenis];
-        $soalList = $model::with('latihan.kategori')->get();
-
-        if ($soalList->isEmpty()) {
-            return response()->json(['message' => 'Tidak ada soal ditemukan'], 404);
-        }
-
-        $formatted = $soalList->map(function ($soal) use ($jenis) {
-            return [
-                'id' => $soal->id,
-                'latihan_id' => $soal->latihan_id,
-                'latihan_nama' => $soal->latihan->nama ?? null,
-                'kategori_nama' => $soal->latihan->kategori->nama ?? null,
-                'media_url' => $jenis === 'video' ? $soal->video_url : $soal->audio_url,
-                'opsi_a' => $soal->opsi_a,
-                'opsi_b' => $soal->opsi_b,
-                'opsi_c' => $soal->opsi_c,
-                'opsi_d' => $soal->opsi_d,
-                'jawaban' => $soal->jawaban,
-            ];
-        });
-
-        return response()->json([
-            'status' => 'success',
-            'jumlah_soal' => $formatted->count(),
-            'soal' => $formatted,
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Terjadi kesalahan saat mengambil soal',
-            'error' => $e->getMessage(),
-        ], 500);
     }
-}
 
     #Ambil soal berdasarkan latihan dan jenis media
     public function getSoalLatihan($latihanId, $jenis, Request $request)

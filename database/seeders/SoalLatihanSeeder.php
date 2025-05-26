@@ -96,25 +96,24 @@ class SoalLatihanSeeder extends Seeder
                 $videoUrl = "https://www.youtube.com/watch?v={$videoCode}";
                 $audioUrl = "{$githubRawAudio}/huruf-{$harakat}/{$i}.{$harakat}_{$hurufBenar}.mp3";
 
-                // Ambil 3 huruf lain secara acak, berbeda dengan huruf benar
+                #Ambil 3 huruf lain secara acak, berbeda dengan huruf benar
                 $opsiHuruf = collect($hurufHijaiyah)
                     ->filter(fn($h) => $h !== $hurufBenar)
                     ->shuffle()
                     ->take(3)
                     ->values();
 
-                // Tambahkan huruf benar ke opsi, lalu acak posisi opsi
+                #Tambahkan huruf benar ke opsi, lalu acak posisi opsi
                 $opsiHuruf->push($hurufBenar);
                 $opsiHuruf = $opsiHuruf->shuffle()->values();
 
-                // Buat array URL gambar sesuai huruf di opsi (indeks dari 1 sampai 28 sesuai huruf benar soal)
-                // Kita cari index huruf opsi di hurufHijaiyah agar bisa pasang nomor gambar benar
+                #cari index huruf opsi di hurufHijaiyah agar bisa pasang nomor gambar benar
                 $opsiGambar = $opsiHuruf->map(function($hurufOpsi) use ($harakat, $hurufHijaiyah, $githubRawBase) {
-                    $indexHuruf = array_search($hurufOpsi, $hurufHijaiyah) + 1; // +1 karena indeks gambar mulai 1
+                    $indexHuruf = array_search($hurufOpsi, $hurufHijaiyah) + 1; #+1 karena indeks gambar mulai 1
                     return "{$githubRawBase}/huruf-{$harakat}/{$indexHuruf}.{$harakat}_{$hurufOpsi}.png";
                 });
 
-                // Cari posisi jawaban benar (hurufBenar)
+                #Cari posisi jawaban benar (hurufBenar)
                 $jawabanIndex = $opsiHuruf->search($hurufBenar);
 
                 SoalVideo::create([
@@ -169,7 +168,7 @@ foreach ($harakatKata as $latihanNama => $harakat) {
         $videoUrl = "https://www.youtube.com/watch?v={$videoCode}";
         $audioUrl = "{$githubRawAudio}/kata-{$harakat}/" . ($i + 1) . ".{$harakat}_{$kata}.mp3";
 
-        // Acak opsi dan pastikan jawaban termasuk di antara mereka
+        #Acak opsi dan pastikan jawaban termasuk di antara mereka
         $opsiKata = collect($kataList)
             ->reject(fn($k) => $k === $kata)
             ->shuffle()
@@ -178,7 +177,7 @@ foreach ($harakatKata as $latihanNama => $harakat) {
             ->shuffle()
             ->values();
 
-        // Bangun opsi gambar berdasarkan urutan opsi
+        #Bangun opsi gambar berdasarkan urutan opsi
         $opsiPath = $opsiKata->map(function ($k) use ($kataList, $harakat, $githubRawBase) {
             $index = array_search($k, $kataList);
             $nomor = $index + 1;
@@ -186,11 +185,11 @@ foreach ($harakatKata as $latihanNama => $harakat) {
         });
 
 
-        // Tentukan jawaban dari kata asli
+        #Tentukan jawaban dari kata asli
         $jawabanIndex = $opsiKata->search($kata);
         $jawaban = $opsiPath[$jawabanIndex];
 
-        // Simpan ke soal video
+        #Simpan ke soal video
         SoalVideo::create([
             'latihan_id' => $latihan->id,
             'video_url' => $videoUrl,
@@ -201,7 +200,7 @@ foreach ($harakatKata as $latihanNama => $harakat) {
             'jawaban' => $jawaban,
         ]);
 
-        // Simpan ke soal audio
+        #Simpan ke soal audio
         SoalAudio::create([
             'latihan_id' => $latihan->id,
             'audio_url' => $audioUrl,

@@ -14,11 +14,8 @@ class LatihanSeeder extends Seeder
         $kategoriHuruf = DB::table('kategori')->where('nama', 'Huruf')->value('id');
         $kategoriKata  = DB::table('kategori')->where('nama', 'Kata')->value('id');
 
-        // Base URL raw GitHub (sama dengan di PelajaranSeeder)
+        #Base URL raw GitHub
         $rawGitBaseUrl = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran';
-
-        // Fungsi untuk membuat URL gambar latihan
-        // Misal: huruf/latihanhuruf1.jpg atau kata/latihankata1.jpg
         $url = fn($filename) => "{$rawGitBaseUrl}/{$filename}";
 
         $latihanHuruf = [
@@ -46,7 +43,7 @@ class LatihanSeeder extends Seeder
             DB::table('latihan')->insert([
                 'kategori_id' => $kategoriKata,
                 'nama'        => $nama,
-                'gambar_url'  => $url($fileGambar), // folder kata di raw github
+                'gambar_url'  => $url($fileGambar),
             ]);
         }
     }
