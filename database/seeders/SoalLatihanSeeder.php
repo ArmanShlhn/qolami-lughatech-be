@@ -151,6 +151,9 @@ $kataList = [
 
 $harakatKata = [
     'Latihan Kata 1' => 'Fathah',
+    'Latihan Huruf 1' => 'Fathah',
+    'Latihan Huruf 2' => 'Kasroh',
+    'Latihan Huruf 3' => 'Dhommah',
 ];
 
 foreach ($harakatKata as $latihanNama => $harakat) {

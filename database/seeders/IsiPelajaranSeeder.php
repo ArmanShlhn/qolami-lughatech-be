@@ -98,7 +98,7 @@ $githubRawBase = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-
             }
         }
 
-        // Pelajaran Kata 1 - tetap ada dan memakai gambar dari raw GitHub juga
+        #Pelajaran Kata 1 - tetap ada dan memakai gambar dari raw GitHub juga
         $kata = [
             ['kata' => 'Fataha',  'harakat' => 'Fathah',  'kode' => 'OOfBE7MXFGw'],
             ['kata' => 'Khoriqo', 'harakat' => 'Kasroh',  'kode' => '9PLQoJa9Na4'],
