@@ -12,19 +12,19 @@ class PelajaranSeeder extends Seeder
         $kategoriHuruf = DB::table('kategori')->where('nama', 'Huruf')->value('id');
         $kategoriKata  = DB::table('kategori')->where('nama', 'Kata')->value('id');
 
-        #Fungsi untuk generate URL gambar dari raw.githubusercontent
-        $rawGitBaseUrl = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/main/public/images/fotolistpelajaran';
+        // Base URL raw GitHub
+        $rawGitBaseUrl = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran';
         $url = fn($filename) => "{$rawGitBaseUrl}/{$filename}";
 
-        #Pelajaran Huruf
+        // Pelajaran Huruf
         $pelajaranHuruf = [
-            'Pelajaran Huruf 1' => 'pelajaranhuruf1.jpg',
-            'Pelajaran Huruf 2' => 'pelajaranhuruf2.jpg',
-            'Pelajaran Huruf 3' => 'pelajaranhuruf3.jpg',
-            'Pelajaran Huruf 4' => 'pelajaranhuruf4.jpg',
-            'Pelajaran Huruf 5' => 'pelajaranhuruf5.jpg',
-            'Pelajaran Huruf 6' => 'pelajaranhuruf6.jpg',
-            'Pelajaran Huruf 7' => 'pelajaranhuruf7.jpg',
+            'Pelajaran Huruf 1' => 'pelajaranhuruf1.png',
+            'Pelajaran Huruf 2' => 'pelajaranhuruf2.png',
+            'Pelajaran Huruf 3' => 'pelajaranhuruf3.png',
+            'Pelajaran Huruf 4' => 'pelajaranhuruf4.png',
+            'Pelajaran Huruf 5' => 'pelajaranhuruf5.png',
+            'Pelajaran Huruf 6' => 'pelajaranhuruf6.png',
+            'Pelajaran Huruf 7' => 'pelajaranhuruf7.png',
         ];
 
         foreach ($pelajaranHuruf as $nama => $fileGambar) {
@@ -35,9 +35,9 @@ class PelajaranSeeder extends Seeder
             ]);
         }
 
-        #Pelajaran Kata
+        // Pelajaran Kata
         $pelajaranKata = [
-            'Pelajaran Kata 1' => 'pelajarankata1.jpg',
+            'Pelajaran Kata 1' => 'pelajarankata1.png',
         ];
 
         foreach ($pelajaranKata as $nama => $fileGambar) {

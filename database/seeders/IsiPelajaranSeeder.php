@@ -82,10 +82,8 @@ class IsiPelajaranSeeder extends Seeder
             'Pelajaran Huruf 6' => 'Kasrotain',
             'Pelajaran Huruf 7' => 'Dhommahtain',
         ];
-
+$githubRawBase = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images';
         #Menggunakan link rawgithub untuk asset
-        $githubRawBase = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/main/public/images/';
-
         foreach ($harakatMap as $pelajaranNama => $harakat) {
             $pelajaranId = DB::table('pelajaran')->where('nama', $pelajaranNama)->value('id');
             foreach ($hurufHijaiyah as $i => $huruf) {
@@ -99,13 +97,13 @@ class IsiPelajaranSeeder extends Seeder
             }
         }
 
-        #Pelajaran Kata 1
+        // Pelajaran Kata 1 - tetap ada dan memakai gambar dari raw GitHub juga
         $kata = [
-            ['kata'=>'Fataha','harakat'=>'Fathah', 'kode' => 'OOfBE7MXFGw'],
-            ['kata'=>'Khoriqo','harakat'=>'Kasroh', 'kode' => '9PLQoJa9Na4'],
-            ['kata'=>'Kasyuro','harakat'=>'Dhommah', 'kode' => 'nCy0n19w6Pw'],
+            ['kata' => 'Fataha',  'harakat' => 'Fathah',  'kode' => 'OOfBE7MXFGw'],
+            ['kata' => 'Khoriqo', 'harakat' => 'Kasroh',  'kode' => '9PLQoJa9Na4'],
+            ['kata' => 'Kasyuro', 'harakat' => 'Dhommah', 'kode' => 'nCy0n19w6Pw'],
         ];
-        $idKata1 = DB::table('pelajaran')->where('nama','Pelajaran Kata 1')->value('id');
+        $idKata1 = DB::table('pelajaran')->where('nama', 'Pelajaran Kata 1')->value('id');
         foreach ($kata as $i => $item) {
             $k = $item['kata'];
             $h = $item['harakat'];
