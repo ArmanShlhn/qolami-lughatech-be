@@ -1,1 +1,23 @@
-{"status":"success","data":[{"id":169,"keterangan":"Berikut ini adalah kata Fataha yang berharakat Fathah berwarna biru terang.","video_url":"https:\/\/www.youtube.com\/watch?v=OOfBE7MXFGw","gambar_url":"https:\/\/raw.githubusercontent.com\/ArmanShlhn\/qolami-lughatech-be\/refs\/heads\/main\/public\/images\/kata-Fathah\/1.Fathah_Fataha.png"},{"id":170,"keterangan":"Berikut ini adalah kata Khoriqo yang berharakat Kasroh berwarna hijau terang.","video_url":"https:\/\/www.youtube.com\/watch?v=9PLQoJa9Na4","gambar_url":"https:\/\/raw.githubusercontent.com\/ArmanShlhn\/qolami-lughatech-be\/refs\/heads\/main\/public\/images\/kata-Kasroh\/2.Kasroh_Khoriqo.png"},{"id":171,"keterangan":"Berikut ini adalah kata Kasyuro yang berharakat Dhommah berwarna orange.","video_url":"https:\/\/www.youtube.com\/watch?v=nCy0n19w6Pw","gambar_url":"https:\/\/raw.githubusercontent.com\/ArmanShlhn\/qolami-lughatech-be\/refs\/heads\/main\/public\/images\/kata-Dhommah\/3.Dhommah_Kasyuro.png"}]}
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 169,
+            "keterangan": "Berikut ini adalah kata Fataha yang berharakat Fathah berwarna biru terang.",
+            "video_url": "https://www.youtube.com/watch?v=OOfBE7MXFGw",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/kata-Fathah/1.Fathah_Fataha.png"
+        },
+        {
+            "id": 170,
+            "keterangan": "Berikut ini adalah kata Khoriqo yang berharakat Kasroh berwarna hijau terang.",
+            "video_url": "https://www.youtube.com/watch?v=9PLQoJa9Na4",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/kata-Kasroh/2.Kasroh_Khoriqo.png"
+        },
+        {
+            "id": 171,
+            "keterangan": "Berikut ini adalah kata Kasyuro yang berharakat Dhommah berwarna orange.",
+            "video_url": "https://www.youtube.com/watch?v=nCy0n19w6Pw",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/kata-Dhommah/3.Dhommah_Kasyuro.png"
+        }
+    ]
+}

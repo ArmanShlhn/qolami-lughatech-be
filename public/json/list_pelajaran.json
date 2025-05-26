@@ -1,1 +1,61 @@
-{"status":"success","data":[{"id":1,"nama":"Pelajaran Huruf 1","kategori_id":1,"kategori_nama":"Huruf","gambar_url":"https:\/\/raw.githubusercontent.com\/ArmanShlhn\/qolami-lughatech-be\/refs\/heads\/main\/public\/images\/fotolistpelajaran\/pelajaranhuruf1.png"},{"id":2,"nama":"Pelajaran Huruf 2","kategori_id":1,"kategori_nama":"Huruf","gambar_url":"https:\/\/raw.githubusercontent.com\/ArmanShlhn\/qolami-lughatech-be\/refs\/heads\/main\/public\/images\/fotolistpelajaran\/pelajaranhuruf2.png"},{"id":3,"nama":"Pelajaran Huruf 3","kategori_id":1,"kategori_nama":"Huruf","gambar_url":"https:\/\/raw.githubusercontent.com\/ArmanShlhn\/qolami-lughatech-be\/refs\/heads\/main\/public\/images\/fotolistpelajaran\/pelajaranhuruf3.png"},{"id":4,"nama":"Pelajaran Huruf 4","kategori_id":1,"kategori_nama":"Huruf","gambar_url":"https:\/\/raw.githubusercontent.com\/ArmanShlhn\/qolami-lughatech-be\/refs\/heads\/main\/public\/images\/fotolistpelajaran\/pelajaranhuruf4.png"},{"id":5,"nama":"Pelajaran Huruf 5","kategori_id":1,"kategori_nama":"Huruf","gambar_url":"https:\/\/raw.githubusercontent.com\/ArmanShlhn\/qolami-lughatech-be\/refs\/heads\/main\/public\/images\/fotolistpelajaran\/pelajaranhuruf5.png"},{"id":6,"nama":"Pelajaran Huruf 6","kategori_id":1,"kategori_nama":"Huruf","gambar_url":"https:\/\/raw.githubusercontent.com\/ArmanShlhn\/qolami-lughatech-be\/refs\/heads\/main\/public\/images\/fotolistpelajaran\/pelajaranhuruf6.png"},{"id":7,"nama":"Pelajaran Huruf 7","kategori_id":1,"kategori_nama":"Huruf","gambar_url":"https:\/\/raw.githubusercontent.com\/ArmanShlhn\/qolami-lughatech-be\/refs\/heads\/main\/public\/images\/fotolistpelajaran\/pelajaranhuruf7.png"},{"id":8,"nama":"Pelajaran Kata 1","kategori_id":2,"kategori_nama":"Kata","gambar_url":"https:\/\/raw.githubusercontent.com\/ArmanShlhn\/qolami-lughatech-be\/refs\/heads\/main\/public\/images\/fotolistpelajaran\/pelajaranhuruf7.png"}]}
+{
+    "status": "success",
+    "data": [
+        {
+            "id": 1,
+            "nama": "Pelajaran Huruf 1",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf1.png"
+        },
+        {
+            "id": 2,
+            "nama": "Pelajaran Huruf 2",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf2.png"
+        },
+        {
+            "id": 3,
+            "nama": "Pelajaran Huruf 3",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf3.png"
+        },
+        {
+            "id": 4,
+            "nama": "Pelajaran Huruf 4",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf4.png"
+        },
+        {
+            "id": 5,
+            "nama": "Pelajaran Huruf 5",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf5.png"
+        },
+        {
+            "id": 6,
+            "nama": "Pelajaran Huruf 6",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf6.png"
+        },
+        {
+            "id": 7,
+            "nama": "Pelajaran Huruf 7",
+            "kategori_id": 1,
+            "kategori_nama": "Huruf",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf7.png"
+        },
+        {
+            "id": 8,
+            "nama": "Pelajaran Kata 1",
+            "kategori_id": 2,
+            "kategori_nama": "Kata",
+            "gambar_url": "https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistpelajaran/pelajaranhuruf7.png"
+        }
+    ]
+}
