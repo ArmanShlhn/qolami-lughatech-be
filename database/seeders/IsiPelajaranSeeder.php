@@ -75,7 +75,6 @@ class IsiPelajaranSeeder extends Seeder
                             'FHoNYrAIUDg', 'gVLQ1BoG2_Y', 'g98wnOcCiS4', 'Ohvd0loE764',]];
 
         $harakatMap = [
-            'Pelajaran Huruf 1' => 'tanpa harakat',
             'Pelajaran Huruf 2' => 'Fathah',
             'Pelajaran Huruf 3' => 'Kasroh',
             'Pelajaran Huruf 4' => 'Dhommah',
