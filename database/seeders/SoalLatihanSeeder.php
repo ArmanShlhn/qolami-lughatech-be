@@ -79,10 +79,10 @@ class SoalLatihanSeeder extends Seeder
             'Latihan Huruf 6' => 'Dhommahtain',
         ];
         #Base URL raw GitHub untuk file audio huruf (mp3)
-        $githubRawAudio = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/main/public/audio';
+        $githubRawAudio = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/audio';
 
         #Base URL raw GitHub untuk gambar huruf hijaiyah
-        $githubRawBase = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/main/public/images';
+        $githubRawBase = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images';
 
         foreach ($harakatHuruf as $latihanNama => $harakat) {
             $latihan = Latihan::where('nama', $latihanNama)->first();
@@ -140,25 +140,25 @@ class SoalLatihanSeeder extends Seeder
 
         $kataList = [
             'Fathah' => [
-                "Akhodza", "Bahatsa", "Tsabata", "Jaala", "Hasada", "Khotoba", "Dabaro",
-                "Rohaqo", "Sakana", "Syakaro", "Shodaqo", "Salatho", "Akasa", "Zahara",
-                "Habata", "Basara", "Tsaqoba", "Jahada", "Rasala", "Dhabaha", "Sabaqa",
-                "Rashada", "Qasada", "Hadhara", "Zafara", "Akafa", "Fasala", "Qaada",
-                "Kashafa", "Hadama", "Badaa", "Batala", "Tsakhona", "Janaha", "Dakhala"
+                "Akhodza","Bahatsa","Tsabata","Jaala","Hasada","Khothoba","Dabaro",
+                "Rohaqo","Sakana","Syakaro","Shodaqo","Salatho","Akasa","Dzoharo",
+                "Habatho","Bashoro","Tsaqoba","Jahada","Rosala","Dzabaha","Sabaqo",
+                "Rosyada","Qoshoda","Hadhoro","Dzhofaro","Akafa","Fashola","Qoada",
+                "Kasyafa","Hadama","Badaa","Bathola","Tsakhona","Janaha","Dakhola"
             ],
             'Kasroh' => [
-                "Amina", "Bariqa", "Hamida", "Jazia", "Taiba", "Habita", "Kharisa",
-                "Rahima", "Safiha", "Shaniba", "Nadija", "Zalima", "Laiba", "Raghiba",
-                "Sahira", "Athima", "Tabia", "Bakhila", "Hafiza", "Khajila", "Rabiha",
-                "Ajiza", "Ghadiba", "Alima", "Fariha", "Nadima", "Fashila", "Haniqa",
-                "Waritha", "Shahiba", "Wathiqa", "Kariha", "Lahija", "Ayna", "Ahida"
+                "Amina","Bariqo","Hamida","Jazia","Taiba","Habitho","Khorisa",
+                "Rohima","Safiha","Syaniba","Nadhiha","Dzholima","Laiba","Roghiba",
+                "Sahiro","Atsima","Tabia","Bakhila","Hafidzho","Khojila","Robiha",
+                "Ajiza","Ghodhiba","Alima","Fariha","Nadima","Fasyila","Haniqo",
+                "Waritsa","Syahiba","Watsiqo","Kariha","Lahiqo","Ayina","Ahida"
             ],
             'Dhommah' => [
-                "Ukila", "Butila", "Turika", "Jabuna", "Hasuna", "Khashuna", "Sahula",
-                "Yakilu", "Saluha", "Daufa", "Turiha", "Dufina", "Taqau", "'Azuma",
-                "Suriqa", "Bakhula", "Saqula", "Khuliqa", "Hushira", "Dukhila", "Ruziqa",
-                "Sharufa", "Adhuba", "Kutiba", "Fakhuma", "Shaura", "Qubida", "Wudia",
-                "Ghaluza", "Huzima", "Tubikha", "Khabutha", "Karuma", "Yaidu", "Qutila"
+                "Ukila","Buthila","Turika","Jabuna","Hasuna","Khosuna","Sahula",
+                "Yakilu","Sholuha","Dhoufa","Thuriha","Dufina","Taqou","Adzhuma",
+                "Suriqo","Bakhula","Tsaqula","Khuliqo","Husyiro","Dukhila","Ruziqo",
+                "Syarufa","Adzuba","Kutiba","Fakhuma","Syauro","Qubidho","Wudhila",
+                "Gholudzo","Huzima","Tubikho","Khobutsa","Karuma","Yaidu","Qutila"
             ]
         ];
 
@@ -189,8 +189,8 @@ class SoalLatihanSeeder extends Seeder
             ],
         ];
 
-        $githubRawAudioKata = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/main/public/audio';
-        $githubRawBaseKata = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/main/public/images';
+        $githubRawAudioKata = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/audio';
+        $githubRawBaseKata = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images';
 
         #Map latihan untuk kata per harakat
         $latihanKataHarakat = [
@@ -267,3 +267,4 @@ class SoalLatihanSeeder extends Seeder
 
     }
 }
+
