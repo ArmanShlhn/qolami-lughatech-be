@@ -138,80 +138,132 @@ class SoalLatihanSeeder extends Seeder
             }
         }
 
-# Latihan Kata
-$kataList = [
-    'Akhoza', 'Bahasya', 'Syabata', 'JaAla', 'HaSaDa', 'Khotoba', 'Dabaro', 'RoHaqo',
-    'SaKana', 'Syakaro', 'Shodaqo', 'Salato', 'Akasa', 'Dzoharo', 'Habato', 'Amina',
-    'Bariqa', 'Hamida', 'JadziA', 'TaIba', 'Habito', 'Khorisa', 'Rohima', 'safiha',
-    'syaniba', 'nadija', 'dzolima', 'laiba', 'roghiba', 'sahiro', 'uqila', 'butila',
-    'turiku', 'jabuna', 'hasuna', 'khosyuna', 'sahula', 'yakilu', 'sholuha', 'dhoufa',
-    'turiha', 'dufina', 'taqou', 'adzuma', 'suriqo'
-];
+        $kataList = [
+            'Fathah' => [
+                "Akhaza", "Bahatsa", "Thabata", "Jaala", "Hasada", "Khataba", "Dabara",
+                "Rahaqa", "Sakana", "Shakara", "Sadaqa", "Salata", "Akasa", "Zahara",
+                "Habata", "Basara", "Thaqaba", "Jahada", "Rasala", "Dhabaha", "Sabaqa",
+                "Rashada", "Qasada", "Hadhara", "Zafara", "Akafa", "Fasala", "Qaada",
+                "Kashafa", "Hadama", "Badaa", "Batala", "Thakhana", "Janaha", "Dakhala"
+            ],
+            'Kasroh' => [
+                "Amina", "Bariqa", "Hamida", "Jazia", "Taiba", "Habita", "Kharisa",
+                "Rahima", "Safiha", "Shaniba", "Nadija", "Zalima", "Laiba", "Raghiba",
+                "Sahira", "Athima", "Tabia", "Bakhila", "Hafiza", "Khajila", "Rabiha",
+                "Ajiza", "Ghadiba", "Alima", "Fariha", "Nadima", "Fashila", "Haniqa",
+                "Waritha", "Shahiba", "Wathiqa", "Kariha", "Lahija", "Ayna", "Ahida"
+            ],
+            'Dhommah' => [
+                "Ukila", "Butila", "Turika", "Jabuna", "Hasuna", "Khashuna", "Sahula",
+                "Yakilu", "Saluha", "Daufa", "Turiha", "Dufina", "Taqau", "'Azuma",
+                "Suriqa", "Bakhula", "Thaqula", "Khuliqa", "Hushira", "Dukhila", "Ruziqa",
+                "Sharufa", "Adhuba", "Kutiba", "Fakhuma", "Shaura", "Qubida", "Wudia",
+                "Ghaluza", "Huzima", "Tubikha", "Khabutha", "Karuma", "Yaidu", "Qutila"
+            ]
+        ];
 
-$harakatKata = [
-    'Latihan Kata 1' => 'Fathah',
-    'Latihan Huruf 1' => 'Fathah',
-    'Latihan Huruf 2' => 'Kasroh',
-    'Latihan Huruf 3' => 'Dhommah',
-];
+        $kodeYoutubeKata = [
+            'Fathah' => ["MELQimvxmkU", "vkX5v-6AVtE", "Mlqm8_BIh4w", "jb2qK48obDA", "9iRV3nmW3b0",
+                        "GV9VSMaJ6UM", "GdVD31y5M24", "8kqwjcbB9kM", "SF2D69o040E", "hlqMLl4goEA",
+                        "DZlcuteP-5c", "Z8zKZ0co9GI", "RANDOM1xYzAb", "RO8jhk3oD70", "dP0qZt66ki4",
+                        "RrFlTqIPTpA", "7ymIr9tnvqo", "NWFlFcr4gWg", "yCAB01Fj_yg", "VNmT5PHbGxU",
+                        "6Qi5gCAZTfU", "Jp_vPXm_I_c", "ADX-t56t8f8", "IO5uR8bwvO0", "CKqeodgMjzk",
+                        "hsPB-06nyx8", "0K_2dtfeDZ8", "zOU8vo6P3pA", "8Muw1Kuh_IM", "_g9DaCLezwI",
+                        "ZLJ8uukc1Rc", "JrO4iImUhWM", "RANDOM2CdEfG", "aj41n4IUNaU", "v2JSoPbdUSQ"
+            ],
+            'Kasroh' => ["RANDOM3hIjKl", "iR4Io2LCa8w", "rXi_UTGhYFc", "8xOfskN2fIc", "cn75-0NT6v0",
+                        "Ujxh9_rdf5g", "lksT09SxqfI", "UPNvTVr0rvA", "1kcoFsW2yO0", "G4MvC1k0K7U",
+                        "jpmbhGrcDJ0", "gnaHcJpDv_U", "nQd_luvqq7U", "uzPp5DWkUHE", "sDrjvD-Pekw",
+                        "PK74iLmYA5c", "3q6F28tUdbg", "K2w9P3TnilQ", "ceyfuAnKZi8", "34BbU62FcuY",
+                        "eezbfV7YYdY", "0Xm-V9snvzk", "m7frJLUMJD8", "mrAUgLTjob0", "1hWqxzLXg7s",
+                        "FHnClbrifYw", "QqjRleI3GVg", "Rqaf6qEZdJQ", "5IQMzN5EFcg", "RCD6Kpojm9k",
+                        "TvgbkuK154U", "oXDU1kq4EUM", "PWxHut8nLHk", "nmeA1153hV4", "8h4j3yC4WG8"
+            ],
+            'Dhommah' => ["RANDOM4MnOpQ", "2Bkrfsbi8YQ", "ONDyjVT40Jw", "HIFNUlAD8TI", "6khAU4jc4aQ",
+                            "ndmeodYQhMM", "OEqG_6mZyV0", "ogZqCgZfiAc", "tj2fE2Xdu9Y", "Z75pndsrMxY",
+                            "3f3eKVnJUj0", "PV2TnRoQ1Nw", "s0g43uh6TaY", "7HoQyR9HfVU", "0nFNINtDc9M",
+                            "v6EChTF3uF4", "ntVl17rlFC8", "sibk4fjNWK4", "GH1H04fvpQA", "kZZIa5FauIc",
+                            "xWqGNNczdTU", "g6HvDl4_6sQ", "SR-v-R5_GwE", "tyaALOZW1T0", "8hrf03cwKL4",
+                            "rrJ7s0EJKmI", "IH2PhwyhR40", "SbKQkd8RLWY", "8G068FeEXwQ", "TPXaV-gRusw",
+                            "4IPX1mFyzsg", "lZB5cTAgC6E", "yG022-eLU6c", "2Havir6VX6A", "P2VhD5Ckdnk"
+            ],
+        ];
 
-foreach ($harakatKata as $latihanNama => $harakat) {
-    $latihan = Latihan::where('nama', $latihanNama)->first();
-    if (!$latihan) continue;
+        $githubRawAudioKata = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/main/public/audio';
+        $githubRawBaseKata = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/main/public/images';
 
-    for ($i = 0; $i < count($kataList); $i++) {
-        $kata = $kataList[$i];
+        #Map latihan untuk kata per harakat
+        $latihanKataHarakat = [
+            'Latihan Kata 1' => 'Fathah',
+            'Latihan Kata 2' => 'Kasroh',
+            'Latihan Kata 3' => 'Dhommah',
+        ];
 
-        $videoCode = $kodeYoutube[$harakat][$i] ?? null;
-        if (!$videoCode) continue;
+        foreach ($latihanKataHarakat as $latihanNama => $harakat) {
+            $latihan = Latihan::where('nama', $latihanNama)->first();
+            if (!$latihan) {
+                $this->command->info("Latihan {$latihanNama} tidak ditemukan, skip.");
+                continue;
+            }
 
-        $videoUrl = "https://www.youtube.com/watch?v={$videoCode}";
-        $audioUrl = "{$githubRawAudio}/kata-{$harakat}/" . ($i + 1) . ".{$harakat}_{$kata}.mp3";
+            if (!isset($kataList[$harakat]) || !isset($kodeYoutubeKata[$harakat])) {
+                $this->command->info("Data kata atau kode video untuk {$harakat} tidak lengkap, skip.");
+                continue;
+            }
 
-        #Acak opsi dan pastikan jawaban termasuk di antara mereka
-        $opsiKata = collect($kataList)
-            ->reject(fn($k) => $k === $kata)
-            ->shuffle()
-            ->take(3)
-            ->push($kata)
-            ->shuffle()
-            ->values();
+            foreach ($kataList[$harakat] as $index => $kataBenar) {
+                $videoCode = $kodeYoutubeKata[$harakat][$index] ?? null;
+                if (!$videoCode) {
+                    $this->command->info("Kode video untuk kata {$kataBenar} pada {$harakat} index {$index} tidak ditemukan, skip.");
+                    continue;
+                }
 
-        #Bangun opsi gambar berdasarkan urutan opsi
-        $opsiPath = $opsiKata->map(function ($k) use ($kataList, $harakat, $githubRawBase) {
-            $index = array_search($k, $kataList);
-            $nomor = $index + 1;
-            return "{$githubRawBase}/kata-{$harakat}/{$nomor}.{$harakat}_{$k}.png";
-        });
+                $videoUrl = "https://www.youtube.com/watch?v={$videoCode}";
+                $audioUrl = "{$githubRawAudioKata}/kata-{$harakat}/" . ($index + 1) . ".{$harakat}_{$kataBenar}.mp3";
 
+                #Ambil opsi selain jawaban benar
+                $opsiKata = collect($kataList[$harakat])
+                    ->filter(fn($k) => $k !== $kataBenar)
+                    ->shuffle()
+                    ->take(3)
+                    ->values();
 
-        #Tentukan jawaban dari kata asli
-        $jawabanIndex = $opsiKata->search($kata);
-        $jawaban = $opsiPath[$jawabanIndex];
+                #Tambahkan kata benar ke opsi dan acak
+                $opsiKata->push($kataBenar);
+                $opsiKata = $opsiKata->shuffle()->values();
 
-        #Simpan ke soal video
-        SoalVideo::create([
-            'latihan_id' => $latihan->id,
-            'video_url' => $videoUrl,
-            'opsi_a' => $opsiPath[0],
-            'opsi_b' => $opsiPath[1],
-            'opsi_c' => $opsiPath[2],
-            'opsi_d' => $opsiPath[3],
-            'jawaban' => $jawaban,
-        ]);
+                #Buat opsi gambar sesuai kata opsi
+                $opsiGambar = $opsiKata->map(function($kataOpsi) use ($harakat, $kataList, $githubRawBaseKata) {
+                    $indexOpsi = array_search($kataOpsi, $kataList[$harakat]) + 1;
+                    return "{$githubRawBaseKata}/kata-{$harakat}/{$indexOpsi}.{$harakat}_{$kataOpsi}.png";
+                });
 
-        #Simpan ke soal audio
-        SoalAudio::create([
-            'latihan_id' => $latihan->id,
-            'audio_url' => $audioUrl,
-            'opsi_a' => $opsiPath[0],
-            'opsi_b' => $opsiPath[1],
-            'opsi_c' => $opsiPath[2],
-            'opsi_d' => $opsiPath[3],
-            'jawaban' => $jawaban,
-        ]);
-    }
-}
+                #Cari indeks jawaban benar dalam opsi
+                $jawabanIndex = $opsiKata->search($kataBenar);
+
+                #Buat soal video
+                SoalVideo::create([
+                    'latihan_id' => $latihan->id,
+                    'video_url' => $videoUrl,
+                    'opsi_a' => $opsiGambar[0],
+                    'opsi_b' => $opsiGambar[1],
+                    'opsi_c' => $opsiGambar[2],
+                    'opsi_d' => $opsiGambar[3],
+                    'jawaban' => $opsiGambar[$jawabanIndex],
+                ]);
+
+                #Buat soal audio
+                SoalAudio::create([
+                    'latihan_id' => $latihan->id,
+                    'audio_url' => $audioUrl,
+                    'opsi_a' => $opsiGambar[0],
+                    'opsi_b' => $opsiGambar[1],
+                    'opsi_c' => $opsiGambar[2],
+                    'opsi_d' => $opsiGambar[3],
+                    'jawaban' => $opsiGambar[$jawabanIndex],
+                ]);
+            }
+        }
 
     }
 }

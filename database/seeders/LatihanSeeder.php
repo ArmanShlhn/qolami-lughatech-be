@@ -37,6 +37,8 @@ class LatihanSeeder extends Seeder
 
         $latihanKata = [
             'Latihan Kata 1' => 'pelajarankata1.png',
+            'Latihan Kata 2' => 'pelajarankata2.png',
+            'Latihan Kata 3' => 'pelajarankata3.png',
         ];
 
         foreach ($latihanKata as $nama => $fileGambar) {

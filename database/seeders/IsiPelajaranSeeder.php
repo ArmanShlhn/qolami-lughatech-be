@@ -101,9 +101,9 @@ class IsiPelajaranSeeder extends Seeder
 
         #Pelajaran Kata 1 - tetap ada dan memakai gambar dari raw GitHub juga
         $kata = [
-            ['kata' => 'Fataha',  'harakat' => 'Fathah',  'kode' => 'OOfBE7MXFGw'],
-            ['kata' => 'Khoriqo', 'harakat' => 'Kasroh',  'kode' => '9PLQoJa9Na4'],
-            ['kata' => 'Kasyuro', 'harakat' => 'Dhommah', 'kode' => 'nCy0n19w6Pw'],
+            ['kata' => 'Malaka',  'harakat' => 'Fathah',  'kode' => 'PXzGI6-3ZDY'],
+            ['kata' => 'Hasiba', 'harakat' => 'Kasroh',  'kode' => '_O2HhMOTvcI'],
+            ['kata' => 'Kamula', 'harakat' => 'Dhommah', 'kode' => 'gud7qTN-TeU'],
         ];
         $idKata1 = DB::table('pelajaran')->where('nama', 'Pelajaran Kata 1')->value('id');
         foreach ($kata as $i => $item) {
