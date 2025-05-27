@@ -140,11 +140,11 @@ class SoalLatihanSeeder extends Seeder
 
         $kataList = [
             'Fathah' => [
-                "Akhaza", "Bahatsa", "Thabata", "Jaala", "Hasada", "Khataba", "Dabara",
-                "Rahaqa", "Sakana", "Shakara", "Sadaqa", "Salata", "Akasa", "Zahara",
-                "Habata", "Basara", "Thaqaba", "Jahada", "Rasala", "Dhabaha", "Sabaqa",
+                "Akhodza", "Bahatsa", "Tsabata", "Jaala", "Hasada", "Khotoba", "Dabaro",
+                "Rohaqo", "Sakana", "Syakaro", "Shodaqo", "Salatho", "Akasa", "Zahara",
+                "Habata", "Basara", "Tsaqoba", "Jahada", "Rasala", "Dhabaha", "Sabaqa",
                 "Rashada", "Qasada", "Hadhara", "Zafara", "Akafa", "Fasala", "Qaada",
-                "Kashafa", "Hadama", "Badaa", "Batala", "Thakhana", "Janaha", "Dakhala"
+                "Kashafa", "Hadama", "Badaa", "Batala", "Tsakhona", "Janaha", "Dakhala"
             ],
             'Kasroh' => [
                 "Amina", "Bariqa", "Hamida", "Jazia", "Taiba", "Habita", "Kharisa",
@@ -156,7 +156,7 @@ class SoalLatihanSeeder extends Seeder
             'Dhommah' => [
                 "Ukila", "Butila", "Turika", "Jabuna", "Hasuna", "Khashuna", "Sahula",
                 "Yakilu", "Saluha", "Daufa", "Turiha", "Dufina", "Taqau", "'Azuma",
-                "Suriqa", "Bakhula", "Thaqula", "Khuliqa", "Hushira", "Dukhila", "Ruziqa",
+                "Suriqa", "Bakhula", "Saqula", "Khuliqa", "Hushira", "Dukhila", "Ruziqa",
                 "Sharufa", "Adhuba", "Kutiba", "Fakhuma", "Shaura", "Qubida", "Wudia",
                 "Ghaluza", "Huzima", "Tubikha", "Khabutha", "Karuma", "Yaidu", "Qutila"
             ]
@@ -180,12 +180,12 @@ class SoalLatihanSeeder extends Seeder
                         "TvgbkuK154U", "oXDU1kq4EUM", "PWxHut8nLHk", "nmeA1153hV4", "8h4j3yC4WG8"
             ],
             'Dhommah' => ["RANDOM4MnOpQ", "2Bkrfsbi8YQ", "ONDyjVT40Jw", "HIFNUlAD8TI", "6khAU4jc4aQ",
-                            "ndmeodYQhMM", "OEqG_6mZyV0", "ogZqCgZfiAc", "tj2fE2Xdu9Y", "Z75pndsrMxY",
-                            "3f3eKVnJUj0", "PV2TnRoQ1Nw", "s0g43uh6TaY", "7HoQyR9HfVU", "0nFNINtDc9M",
-                            "v6EChTF3uF4", "ntVl17rlFC8", "sibk4fjNWK4", "GH1H04fvpQA", "kZZIa5FauIc",
-                            "xWqGNNczdTU", "g6HvDl4_6sQ", "SR-v-R5_GwE", "tyaALOZW1T0", "8hrf03cwKL4",
-                            "rrJ7s0EJKmI", "IH2PhwyhR40", "SbKQkd8RLWY", "8G068FeEXwQ", "TPXaV-gRusw",
-                            "4IPX1mFyzsg", "lZB5cTAgC6E", "yG022-eLU6c", "2Havir6VX6A", "P2VhD5Ckdnk"
+                        "ndmeodYQhMM", "OEqG_6mZyV0", "ogZqCgZfiAc", "tj2fE2Xdu9Y", "Z75pndsrMxY",
+                        "3f3eKVnJUj0", "PV2TnRoQ1Nw", "s0g43uh6TaY", "7HoQyR9HfVU", "0nFNINtDc9M",
+                        "v6EChTF3uF4", "ntVl17rlFC8", "sibk4fjNWK4", "GH1H04fvpQA", "kZZIa5FauIc",
+                        "xWqGNNczdTU", "g6HvDl4_6sQ", "SR-v-R5_GwE", "tyaALOZW1T0", "8hrf03cwKL4",
+                        "rrJ7s0EJKmI", "IH2PhwyhR40", "SbKQkd8RLWY", "8G068FeEXwQ", "TPXaV-gRusw",
+                        "4IPX1mFyzsg", "lZB5cTAgC6E", "yG022-eLU6c", "2Havir6VX6A", "P2VhD5Ckdnk"
             ],
         ];
 
