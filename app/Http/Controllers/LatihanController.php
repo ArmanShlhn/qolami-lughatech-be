@@ -15,7 +15,7 @@ class LatihanController extends Controller
         'video' => SoalVideo::class,
     ];
 
-    #List semua latihan beserta kategori dan gambar
+    #List latihan
     public function listLatihan()
     {
         try {
@@ -44,7 +44,7 @@ class LatihanController extends Controller
         }
     }
     
-# Ambil semua soal latihan berdasarkan jenis media (audio atau video)
+    #soal latihan dari jenis latihan
     public function getAllSoalByJenis($jenis)
     {
         try {
@@ -88,7 +88,7 @@ class LatihanController extends Controller
         }
     }
 
-    #Ambil soal berdasarkan latihan dan jenis media
+    #soal latihan
     public function getSoalLatihan($latihanId, $jenis, Request $request)
     {
         try {
@@ -143,7 +143,7 @@ class LatihanController extends Controller
     }
 
 
-    #Submit jawaban user dan cek benar/salah
+    #Submit dan cek jawaban
     public function submitJawaban(Request $request)
     {
         try {

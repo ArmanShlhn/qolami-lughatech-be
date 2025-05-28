@@ -16,9 +16,8 @@ class KuisController extends Controller
         'video' => SoalVideo::class,
     ];
 
-    /**
-     * List semua kuis dengan kategori (resource style)
-     */
+    
+    #List semua kuis
     public function listKuis()
     {
         try {
@@ -47,9 +46,8 @@ class KuisController extends Controller
         }
     }
 
-    /**
-     * Mendapatkan soal kuis berdasarkan kategori dan id kuis
-     */
+    
+    #soal kuis berdasarkan kategori dan id kuis
     public function getSoalKuis($kategoriNama, $kuisId)
     {
         try {
@@ -120,9 +118,8 @@ class KuisController extends Controller
         }
     }
 
-    /**
-     * Submit jawaban kuis dan simpan skor
-     */
+
+    #Submit jawaban kuis dan simpan skor
     public function submitJawabanKuis(Request $request)
     {
         try {

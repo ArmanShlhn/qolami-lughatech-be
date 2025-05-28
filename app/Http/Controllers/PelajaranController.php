@@ -7,7 +7,7 @@ use App\Models\IsiPelajaran;
 
 class PelajaranController extends Controller
 {
-    #Menampilkan daftar pelajaran tertentu dengan kategori
+    #list pelajaran
     public function index()
     {
         try {
@@ -46,7 +46,7 @@ class PelajaranController extends Controller
         }
     }
 
-    #Menampilkan semua isi pelajaran berdasarkan pelajaran_id
+    #list isi pelajaran
     public function listIsiPelajaran($pelajaran_id)
     {
         try {
@@ -83,7 +83,7 @@ class PelajaranController extends Controller
         }
     }
 
-    #Menampilkan isi pelajaran spesifik berdasarkan pelajaran_id dan id isi_pelajaran
+    #isi pelajaran
     public function isiPelajaran($pelajaran_id, $id)
     {
         try {

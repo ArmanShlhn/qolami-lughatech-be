@@ -99,7 +99,6 @@ class IsiPelajaranSeeder extends Seeder
             }
         }
 
-        #Pelajaran Kata 1 - tetap ada dan memakai gambar dari raw GitHub juga
         $kata = [
             ['kata' => 'Malaka',  'harakat' => 'Fathah',  'kode' => 'PXzGI6-3ZDY'],
             ['kata' => 'Hasiba', 'harakat' => 'Kasroh',  'kode' => '_O2HhMOTvcI'],
