@@ -17,7 +17,7 @@ class SoalLatihanSeeder extends Seeder
         $hurufHijaiyah = [
             'Alif','Ba','Ta','Tsa','Jim','Ha','Kho','Dal','Dzal',
             'Ro','Zay','Sin','Syin','Shod','Dhod','Tho','Dzho','Ain',
-            'Ghain','Fa','Qof','Kaf','Lam','Mim','Nun','Wawu','Ha besar','Ya'
+            'Ghain','Fa','Qof','Kaf','Lam','Mim','Nun','Wawu','Ha_besar','Ya'
         ];
 
         #Mapping kode YouTube per harakat
@@ -148,7 +148,7 @@ class SoalLatihanSeeder extends Seeder
             ],
             'Kasroh' => [
                 "Amina","Bariqo","Hamida","Jazia","Taiba","Habitho","Khorisa",
-                "Rohima","Safiha","Syaniba","Nadhiha","Dzholima","Laiba","Roghiba",
+                "Rohima","Safiha","Syaniba","Nadhija","Dzholima","Laiba","Roghiba",
                 "Sahiro","Atsima","Tabia","Bakhila","Hafidzho","Khojila","Robiha",
                 "Ajiza","Ghodhiba","Alima","Fariha","Nadima","Fasyila","Haniqo",
                 "Waritsa","Syahiba","Watsiqo","Kariha","Lahiqo","Ayina","Ahida"
@@ -157,8 +157,8 @@ class SoalLatihanSeeder extends Seeder
                 "Ukila","Buthila","Turika","Jabuna","Hasuna","Khosuna","Sahula",
                 "Yakilu","Sholuha","Dhoufa","Thuriha","Dufina","Taqou","Adzhuma",
                 "Suriqo","Bakhula","Tsaqula","Khuliqo","Husyiro","Dukhila","Ruziqo",
-                "Syarufa","Adzuba","Kutiba","Fakhuma","Syauro","Qubidho","Wudhila",
-                "Gholudzo","Huzima","Tubikho","Khobutsa","Karuma","Yaidu","Qutila"
+                "Syarufa","Adzuba","Kutiba","Fakhuma","Syauro","Qubidho","Wudhia",
+                "Gholudzo","Huzima","Thubikho","Khobutsa","Karuma","Yaidu","Qutila"
             ]
         ];
 

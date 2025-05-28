@@ -12,7 +12,7 @@ class IsiPelajaranSeeder extends Seeder
         $hurufHijaiyah = [
             'Alif','Ba','Ta','Tsa','Jim','Ha','Kho','Dal','Dzal',
             'Ro','Zay','Sin','Syin','Shod','Dhod','Tho','Dzho','Ain',
-            'Ghain','Fa','Qof','Kaf','Lam','Mim','Nun','Wawu','Ha besar','Ya'
+            'Ghain','Fa','Qof','Kaf','Lam','Mim','Nun','Wawu','Ha_besar','Ya'
         ];
 
         $warnaHarakat = [
