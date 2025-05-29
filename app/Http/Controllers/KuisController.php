@@ -22,8 +22,7 @@ class KuisController extends Controller
     {
         try {
             $kuisList = Kuis::with('kategori')->get();
-
-            #Menggunakan resource-style response
+            
             return response()->json([
                 'status' => 'success',
                 'data' => $kuisList->map(function ($kuis) {
@@ -84,6 +83,7 @@ class KuisController extends Controller
             $soalFinal = $soalGabungan->map(function ($soal) {
                 return [
                     'id' => $soal->id,
+                    'jenis' => $this->getJenisSoal($soal),
                     'file_url' => $soal->gambar_url ?? $soal->audio_url ?? $soal->video_url,
                     'opsi' => [
                         'a' => $soal->opsi_a,
@@ -91,24 +91,19 @@ class KuisController extends Controller
                         'c' => $soal->opsi_c,
                         'd' => $soal->opsi_d,
                     ],
-                    'jenis' => $this->getJenisSoal($soal),
+                    
                 ];
             });
 
             return response()->json([
-                'status' => 'success',
-                'data' => [
-                    'kuis' => [
-                        'id' => $kuis->id,
-                        'nama' => $kuis->nama_kuis,
-                        'kategori' => [
-                            'id' => $kategori->id,
-                            'nama' => $kategori->nama,
-                        ],
-                    ],
-                    'soal' => $soalFinal,
+                'kuis' => [
+                    'id' => $kuis->id,
+                    'nama' => $kuis->nama_kuis,
+                    'kategori' => $kategori->nama,
                 ],
+                'soal' => $soalFinal,                
             ]);
+
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',

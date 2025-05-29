@@ -8,7 +8,6 @@ use App\Models\Score;
 
 class ScoreController extends Controller
 {
-    #Submit atau update skor kuis user
     public function submitKuisScore(Request $request)
     {
         try {
@@ -38,7 +37,6 @@ class ScoreController extends Controller
         }
     }
 
-    #Mengambil semua skor kuis milik user
     public function getUserScores()
     {
         try {

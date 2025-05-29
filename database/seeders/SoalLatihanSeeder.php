@@ -78,10 +78,10 @@ class SoalLatihanSeeder extends Seeder
             'Latihan Huruf 5' => 'Kasrotain',
             'Latihan Huruf 6' => 'Dhommahtain',
         ];
-        #Base URL raw GitHub untuk file audio huruf (mp3)
+        #Base URL rawGitHub audio
         $githubRawAudio = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/audio';
 
-        #Base URL raw GitHub untuk gambar huruf hijaiyah
+        #Base URL rawGitHub gambar
         $githubRawBase = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images';
 
         foreach ($harakatHuruf as $latihanNama => $harakat) {
@@ -96,24 +96,20 @@ class SoalLatihanSeeder extends Seeder
                 $videoUrl = "https://www.youtube.com/watch?v={$videoCode}";
                 $audioUrl = "{$githubRawAudio}/huruf-{$harakat}/{$i}.{$harakat}_{$hurufBenar}.mp3";
 
-                #Ambil 3 huruf lain secara acak, berbeda dengan huruf benar
                 $opsiHuruf = collect($hurufHijaiyah)
                     ->filter(fn($h) => $h !== $hurufBenar)
                     ->shuffle()
                     ->take(3)
                     ->values();
 
-                #Tambahkan huruf benar ke opsi, lalu acak posisi opsi
                 $opsiHuruf->push($hurufBenar);
                 $opsiHuruf = $opsiHuruf->shuffle()->values();
 
-                #cari index huruf opsi di hurufHijaiyah agar bisa pasang nomor gambar benar
                 $opsiGambar = $opsiHuruf->map(function($hurufOpsi) use ($harakat, $hurufHijaiyah, $githubRawBase) {
                     $indexHuruf = array_search($hurufOpsi, $hurufHijaiyah) + 1; #+1 karena indeks gambar mulai 1
                     return "{$githubRawBase}/huruf-{$harakat}/{$indexHuruf}.{$harakat}_{$hurufOpsi}.png";
                 });
 
-                #Cari posisi jawaban benar (hurufBenar)
                 $jawabanIndex = $opsiHuruf->search($hurufBenar);
 
                 SoalVideo::create([
@@ -165,13 +161,13 @@ class SoalLatihanSeeder extends Seeder
         $kodeYoutubeKata = [
             'Fathah' => ["MELQimvxmkU", "vkX5v-6AVtE", "Mlqm8_BIh4w", "jb2qK48obDA", "9iRV3nmW3b0",
                         "GV9VSMaJ6UM", "GdVD31y5M24", "8kqwjcbB9kM", "SF2D69o040E", "hlqMLl4goEA",
-                        "DZlcuteP-5c", "Z8zKZ0co9GI", "RANDOM1xYzAb", "RO8jhk3oD70", "dP0qZt66ki4",
+                        "DZlcuteP-5c", "Z8zKZ0co9GI", "k18yrC-PdFc", "RO8jhk3oD70", "dP0qZt66ki4",
                         "RrFlTqIPTpA", "7ymIr9tnvqo", "NWFlFcr4gWg", "yCAB01Fj_yg", "VNmT5PHbGxU",
                         "6Qi5gCAZTfU", "Jp_vPXm_I_c", "ADX-t56t8f8", "IO5uR8bwvO0", "CKqeodgMjzk",
                         "hsPB-06nyx8", "0K_2dtfeDZ8", "zOU8vo6P3pA", "8Muw1Kuh_IM", "_g9DaCLezwI",
-                        "ZLJ8uukc1Rc", "JrO4iImUhWM", "RANDOM2CdEfG", "aj41n4IUNaU", "v2JSoPbdUSQ"
+                        "ZLJ8uukc1Rc", "JrO4iImUhWM", "hENniU_oJ8s", "aj41n4IUNaU", "v2JSoPbdUSQ"
             ],
-            'Kasroh' => ["RANDOM3hIjKl", "iR4Io2LCa8w", "rXi_UTGhYFc", "8xOfskN2fIc", "cn75-0NT6v0",
+            'Kasroh' => ["3nDG3m3bQ0Y", "iR4Io2LCa8w", "rXi_UTGhYFc", "8xOfskN2fIc", "cn75-0NT6v0",
                         "Ujxh9_rdf5g", "lksT09SxqfI", "UPNvTVr0rvA", "1kcoFsW2yO0", "G4MvC1k0K7U",
                         "jpmbhGrcDJ0", "gnaHcJpDv_U", "nQd_luvqq7U", "uzPp5DWkUHE", "sDrjvD-Pekw",
                         "PK74iLmYA5c", "3q6F28tUdbg", "K2w9P3TnilQ", "ceyfuAnKZi8", "34BbU62FcuY",
@@ -179,7 +175,7 @@ class SoalLatihanSeeder extends Seeder
                         "FHnClbrifYw", "QqjRleI3GVg", "Rqaf6qEZdJQ", "5IQMzN5EFcg", "RCD6Kpojm9k",
                         "TvgbkuK154U", "oXDU1kq4EUM", "PWxHut8nLHk", "nmeA1153hV4", "8h4j3yC4WG8"
             ],
-            'Dhommah' => ["RANDOM4MnOpQ", "2Bkrfsbi8YQ", "ONDyjVT40Jw", "HIFNUlAD8TI", "6khAU4jc4aQ",
+            'Dhommah' => ["u6wEKllscqs", "2Bkrfsbi8YQ", "ONDyjVT40Jw", "HIFNUlAD8TI", "6khAU4jc4aQ",
                         "ndmeodYQhMM", "OEqG_6mZyV0", "ogZqCgZfiAc", "tj2fE2Xdu9Y", "Z75pndsrMxY",
                         "3f3eKVnJUj0", "PV2TnRoQ1Nw", "s0g43uh6TaY", "7HoQyR9HfVU", "0nFNINtDc9M",
                         "v6EChTF3uF4", "ntVl17rlFC8", "sibk4fjNWK4", "GH1H04fvpQA", "kZZIa5FauIc",
@@ -192,7 +188,7 @@ class SoalLatihanSeeder extends Seeder
         $githubRawAudioKata = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/audio';
         $githubRawBaseKata = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images';
 
-        #Map latihan untuk kata per harakat
+        #Map latihan kata per harakat
         $latihanKataHarakat = [
             'Latihan Kata 1' => 'Fathah',
             'Latihan Kata 2' => 'Kasroh',
@@ -221,24 +217,20 @@ class SoalLatihanSeeder extends Seeder
                 $videoUrl = "https://www.youtube.com/watch?v={$videoCode}";
                 $audioUrl = "{$githubRawAudioKata}/kata-{$harakat}/" . ($index + 1) . ".{$harakat}_{$kataBenar}.mp3";
 
-                #Ambil opsi selain jawaban benar
                 $opsiKata = collect($kataList[$harakat])
                     ->filter(fn($k) => $k !== $kataBenar)
                     ->shuffle()
                     ->take(3)
                     ->values();
 
-                #Tambahkan kata benar ke opsi dan acak
                 $opsiKata->push($kataBenar);
                 $opsiKata = $opsiKata->shuffle()->values();
 
-                #Buat opsi gambar sesuai kata opsi
                 $opsiGambar = $opsiKata->map(function($kataOpsi) use ($harakat, $kataList, $githubRawBaseKata) {
                     $indexOpsi = array_search($kataOpsi, $kataList[$harakat]) + 1;
                     return "{$githubRawBaseKata}/kata-{$harakat}/{$indexOpsi}.{$harakat}_{$kataOpsi}.png";
                 });
 
-                #Cari indeks jawaban benar dalam opsi
                 $jawabanIndex = $opsiKata->search($kataBenar);
 
                 #Buat soal video

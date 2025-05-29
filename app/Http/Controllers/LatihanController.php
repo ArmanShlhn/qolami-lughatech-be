@@ -26,7 +26,6 @@ class LatihanController extends Controller
                     'id' => $latihan->id,
                     'nama' => $latihan->nama,
                     'kategori_id' => $latihan->kategori_id,
-                    'kategori_nama' => $latihan->kategori->nama ?? null,
                     'gambar_url' => $latihan->gambar_url,
                 ];
             });
@@ -64,7 +63,6 @@ class LatihanController extends Controller
                     'id' => $soal->id,
                     'latihan_id' => $soal->latihan_id,
                     'latihan_nama' => $soal->latihan->nama ?? null,
-                    'kategori_nama' => $soal->latihan->kategori->nama ?? null,
                     'media_url' => $jenis === 'video' ? $soal->video_url : $soal->audio_url,
                     'opsi_a' => $soal->opsi_a,
                     'opsi_b' => $soal->opsi_b,
@@ -104,7 +102,6 @@ class LatihanController extends Controller
 
             $model = $this->models[$jenis];
 
-            #Ambil 10 soal acak dari soal latihan berdasarkan jenis (audio/video)
             $soalList = $model::where('latihan_id', $latihanId)
                 ->inRandomOrder()
                 ->limit(10)
@@ -132,7 +129,6 @@ class LatihanController extends Controller
                     'id' => $latihan->id,
                     'nama' => $latihan->nama,
                     'kategori_id' => $latihan->kategori_id,
-                    'kategori_nama' => $latihan->kategori->nama ?? 'N/A',
                     'gambar_url' => $latihan->gambar_url,
                 ],
                 'soal' => $soalFormatted,
