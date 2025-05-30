@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Reset Password</title>
+    <meta charset="utf-8">
+    <title>Kode OTP</title>
 </head>
 <body>
-    <h2>Halo!</h2>
-    <p>Berikut adalah password baru Anda:</p>
-
-    <h3 style="color: #3490dc;">{{ $newPassword }}</h3>
-
-    <p>Silakan login dengan password ini dan jangan lupa untuk menggantinya setelah login.</p>
-
+    <p>Halo,</p>
+    <p>Kode OTP Anda untuk mengganti password adalah:</p>
+    <h2>{{ $otp }}</h2>
+    <p>Jangan berikan kode ini kepada siapa pun. Kode hanya berlaku selama 10 menit.</p>
     <br>
-
     <p>Terima kasih,</p>
-    <p><strong>{{ config('app.name') }}</strong></p>
+    <p>Tim Qolami</p>
 </body>
 </html>

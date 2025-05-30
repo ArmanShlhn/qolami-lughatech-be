@@ -10,29 +10,15 @@ class PasswordResetMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $newPassword;
+    public $otp;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($newPassword)
+    public function __construct($otp)
     {
-        $this->newPassword = $newPassword;
+        $this->otp = $otp;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
-        return $this->subject('Reset Password Baru')
-                    ->view('emails.password_reset')
-                    ->with([
-                        'newPassword' => $this->newPassword,
-                    ]);
+        return $this->subject('Kode Reset Password')->view('emails.password_reset');
     }
 }

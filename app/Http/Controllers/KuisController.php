@@ -91,7 +91,7 @@ class KuisController extends Controller
                         'c' => $soal->opsi_c,
                         'd' => $soal->opsi_d,
                     ],
-                    
+                    'jawaban' => $soal->jawaban
                 ];
             });
 

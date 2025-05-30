@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\PasswordResetMail;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class AuthController extends Controller
 {
@@ -72,25 +74,59 @@ class AuthController extends Controller
         return response()->json(['message' => 'Kamu berhasil logout']);
     }
 
-    # Reset password via email (lokal)
-    public function sendResetLinkEmail(Request $request)
+    # Reset password via email
+    public function sendOtp(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'email' => 'required|email|exists:users,email',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['error' => 'Email tidak ditemukan.'], 404);
+        $otp = mt_rand(100000, 999999);
+        $email = $request->email;
+
+        DB::table('password_resets')->where('email', $email)->delete();
+
+        DB::table('password_resets')->insert([
+            'email' => $email,
+            'code' => $otp,
+            'created_at' => Carbon::now(),
+        ]);
+
+        try {
+            Mail::to($email)->send(new PasswordResetMail($otp));
+            return response()->json(['message' => 'Kode OTP telah dikirim ke email.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Gagal mengirim email: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'otp_code' => 'required',
+            'new_password' => 'required|min:6|confirmed',
+        ]);
+
+        $otpData = DB::table('password_resets')
+            ->where('email', $request->email)
+            ->where('code', $request->otp_code)
+            ->first();
+
+        if (!$otpData) {
+            return response()->json(['error' => 'Kode OTP salah atau tidak ditemukan.'], 400);
+        }
+
+        if (Carbon::parse($otpData->created_at)->addMinutes(10)->isPast()) {
+            return response()->json(['error' => 'Kode OTP sudah kedaluwarsa.'], 400);
         }
 
         $user = User::where('email', $request->email)->first();
-        $username = strstr($user->email, '@', true);
-        $newPassword = $username . '123';
-        $user->password = bcrypt($newPassword);
+        $user->password = bcrypt($request->new_password);
         $user->save();
 
-        Mail::to($user->email)->send(new PasswordResetMail($newPassword));
+        DB::table('password_resets')->where('email', $request->email)->delete();
 
-        return response()->json(['message' => 'Password baru telah dikirim ke email Anda.'], 200);
+        return response()->json(['message' => 'Password berhasil diubah.'], 200);
     }
 }
