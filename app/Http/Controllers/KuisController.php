@@ -29,10 +29,7 @@ class KuisController extends Controller
                     return [
                         'id' => $kuis->id,
                         'nama' => $kuis->nama_kuis,
-                        'kategori' => [
-                            'id' => $kuis->kategori->id ?? null,
-                            'nama' => $kuis->kategori->nama_kuis ?? null,
-                        ],
+                        'kategori' => $kuis->kategori->id ?? null,
                     ];
                 }),
             ]);
@@ -118,13 +115,13 @@ public function submitJawabanKuis(Request $request)
 {
     try {
         $validated = $request->validate([
+            'user_id' => 'required|integer|exists:users,id',
             'kuis_id' => 'required|integer|exists:kuis,id',
             'jawaban' => 'required|array|min:0',
             'jawaban.*.soal_id' => 'required|integer',
             'jawaban.*.jenis' => 'required|string|in:audio,video',
             'jawaban.*.jawaban_user' => 'required|string',
         ]);
-        $userId = $request->input('user_id');
 
         $jawabanBenar = 0;
 
@@ -167,7 +164,7 @@ public function submitJawabanKuis(Request $request)
         return response()->json([
             'message' => 'Jawaban berhasil diproses',
             'data' => [
-                'user_id' => $userId,
+                'user_id' => $validated['user_id'],
                 'kuis_id' => $validated['kuis_id'],
                 'jumlah_benar' => $jawabanBenar,
                 'bintang' => $bintang,
