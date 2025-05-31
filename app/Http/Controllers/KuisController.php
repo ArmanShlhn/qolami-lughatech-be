@@ -45,7 +45,6 @@ class KuisController extends Controller
         }
     }
 
-    
     #soal kuis berdasarkan kategori dan id kuis
     public function getSoalKuis($kategoriNama, $kuisId)
     {
@@ -121,7 +120,7 @@ class KuisController extends Controller
             $validated = $request->validate([
                 'user_id' => 'required|integer|exists:users,id',
                 'kuis_id' => 'required|integer|exists:kuis,id',
-                'jawaban' => 'required|array|min:20',
+                'jawaban' => 'required|array|min:0',
                 'jawaban.*.soal_id' => 'required|integer',
                 'jawaban.*.jenis' => 'required|string|in:audio,video',
                 'jawaban.*.jawaban_user' => 'required|string',
@@ -161,25 +160,14 @@ class KuisController extends Controller
                 $bintang = 3;
             } elseif ($jawabanBenar >= 10) {
                 $bintang = 2;
-            } elseif ($jawabanBenar >= 5) {
+            } elseif ($jawabanBenar >= 1) {
                 $bintang = 1;
             }
 
-            $score = Score::updateOrCreate(
-                ['user_id' => $validated['user_id'], 'kuis_id' => $validated['kuis_id']],
-                [
-                    'jumlah_benar' => $jawabanBenar,
-                    'jumlah_soal' => count($validated['jawaban']),
-                    'bintang' => $bintang,
-                ]
-            );
-
             return response()->json([
-                'status' => 'success',
                 'message' => 'Jawaban berhasil diproses',
                 'data' => [
                     'jumlah_benar' => $jawabanBenar,
-                    'jumlah_soal' => count($validated['jawaban']),
                     'bintang' => $bintang,
                 ],
             ]);
