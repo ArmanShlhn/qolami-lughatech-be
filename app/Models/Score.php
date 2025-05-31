@@ -16,7 +16,6 @@ class Score extends Model
         'jumlah_soal',
         'bintang',
     ];
-
     public function user()
     {
         return $this->belongsTo(User::class);
