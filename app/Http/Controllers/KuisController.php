@@ -115,7 +115,6 @@ public function submitJawabanKuis(Request $request)
 {
     try {
         $validated = $request->validate([
-            'user_id' => 'required|integer|exists:users,id',
             'kuis_id' => 'required|integer|exists:kuis,id',
             'jawaban' => 'required|array|min:0',
             'jawaban.*.soal_id' => 'required|integer',
