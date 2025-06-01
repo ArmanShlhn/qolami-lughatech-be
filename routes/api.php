@@ -20,6 +20,10 @@ Route::get('/pelajaran', [PelajaranController::class, 'index']);
 Route::get('/pelajaran/{pelajaran_id}/isi', [PelajaranController::class, 'listIsiPelajaran']);
 Route::get('/pelajaran/{pelajaran_id}/isi/{id}', [PelajaranController::class, 'isiPelajaran']);
 
+#reset
+Route::post('/send-otp', [AuthController::class, 'sendOtp']);
+Route::post('/change-password', [AuthController::class, 'changePassword']);
+
 Route::middleware('auth:sanctum')->group(function () {
     #logout
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -34,9 +38,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/list-kuis/{user_id}', [KuisController::class, 'listKuis']);
     Route::get('/kuis/{kategoriNama}/{kuisId}', [KuisController::class, 'getSoalKuis']);
     Route::post('/kuis/submit', [KuisController::class, 'submitJawabanKuis']);
-
-    #reset
-    Route::post('/send-otp', [AuthController::class, 'sendOtp']);
-    Route::post('/change-password', [AuthController::class, 'changePassword']);
 });
 
