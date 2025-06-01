@@ -166,26 +166,19 @@ class KuisController extends Controller
                 $bintang = 1;
             }
 
-            // $score = Score::updateOrCreate(
-            //     [
-            //         'user_id' => $userId,
-            //         'kuis_id' => $validated['kuis_id']
-            //     ],
-            //     [
-            //         'jumlah_benar' => $jawabanBenar,
-            //         'jumlah_salah' => 20 - $jawabanBenar,
-            //         'bintang' => $bintang
-            //     ]
-            // );
-
-            return response()->json([
-                'message' => 'Jawaban berhasil diproses',
-                'data' => [
+            $score = Score::updateOrCreate(
+                [
+                    'user_id' => $userId,
                     'kuis_id' => $validated['kuis_id'],
                     'jumlah_benar' => $jawabanBenar,
                     'jumlah_salah' => 20 - $jawabanBenar,
-                    'bintang' => $bintang,
-                ],
+                    'bintang' => $bintang
+                ]
+            );
+
+            return response()->json([
+                'message' => 'Jawaban berhasil diproses',
+                'score' => $score,
             ]);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
