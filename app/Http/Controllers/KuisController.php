@@ -18,9 +18,10 @@ class KuisController extends Controller
 
     
     #List semua kuis
-public function listKuis($userId)
+public function listKuis()
 {
     try {
+        $userId = auth()->id();
         $kuisList = Kuis::with(['kategori', 'scores' => function ($query) use ($userId) {
             $query->where('user_id', $userId);
         }])->get();
@@ -128,7 +129,8 @@ public function submitJawabanKuis(Request $request)
             'jawaban.*.jenis' => 'required|string|in:audio,video',
             'jawaban.*.jawaban_user' => 'required|string',
         ]);
-        $userId = $request->input('user_id');
+        $userId = auth()->id();
+
         $jawabanBenar = 0;
 
         foreach ($validated['jawaban'] as $item) {
@@ -182,7 +184,6 @@ public function submitJawabanKuis(Request $request)
         return response()->json([
             'message' => 'Jawaban berhasil diproses',
             'data' => [
-                'user_id' => $userId,
                 'kuis_id' => $validated['kuis_id'],
                 'jumlah_benar' => $jawabanBenar,
                 'jumlah_salah' => 20 - $jawabanBenar,
