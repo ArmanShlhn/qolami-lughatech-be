@@ -178,7 +178,7 @@ class KuisController extends Controller
 
             return response()->json([
                 'message' => 'Jawaban berhasil diproses',
-                'score' => $score,
+                'data' => $score,
             ]);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
