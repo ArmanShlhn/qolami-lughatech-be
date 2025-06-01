@@ -74,7 +74,30 @@ class AuthController extends Controller
         return response()->json(['message' => 'Kamu berhasil logout']);
     }
 
-    # Reset password via email
+    # Rename akun
+    public function renameAccount(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $user = $request->user();
+        $user->name = $request->name;
+        $user->save();
+
+        return response()->json([
+            'message' => 'Nama akun berhasil diubah.',
+            'user' => new UserResource($user),
+        ]);
+    }
+
+    #Send otp
     public function sendOtp(Request $request)
     {
         $request->validate([
@@ -100,6 +123,7 @@ class AuthController extends Controller
         }
     }
 
+    # Change password via email
     public function changePassword(Request $request)
     {
         $request->validate([

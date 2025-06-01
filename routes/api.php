@@ -28,6 +28,9 @@ Route::middleware('auth:sanctum')->group(function () {
     #logout
     Route::post('/logout', [AuthController::class, 'logout']);
     
+    #Rename
+    Route::post('/rename-account', [AuthController::class, 'renameAccount']);
+
     #latihan
     Route::get('/latihan', [LatihanController::class, 'listLatihan']);
     Route::get('/latihan/soal-semua/{jenis}', [LatihanController::class, 'getAllSoalByJenis']);
