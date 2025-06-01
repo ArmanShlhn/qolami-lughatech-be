@@ -18,38 +18,35 @@ class KuisController extends Controller
 
     
     #List semua kuis
-public function listKuis()
-{
-    try {
-        $userId = auth()->id();
-        $kuisList = Kuis::with(['kategori', 'scores' => function ($query) use ($userId) {
-            $query->where('user_id', $userId);
-        }])->get();
+    public function listKuis()
+    {
+        try {
+            $userId = auth()->id();
+            $kuisList = Kuis::with(['kategori', 'scores' => function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            }])->get();
 
-        return response()->json([
-            'status' => 'success',
-            'data' => $kuisList->map(function ($kuis) {
-                $score = $kuis->scores->first();
+            return response()->json([
+                'status' => 'success',
+                'data' => $kuisList->map(function ($kuis) {
+                    $score = $kuis->scores->first();
 
-                return [
-                    'id' => $kuis->id,
-                    'nama' => $kuis->nama_kuis,
-                    'logo_kuis' => $kuis->logo_kuis,
-                    'bintang' => $score->bintang ?? 0,
-                ];
-            }),
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Terjadi kesalahan',
-            'errors' => $e->getMessage(),
-        ], 500);
+                    return [
+                        'id' => $kuis->id,
+                        'nama' => $kuis->nama_kuis,
+                        'logo_kuis' => $kuis->logo_kuis,
+                        'bintang' => $score->bintang ?? 0,
+                    ];
+                }),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan',
+                'errors' => $e->getMessage(),
+            ], 500);
+        }
     }
-}
-
-
-
 
     #soal kuis berdasarkan kategori dan id kuis
     public function getSoalKuis($kategoriNama, $kuisId)
@@ -119,92 +116,92 @@ public function listKuis()
 
 
     #Submit jawaban kuis dan simpan skor
-public function submitJawabanKuis(Request $request)
-{
-    try {
-        $validated = $request->validate([
-            'kuis_id' => 'required|integer|exists:kuis,id',
-            'jawaban' => 'required|array|min:0',
-            'jawaban.*.soal_id' => 'required|integer',
-            'jawaban.*.jenis' => 'required|string|in:audio,video',
-            'jawaban.*.jawaban_user' => 'required|string',
-        ]);
-        $userId = auth()->id();
+    public function submitJawabanKuis(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'kuis_id' => 'required|integer|exists:kuis,id',
+                'jawaban' => 'required|array|min:0',
+                'jawaban.*.soal_id' => 'required|integer',
+                'jawaban.*.jenis' => 'required|string|in:audio,video',
+                'jawaban.*.jawaban_user' => 'required|string',
+            ]);
+            $userId = auth()->id();
 
-        $jawabanBenar = 0;
+            $jawabanBenar = 0;
 
-        foreach ($validated['jawaban'] as $item) {
-            $jenis = $item['jenis'];
-            $soalId = $item['soal_id'];
-            $jawabanUser = trim($item['jawaban_user']);
+            foreach ($validated['jawaban'] as $item) {
+                $jenis = $item['jenis'];
+                $soalId = $item['soal_id'];
+                $jawabanUser = trim($item['jawaban_user']);
 
-            if (!isset($this->soalModels[$jenis])) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => "Jenis soal tidak valid: $jenis"
-                ], 422);
+                if (!isset($this->soalModels[$jenis])) {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => "Jenis soal tidak valid: $jenis"
+                    ], 422);
+                }
+
+                $model = $this->soalModels[$jenis];
+                $soal = $model::find($soalId);
+
+                if (!$soal) {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => "Soal dengan ID $soalId tidak ditemukan pada jenis $jenis"
+                    ], 404);
+                }
+
+                if (strtolower($soal->jawaban) === strtolower($jawabanUser)) {
+                    $jawabanBenar++;
+                }
             }
 
-            $model = $this->soalModels[$jenis];
-            $soal = $model::find($soalId);
-
-            if (!$soal) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => "Soal dengan ID $soalId tidak ditemukan pada jenis $jenis"
-                ], 404);
+            $bintang = 0;
+            if ($jawabanBenar == 20) {
+                $bintang = 3;
+            } elseif ($jawabanBenar >= 10) {
+                $bintang = 2;
+            } elseif ($jawabanBenar >= 1) {
+                $bintang = 1;
             }
 
-            if (strtolower($soal->jawaban) === strtolower($jawabanUser)) {
-                $jawabanBenar++;
-            }
+            // $score = Score::updateOrCreate(
+            //     [
+            //         'user_id' => $userId,
+            //         'kuis_id' => $validated['kuis_id']
+            //     ],
+            //     [
+            //         'jumlah_benar' => $jawabanBenar,
+            //         'jumlah_salah' => 20 - $jawabanBenar,
+            //         'bintang' => $bintang
+            //     ]
+            // );
+
+            return response()->json([
+                'message' => 'Jawaban berhasil diproses',
+                'data' => [
+                    'kuis_id' => $validated['kuis_id'],
+                    'jumlah_benar' => $jawabanBenar,
+                    'jumlah_salah' => 20 - $jawabanBenar,
+                    'bintang' => $bintang,
+                ],
+            ]);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Validasi gagal',
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan',
+                'errors' => $e->getMessage(),
+            ], 500);
         }
-
-        $bintang = 0;
-        if ($jawabanBenar == 20) {
-            $bintang = 3;
-        } elseif ($jawabanBenar >= 10) {
-            $bintang = 2;
-        } elseif ($jawabanBenar >= 1) {
-            $bintang = 1;
-        }
-        // Simpan atau update skor
-        $score = Score::updateOrCreate(
-            [
-                'user_id' => $userId,
-                'kuis_id' => $validated['kuis_id']
-            ],
-            [
-                'jumlah_benar' => $jawabanBenar,
-                'jumlah_salah' => 20 - $jawabanBenar,
-                'bintang' => $bintang
-            ]
-        );
-
-        return response()->json([
-            'message' => 'Jawaban berhasil diproses',
-            'data' => [
-                'kuis_id' => $validated['kuis_id'],
-                'jumlah_benar' => $jawabanBenar,
-                'jumlah_salah' => 20 - $jawabanBenar,
-                'bintang' => $bintang,
-            ],
-        ]);
-
-    } catch (\Illuminate\Validation\ValidationException $e) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Validasi gagal',
-            'errors' => $e->errors(),
-        ], 422);
-    } catch (\Exception $e) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Terjadi kesalahan',
-            'errors' => $e->getMessage(),
-        ], 500);
     }
-}
 
 
     private function getJenisSoal($soal)
