@@ -18,29 +18,39 @@ class KuisController extends Controller
 
     
     #List semua kuis
-    public function listKuis()
-    {
-        try {
-            $kuisList = Kuis::with('kategori')->get();
-            
-            return response()->json([
-                'status' => 'success',
-                'data' => $kuisList->map(function ($kuis) {
-                    return [
-                        'id' => $kuis->id,
-                        'nama' => $kuis->nama_kuis,
-                        'kategori' => $kuis->kategori->id ?? null,
-                    ];
-                }),
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Terjadi kesalahan',
-                'errors' => $e->getMessage(),
-            ], 500);
-        }
+public function listKuis($userId)
+{
+    try {
+        $kuisList = Kuis::with(['kategori', 'scores' => function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        }])->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $kuisList->map(function ($kuis) {
+                $score = $kuis->scores->first(); // Ambil score milik user
+
+                return [
+                    'id' => $kuis->id,
+                    'nama' => $kuis->nama_kuis,
+                    'score' => [
+                        'jumlah_benar' => $score->jumlah_benar ?? 0,
+                        'jumlah_salah' => $score->jumlah_salah ?? 0,
+                        'bintang' => $score->bintang ?? 0,
+                    ],
+                ];
+            }),
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Terjadi kesalahan',
+            'errors' => $e->getMessage(),
+        ], 500);
     }
+}
+
+
 
     #soal kuis berdasarkan kategori dan id kuis
     public function getSoalKuis($kategoriNama, $kuisId)
@@ -95,7 +105,6 @@ class KuisController extends Controller
                 'kuis' => [
                     'id' => $kuis->id,
                     'nama' => $kuis->nama_kuis,
-                    'kategori' => $kategori->nama,
                 ],
                 'soal' => $soalFinal,                
             ]);
@@ -159,6 +168,18 @@ public function submitJawabanKuis(Request $request)
         } elseif ($jawabanBenar >= 1) {
             $bintang = 1;
         }
+        // Simpan atau update skor
+        $score = Score::updateOrCreate(
+            [
+                'user_id' => $userId,
+                'kuis_id' => $validated['kuis_id']
+            ],
+            [
+                'jumlah_benar' => $jawabanBenar,
+                'jumlah_salah' => 20 - $jawabanBenar,
+                'bintang' => $bintang
+            ]
+        );
 
         return response()->json([
             'message' => 'Jawaban berhasil diproses',
@@ -166,9 +187,11 @@ public function submitJawabanKuis(Request $request)
                 'user_id' => $userId,
                 'kuis_id' => $validated['kuis_id'],
                 'jumlah_benar' => $jawabanBenar,
+                'jumlah_salah' => 20 - $jawabanBenar,
                 'bintang' => $bintang,
             ],
         ]);
+
     } catch (\Illuminate\Validation\ValidationException $e) {
         return response()->json([
             'status' => 'error',

@@ -13,7 +13,7 @@ class Score extends Model
         'user_id',
         'kuis_id',
         'jumlah_benar',
-        'jumlah_soal',
+        'jumlah_salah',
         'bintang',
     ];
     public function user()

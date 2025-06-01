@@ -12,14 +12,14 @@ class CreateScoresTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('kuis_id');
-            $table->integer('jumlah_benar');
-            $table->integer('jumlah_soal');
-            $table->tinyInteger('bintang');
+            $table->integer('jumlah_benar')->default(0);
+            $table->integer('jumlah_salah')->default(0);
+            $table->integer('bintang')->default(0);
             $table->timestamps();
-
-            #relasi ke tabel users dan kuis
+            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('kuis_id')->references('id')->on('kuis')->onDelete('cascade');
+            $table->unique(['user_id', 'kuis_id']); // agar 1 user hanya 1 score per kuis
         });
     }
 

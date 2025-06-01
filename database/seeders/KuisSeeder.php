@@ -17,7 +17,7 @@ class KuisSeeder extends Seeder
         DB::table('kuis')->insert([
             [
                 'kategori_id' => 2, 
-                'nama_kuis' => 'Kuis Kata 1',
+                'nama_kuis' => 'Kuis 1',
                 'created_at' => $now,
                 'updated_at' => $now,
             ]

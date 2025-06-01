@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/latihan/jawaban', [LatihanController::class, 'submitJawaban']);
 
     #kuis
-    Route::get('/kuis', [kuisController::class, 'listkuis']);
+    Route::get('/list-kuis/{user_id}', [KuisController::class, 'listKuis']);
     Route::get('/kuis/{kategoriNama}/{kuisId}', [KuisController::class, 'getSoalKuis']);
     Route::post('/kuis/submit', [KuisController::class, 'submitJawabanKuis']);
 

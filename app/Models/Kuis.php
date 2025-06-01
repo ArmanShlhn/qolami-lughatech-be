@@ -15,4 +15,10 @@ class Kuis extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
+    public function scores()
+    {
+        return $this->hasMany(Score::class, 'kuis_id');
+    }
+
+
 }
