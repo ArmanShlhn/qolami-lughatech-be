@@ -34,11 +34,7 @@ public function listKuis($userId)
                     'id' => $kuis->id,
                     'nama' => $kuis->nama_kuis,
                     'logo_kuis' => $kuis->logo_kuis,
-                    'score' => [
-                        'jumlah_benar' => $score->jumlah_benar ?? 0,
-                        'jumlah_salah' => $score->jumlah_salah ?? 0,
-                        'bintang' => $score->bintang ?? 0,
-                    ],
+                    'bintang' => $score->bintang ?? 0,
                 ];
             }),
         ]);
