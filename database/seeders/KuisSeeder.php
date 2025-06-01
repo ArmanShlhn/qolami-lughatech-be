@@ -18,7 +18,7 @@ class KuisSeeder extends Seeder
             [
                 'kategori_id' => 2, 
                 'nama_kuis' => 'Kuis 1',
-                'logo_kuis' => '"https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistkuis/kuis1.png"',
+                'logo_kuis' => 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images/fotolistkuis/kuis1.png',
                 'created_at' => $now,
                 'updated_at' => $now,
             ]

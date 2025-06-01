@@ -28,11 +28,12 @@ public function listKuis($userId)
         return response()->json([
             'status' => 'success',
             'data' => $kuisList->map(function ($kuis) {
-                $score = $kuis->scores->first(); // Ambil score milik user
+                $score = $kuis->scores->first();
 
                 return [
                     'id' => $kuis->id,
                     'nama' => $kuis->nama_kuis,
+                    'logo_kuis' => $kuis->logo_kuis,
                     'score' => [
                         'jumlah_benar' => $score->jumlah_benar ?? 0,
                         'jumlah_salah' => $score->jumlah_salah ?? 0,
@@ -49,6 +50,7 @@ public function listKuis($userId)
         ], 500);
     }
 }
+
 
 
 
