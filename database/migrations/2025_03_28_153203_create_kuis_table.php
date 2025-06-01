@@ -11,7 +11,8 @@ return new class extends Migration
         Schema::create('kuis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
-            $table->string('nama_kuis');
+            $table->string('logo_kuis');
+            $table->string('video_url');
             $table->timestamps();
         });
     }
