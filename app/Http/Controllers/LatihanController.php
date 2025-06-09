@@ -102,11 +102,7 @@ class LatihanController extends Controller
 
             $model = $this->models[$jenis];
 
-            $soalList = $model::where('latihan_id', $latihanId)
-                ->inRandomOrder()
-                ->limit(10)
-                ->get();
-
+            $soalList = $model::where('latihan_id', $latihanId)->inRandomOrder()->limit(10)->get();
             if ($soalList->isEmpty()) {
                 return response()->json(['message' => 'Soal tidak ditemukan'], 404);
             }

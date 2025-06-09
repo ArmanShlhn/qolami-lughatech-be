@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Kuis;
 use App\Models\Kategori;
 use App\Models\SoalAudio;
@@ -16,7 +14,6 @@ class KuisController extends Controller
         'video' => SoalVideo::class,
     ];
 
-    
     #List semua kuis
     public function listKuis()
     {
@@ -48,7 +45,7 @@ class KuisController extends Controller
         }
     }
 
-    #soal kuis berdasarkan kategori dan id kuis
+    #soal kuis berdasarkan id kuis
     public function getSoalKuis($kategoriNama, $kuisId)
     {
         try {
@@ -81,7 +78,6 @@ class KuisController extends Controller
             })->inRandomOrder()->take(10)->get();
 
             $soalGabungan = $soalAudio->concat($soalVideo)->shuffle()->take(20)->values();
-
             $soalFinal = $soalGabungan->map(function ($soal) {
                 return [
                     'id' => $soal->id,
@@ -114,7 +110,6 @@ class KuisController extends Controller
         }
     }
 
-
     #Submit jawaban kuis dan simpan skor
     public function submitJawabanKuis(Request $request)
     {
@@ -127,31 +122,25 @@ class KuisController extends Controller
                 'jawaban.*.jawaban_user' => 'required|string',
             ]);
             $userId = auth()->id();
-
             $jawabanBenar = 0;
-
             foreach ($validated['jawaban'] as $item) {
                 $jenis = $item['jenis'];
                 $soalId = $item['soal_id'];
                 $jawabanUser = trim($item['jawaban_user']);
-
                 if (!isset($this->soalModels[$jenis])) {
                     return response()->json([
                         'status' => 'error',
                         'message' => "Jenis soal tidak valid: $jenis"
                     ], 422);
                 }
-
                 $model = $this->soalModels[$jenis];
                 $soal = $model::find($soalId);
-
                 if (!$soal) {
                     return response()->json([
                         'status' => 'error',
                         'message' => "Soal dengan ID $soalId tidak ditemukan pada jenis $jenis"
                     ], 404);
                 }
-
                 if (strtolower($soal->jawaban) === strtolower($jawabanUser)) {
                     $jawabanBenar++;
                 }
@@ -180,12 +169,10 @@ class KuisController extends Controller
 
             return response()->json([
                 'message' => 'Jawaban berhasil diproses',
-                'data' => [
-                    'kuis_id' => $validated['kuis_id'],
-                    'jumlah_benar' => $jawabanBenar,
-                    'jumlah_salah' => 20 - $jawabanBenar,
-                    'bintang' => $bintang,
-                ],
+                'data' =>['kuis_id' => $validated['kuis_id'],
+                        'jumlah_benar' => $jawabanBenar,
+                        'jumlah_salah' => 20 - $jawabanBenar,
+                        'bintang' => $bintang]
             ]);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
@@ -202,7 +189,6 @@ class KuisController extends Controller
             ], 500);
         }
     }
-
 
     private function getJenisSoal($soal)
     {

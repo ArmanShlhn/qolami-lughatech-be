@@ -123,7 +123,7 @@ class AuthController extends Controller
         }
     }
 
-    # Change password via email
+    # Change password dengan otp via email
     public function changePassword(Request $request)
     {
         $request->validate([

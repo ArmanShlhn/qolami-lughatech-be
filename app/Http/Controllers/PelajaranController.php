@@ -22,8 +22,7 @@ class PelajaranController extends Controller
                     'Pelajaran Huruf 7',
                     'Pelajaran Kata 1',
                 ])
-                ->get()
-                ->map(function($item) {
+                ->get()->map(function($item) {
                     return [
                         'id' => $item->id,
                         'nama' => $item->nama,
@@ -59,8 +58,7 @@ class PelajaranController extends Controller
 
             $isiPelajaran = IsiPelajaran::where('pelajaran_id', $pelajaran_id)
                 ->select('id', 'keterangan', 'video', 'gambar')
-                ->get()
-                ->map(function ($isi) {
+                ->get()->map(function ($isi) {
                     return [
                         'id' => $isi->id,
                         'keterangan' => $isi->keterangan,
@@ -94,10 +92,7 @@ class PelajaranController extends Controller
                 ], 404);
             }
 
-            $isi = IsiPelajaran::where('pelajaran_id', $pelajaran_id)
-                ->where('id', $id)
-                ->first();
-
+            $isi = IsiPelajaran::where('pelajaran_id', $pelajaran_id)->where('id', $id)->first();
             if (!$isi) {
                 return response()->json([
                     'status' => 'error',
