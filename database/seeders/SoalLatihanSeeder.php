@@ -106,7 +106,7 @@ class SoalLatihanSeeder extends Seeder
                 $opsiHuruf = $opsiHuruf->shuffle()->values();
 
                 $opsiGambar = $opsiHuruf->map(function($hurufOpsi) use ($harakat, $hurufHijaiyah, $githubRawBase) {
-                    $indexHuruf = array_search($hurufOpsi, $hurufHijaiyah) + 1; #+1 karena indeks gambar mulai 1
+                    $indexHuruf = array_search($hurufOpsi, $hurufHijaiyah) + 1; 
                     return "{$githubRawBase}/huruf-{$harakat}/{$indexHuruf}.{$harakat}_{$hurufOpsi}.png";
                 });
 
@@ -167,11 +167,11 @@ class SoalLatihanSeeder extends Seeder
                         "hsPB-06nyx8", "0K_2dtfeDZ8", "zOU8vo6P3pA", "8Muw1Kuh_IM", "_g9DaCLezwI",
                         "ZLJ8uukc1Rc", "JrO4iImUhWM", "hENniU_oJ8s", "aj41n4IUNaU", "v2JSoPbdUSQ"
             ],
-            'Kasroh' => ["3nDG3m3bQ0Y", "iR4Io2LCa8w", "rXi_UTGhYFc", "8xOfskN2fIc", "cn75-0NT6v0",
-                        "Ujxh9_rdf5g", "lksT09SxqfI", "UPNvTVr0rvA", "1kcoFsW2yO0", "G4MvC1k0K7U",
-                        "jpmbhGrcDJ0", "gnaHcJpDv_U", "nQd_luvqq7U", "uzPp5DWkUHE", "sDrjvD-Pekw",
-                        "PK74iLmYA5c", "3q6F28tUdbg", "K2w9P3TnilQ", "ceyfuAnKZi8", "34BbU62FcuY",
-                        "eezbfV7YYdY", "0Xm-V9snvzk", "m7frJLUMJD8", "mrAUgLTjob0", "1hWqxzLXg7s",
+            'Kasroh' => ["iR4Io2LCa8w", "rXi_UTGhYFc", "8xOfskN2fIc", "cn75-0NT6v0", "Ujxh9_rdf5g",
+                        "lksT09SxqfI", "UPNvTVr0rvA", "1kcoFsW2yO0", "G4MvC1k0K7U", "jpmbhGrcDJ0",
+                        "gnaHcJpDv_U", "nQd_luvqq7U", "uzPp5DWkUHE", "sDrjvD-Pekw", "PK74iLmYA5c",
+                        "3q6F28tUdbg", "8PuSCQ6HPk0", "0fz5W9Ran4E", "K2w9P3TnilQ", "ceyfuAnKZi8",
+                        "34BbU62FcuY", "0Xm-V9snvzk", "m7frJLUMJD8", "mrAUgLTjob0", "1hWqxzLXg7s",
                         "FHnClbrifYw", "QqjRleI3GVg", "Rqaf6qEZdJQ", "5IQMzN5EFcg", "RCD6Kpojm9k",
                         "TvgbkuK154U", "oXDU1kq4EUM", "PWxHut8nLHk", "nmeA1153hV4", "8h4j3yC4WG8"
             ],
