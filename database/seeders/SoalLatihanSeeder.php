@@ -134,106 +134,156 @@ class SoalLatihanSeeder extends Seeder
             }
         }
 
-        $kataList = [
-            'Fathah' => [
-                "Akhodza","Bahatsa","Tsabata","Jaala","Hasada","Khothoba","Dabaro",
-                "Rohaqo","Sakana","Syakaro","Shodaqo","Salatho","Akasa","Dzoharo",
-                "Habatho","Bashoro","Tsaqoba","Jahada","Rosala","Dzabaha","Sabaqo",
-                "Rosyada","Qoshoda","Hadhoro","Dzhofaro","Akafa","Fashola","Qoada",
-                "Kasyafa","Hadama","Badaa","Bathola","Tsakhona","Janaha","Dakhola"
-            ],
-            'Kasroh' => [
-                "Amina","Bariqo","Hamida","Jazia","Taiba","Habitho","Khorisa",
-                "Rohima","Safiha","Syaniba","Nadhija","Dzholima","Laiba","Roghiba",
-                "Sahiro","Atsima","Tabia","Bakhila","Hafidzho","Khojila","Robiha",
-                "Ajiza","Ghodhiba","Alima","Fariha","Nadima","Fasyila","Haniqo",
-                "Waritsa","Syahiba","Watsiqo","Kariha","Lahiqo","Ayina","Ahida"
-            ],
-            'Dhommah' => [
-                "Ukila","Buthila","Turika","Jabuna","Hasuna","Khosuna","Sahula",
-                "Yakilu","Sholuha","Dhoufa","Thuriha","Dufina","Taqou","Adzhuma",
-                "Suriqo","Bakhula","Tsaqula","Khuliqo","Husyiro","Dukhila","Ruziqo",
-                "Syarufa","Adzuba","Kutiba","Fakhuma","Syauro","Qubidho","Wudhia",
-                "Gholudzo","Huzima","Thubikho","Khobutsa","Karuma","Yaidu","Qutila"
-            ]
-        ];
+$kataList = [
+    'Fathah' => [
+        ['kata' => "Akhodza", 'video' => "MELQimvxmkU"],
+        ['kata' => "Bahatsa", 'video' => "vkX5v-6AVtE"],
+        ['kata' => "Tsabata", 'video' => "Mlqm8_BIh4w"],
+        ['kata' => "Jaala", 'video' => "jb2qK48obDA"],
+        ['kata' => "Hasada", 'video' => "9iRV3nmW3b0"],
+        ['kata' => "Khothoba", 'video' => "GV9VSMaJ6UM"],
+        ['kata' => "Dabaro", 'video' => "GdVD31y5M24"],
+        ['kata' => "Rohaqo", 'video' => "8kqwjcbB9kM"],
+        ['kata' => "Sakana", 'video' => "SF2D69o040E"],
+        ['kata' => "Syakaro", 'video' => "hlqMLl4goEA"],
+        ['kata' => "Shodaqo", 'video' => "DZlcuteP-5c"],
+        ['kata' => "Salatho", 'video' => "Z8zKZ0co9GI"],
+        ['kata' => "Akasa", 'video' => "k18yrC-PdFc"],
+        ['kata' => "Dzoharo", 'video' => "RO8jhk3oD70"],
+        ['kata' => "Habatho", 'video' => "dP0qZt66ki4"],
+        ['kata' => "Bashoro", 'video' => "RrFlTqIPTpA"],
+        ['kata' => "Tsaqoba", 'video' => "7ymIr9tnvqo"],
+        ['kata' => "Jahada", 'video' => "NWFlFcr4gWg"],
+        ['kata' => "Rosala", 'video' => "yCAB01Fj_yg"],
+        ['kata' => "Dzabaha", 'video' => "VNmT5PHbGxU"],
+        ['kata' => "Sabaqo", 'video' => "6Qi5gCAZTfU"],
+        ['kata' => "Rosyada", 'video' => "Jp_vPXm_I_c"],
+        ['kata' => "Qoshoda", 'video' => "ADX-t56t8f8"],
+        ['kata' => "Hadhoro", 'video' => "IO5uR8bwvO0"],
+        ['kata' => "Dzhofaro", 'video' => "CKqeodgMjzk"],
+        ['kata' => "Akafa", 'video' => "hsPB-06nyx8"],
+        ['kata' => "Fashola", 'video' => "0K_2dtfeDZ8"],
+        ['kata' => "Qoada", 'video' => "zOU8vo6P3pA"],
+        ['kata' => "Kasyafa", 'video' => "8Muw1Kuh_IM"],
+        ['kata' => "Hadama", 'video' => "_g9DaCLezwI"],
+        ['kata' => "Badaa", 'video' => "ZLJ8uukc1Rc"],
+        ['kata' => "Bathola", 'video' => "JrO4iImUhWM"],
+        ['kata' => "Tsakhona", 'video' => "hENniU_oJ8s"],
+        ['kata' => "Janaha", 'video' => "aj41n4IUNaU"],
+        ['kata' => "Dakhola", 'video' => "v2JSoPbdUSQ"]
+    ],
+    'Kasroh' => [
+        ['kata' => "Amina", 'video' => "iR4Io2LCa8w"],
+        ['kata' => "Bariqo", 'video' => "rXi_UTGhYFc"],
+        ['kata' => "Hamida", 'video' => "8xOfskN2fIc"],
+        ['kata' => "Jazia", 'video' => "cn75-0NT6v0"],
+        ['kata' => "Taiba", 'video' => "Ujxh9_rdf5g"],
+        ['kata' => "Habitho", 'video' => "lksT09SxqfI"],
+        ['kata' => "Khorisa", 'video' => "UPNvTVr0rvA"],
+        ['kata' => "Rohima", 'video' => "1kcoFsW2yO0"],
+        ['kata' => "Safiha", 'video' => "G4MvC1k0K7U"],
+        ['kata' => "Syaniba", 'video' => "jpmbhGrcDJ0"],
+        ['kata' => "Nadhija", 'video' => "gnaHcJpDv_U"],
+        ['kata' => "Dzholima", 'video' => "nQd_luvqq7U"],
+        ['kata' => "Laiba", 'video' => "uzPp5DWkUHE"],
+        ['kata' => "Roghiba", 'video' => "sDrjvD-Pekw"],
+        ['kata' => "Sahiro", 'video' => "PK74iLmYA5c"],
+        ['kata' => "Atsima", 'video' => "3q6F28tUdbg"],
+        ['kata' => "Tabia", 'video' => "8PuSCQ6HPk0"],
+        ['kata' => "Bakhila", 'video' => "0fz5W9Ran4E"],
+        ['kata' => "Hafidzho", 'video' => "K2w9P3TnilQ"],
+        ['kata' => "Khojila", 'video' => "ceyfuAnKZi8"],
+        ['kata' => "Robiha", 'video' => "34BbU62FcuY"],
+        ['kata' => "Ajiza", 'video' => "0Xm-V9snvzk"],
+        ['kata' => "Ghodhiba", 'video' => "m7frJLUMJD8"],
+        ['kata' => "Alima", 'video' => "mrAUgLTjob0"],
+        ['kata' => "Fariha", 'video' => "1hWqxzLXg7s"],
+        ['kata' => "Nadima", 'video' => "FHnClbrifYw"],
+        ['kata' => "Fasyila", 'video' => "QqjRleI3GVg"],
+        ['kata' => "Haniqo", 'video' => "Rqaf6qEZdJQ"],
+        ['kata' => "Waritsa", 'video' => "5IQMzN5EFcg"],
+        ['kata' => "Syahiba", 'video' => "RCD6Kpojm9k"],
+        ['kata' => "Watsiqo", 'video' => "TvgbkuK154U"],
+        ['kata' => "Kariha", 'video' => "oXDU1kq4EUM"],
+        ['kata' => "Lahiqo", 'video' => "PWxHut8nLHk"],
+        ['kata' => "Ayina", 'video' => "nmeA1153hV4"],
+        ['kata' => "Ahida", 'video' => "8h4j3yC4WG8"]
+    ],
+    'Dhommah' => [
+        ['kata' => "Ukila", 'video' => "u6wEKllscqs"],
+        ['kata' => "Buthila", 'video' => "2Bkrfsbi8YQ"],
+        ['kata' => "Turika", 'video' => "ONDyjVT40Jw"],
+        ['kata' => "Jabuna", 'video' => "HIFNUlAD8TI"],
+        ['kata' => "Hasuna", 'video' => "6khAU4jc4aQ"],
+        ['kata' => "Khosuna", 'video' => "ndmeodYQhMM"],
+        ['kata' => "Sahula", 'video' => "OEqG_6mZyV0"],
+        ['kata' => "Yakilu", 'video' => "ogZqCgZfiAc"],
+        ['kata' => "Sholuha", 'video' => "tj2fE2Xdu9Y"],
+        ['kata' => "Dhoufa", 'video' => "Z75pndsrMxY"],
+        ['kata' => "Thuriha", 'video' => "3f3eKVnJUj0"],
+        ['kata' => "Dufina", 'video' => "PV2TnRoQ1Nw"],
+        ['kata' => "Taqou", 'video' => "s0g43uh6TaY"],
+        ['kata' => "Adzhuma", 'video' => "7HoQyR9HfVU"],
+        ['kata' => "Suriqo", 'video' => "0nFNINtDc9M"],
+        ['kata' => "Bakhula", 'video' => "v6EChTF3uF4"],
+        ['kata' => "Tsaqula", 'video' => "ntVl17rlFC8"],
+        ['kata' => "Khuliqo", 'video' => "sibk4fjNWK4"],
+        ['kata' => "Husyiro", 'video' => "GH1H04fvpQA"],
+        ['kata' => "Dukhila", 'video' => "kZZIa5FauIc"],
+        ['kata' => "Ruziqo", 'video' => "xWqGNNczdTU"],
+        ['kata' => "Syarufa", 'video' => "g6HvDl4_6sQ"],
+        ['kata' => "Adzuba", 'video' => "SR-v-R5_GwE"],
+        ['kata' => "Kutiba", 'video' => "tyaALOZW1T0"],
+        ['kata' => "Fakhuma", 'video' => "8hrf03cwKL4"],
+        ['kata' => "Syauro", 'video' => "rrJ7s0EJKmI"],
+        ['kata' => "Qubidho", 'video' => "IH2PhwyhR40"],
+        ['kata' => "Wudhia", 'video' => "SbKQkd8RLWY"],
+        ['kata' => "Gholudzo", 'video' => "8G068FeEXwQ"],
+        ['kata' => "Huzima", 'video' => "TPXaV-gRusw"],
+        ['kata' => "Thubikho", 'video' => "4IPX1mFyzsg"],
+        ['kata' => "Khobutsa", 'video' => "lZB5cTAgC6E"],
+        ['kata' => "Karuma", 'video' => "yG022-eLU6c"],
+        ['kata' => "Yaidu", 'video' => "2Havir6VX6A"],
+        ['kata' => "Qutila", 'video' => "P2VhD5Ckdnk"]
+    ],        
+];
 
-        $kodeYoutubeKata = [
-            'Fathah' => ["MELQimvxmkU", "vkX5v-6AVtE", "Mlqm8_BIh4w", "jb2qK48obDA", "9iRV3nmW3b0",
-                        "GV9VSMaJ6UM", "GdVD31y5M24", "8kqwjcbB9kM", "SF2D69o040E", "hlqMLl4goEA",
-                        "DZlcuteP-5c", "Z8zKZ0co9GI", "k18yrC-PdFc", "RO8jhk3oD70", "dP0qZt66ki4",
-                        "RrFlTqIPTpA", "7ymIr9tnvqo", "NWFlFcr4gWg", "yCAB01Fj_yg", "VNmT5PHbGxU",
-                        "6Qi5gCAZTfU", "Jp_vPXm_I_c", "ADX-t56t8f8", "IO5uR8bwvO0", "CKqeodgMjzk",
-                        "hsPB-06nyx8", "0K_2dtfeDZ8", "zOU8vo6P3pA", "8Muw1Kuh_IM", "_g9DaCLezwI",
-                        "ZLJ8uukc1Rc", "JrO4iImUhWM", "hENniU_oJ8s", "aj41n4IUNaU", "v2JSoPbdUSQ"
-            ],
-            'Kasroh' => ["iR4Io2LCa8w", "rXi_UTGhYFc", "8xOfskN2fIc", "cn75-0NT6v0", "Ujxh9_rdf5g",
-                        "lksT09SxqfI", "UPNvTVr0rvA", "1kcoFsW2yO0", "G4MvC1k0K7U", "jpmbhGrcDJ0",
-                        "gnaHcJpDv_U", "nQd_luvqq7U", "uzPp5DWkUHE", "sDrjvD-Pekw", "PK74iLmYA5c",
-                        "3q6F28tUdbg", "8PuSCQ6HPk0", "0fz5W9Ran4E", "K2w9P3TnilQ", "ceyfuAnKZi8",
-                        "34BbU62FcuY", "0Xm-V9snvzk", "m7frJLUMJD8", "mrAUgLTjob0", "1hWqxzLXg7s",
-                        "FHnClbrifYw", "QqjRleI3GVg", "Rqaf6qEZdJQ", "5IQMzN5EFcg", "RCD6Kpojm9k",
-                        "TvgbkuK154U", "oXDU1kq4EUM", "PWxHut8nLHk", "nmeA1153hV4", "8h4j3yC4WG8"
-            ],
-            'Dhommah' => ["u6wEKllscqs", "2Bkrfsbi8YQ", "ONDyjVT40Jw", "HIFNUlAD8TI", "6khAU4jc4aQ",
-                        "ndmeodYQhMM", "OEqG_6mZyV0", "ogZqCgZfiAc", "tj2fE2Xdu9Y", "Z75pndsrMxY",
-                        "3f3eKVnJUj0", "PV2TnRoQ1Nw", "s0g43uh6TaY", "7HoQyR9HfVU", "0nFNINtDc9M",
-                        "v6EChTF3uF4", "ntVl17rlFC8", "sibk4fjNWK4", "GH1H04fvpQA", "kZZIa5FauIc",
-                        "xWqGNNczdTU", "g6HvDl4_6sQ", "SR-v-R5_GwE", "tyaALOZW1T0", "8hrf03cwKL4",
-                        "rrJ7s0EJKmI", "IH2PhwyhR40", "SbKQkd8RLWY", "8G068FeEXwQ", "TPXaV-gRusw",
-                        "4IPX1mFyzsg", "lZB5cTAgC6E", "yG022-eLU6c", "2Havir6VX6A", "P2VhD5Ckdnk"
-            ],
-        ];
-
-        $githubRawAudioKata = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/audio';
-        $githubRawBaseKata = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images';
-
-        #Map latihan kata per harakat
         $latihanKataHarakat = [
             'Latihan Kata 1' => 'Fathah',
             'Latihan Kata 2' => 'Kasroh',
             'Latihan Kata 3' => 'Dhommah',
         ];
 
+        $baseAudioUrl = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/audio';
+        $baseImageUrl = 'https://raw.githubusercontent.com/ArmanShlhn/qolami-lughatech-be/refs/heads/main/public/images';
+
         foreach ($latihanKataHarakat as $latihanNama => $harakat) {
             $latihan = Latihan::where('nama', $latihanNama)->first();
-            if (!$latihan) {
-                $this->command->info("Latihan {$latihanNama} tidak ditemukan, skip.");
-                continue;
-            }
+            if (!$latihan || !isset($kataList[$harakat])) continue;
 
-            if (!isset($kataList[$harakat]) || !isset($kodeYoutubeKata[$harakat])) {
-                $this->command->info("Data kata atau kode video untuk {$harakat} tidak lengkap, skip.");
-                continue;
-            }
-
-            foreach ($kataList[$harakat] as $index => $kataBenar) {
-                $videoCode = $kodeYoutubeKata[$harakat][$index] ?? null;
-                if (!$videoCode) {
-                    $this->command->info("Kode video untuk kata {$kataBenar} pada {$harakat} index {$index} tidak ditemukan, skip.");
-                    continue;
-                }
+            foreach ($kataList[$harakat] as $index => $item) {
+                $kataBenar = $item['kata'];
+                $videoCode = $item['video'];
 
                 $videoUrl = "https://www.youtube.com/watch?v={$videoCode}";
-                $audioUrl = "{$githubRawAudioKata}/kata-{$harakat}/" . ($index + 1) . ".{$harakat}_{$kataBenar}.mp3";
+                $audioUrl = "$baseAudioUrl/kata-{$harakat}/" . ($index + 1) . ".{$harakat}_{$kataBenar}.mp3";
 
                 $opsiKata = collect($kataList[$harakat])
+                    ->pluck('kata')
                     ->filter(fn($k) => $k !== $kataBenar)
                     ->shuffle()
                     ->take(3)
+                    ->push($kataBenar)
+                    ->shuffle()
                     ->values();
 
-                $opsiKata->push($kataBenar);
-                $opsiKata = $opsiKata->shuffle()->values();
-
-                $opsiGambar = $opsiKata->map(function($kataOpsi) use ($harakat, $kataList, $githubRawBaseKata) {
-                    $indexOpsi = array_search($kataOpsi, $kataList[$harakat]) + 1;
-                    return "{$githubRawBaseKata}/kata-{$harakat}/{$indexOpsi}.{$harakat}_{$kataOpsi}.png";
+                $opsiGambar = $opsiKata->map(function ($kataOpsi) use ($kataList, $harakat, $baseImageUrl) {
+                    $indexOpsi = collect($kataList[$harakat])->pluck('kata')->search($kataOpsi) + 1;
+                    return "$baseImageUrl/kata-{$harakat}/{$indexOpsi}.{$harakat}_{$kataOpsi}.png";
                 });
 
                 $jawabanIndex = $opsiKata->search($kataBenar);
 
-                #Buat soal video
                 SoalVideo::create([
                     'latihan_id' => $latihan->id,
                     'video_url' => $videoUrl,
@@ -244,7 +294,6 @@ class SoalLatihanSeeder extends Seeder
                     'jawaban' => $opsiGambar[$jawabanIndex],
                 ]);
 
-                #Buat soal audio
                 SoalAudio::create([
                     'latihan_id' => $latihan->id,
                     'audio_url' => $audioUrl,
